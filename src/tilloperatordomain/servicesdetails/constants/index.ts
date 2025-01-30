@@ -1,0 +1,1 @@
+export const AccountVerificationTypes: readonly ["email", "phone", "change-password"] = ["email", "phone", "change-password"] as const

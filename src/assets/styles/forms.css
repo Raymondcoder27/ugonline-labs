@@ -1,0 +1,41 @@
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  @apply border border-primary-400;
+}
+
+.form-element {
+  @apply w-full rounded-lg text-xs shadow py-2 px-2;
+}
+
+.filter-element {
+  @apply mx-1 rounded text-xs shadow py-1 px-2;
+}
+
+.e-input,
+.e-select,
+.e-textarea {
+  @apply border border-primary-300 bg-white;
+}
+
+.e-input:focus {
+  @apply border border-primary-200;
+}
+
+.e-input:disabled {
+  @apply bg-gray-10 text-gray-300;
+}
+
+.input-holder {
+  @apply border border-gray-50 bg-white px-3 py-1 rounded-sm text-xs shadow w-11/12 ease-linear transition-all duration-150;
+  margin: 0;
+}
+
+.section{
+  @apply border border-gray-50 rounded p-3 my-2;
+}
+
+.section-title{
+  @apply font-bold pt-3 pb-5;
+}

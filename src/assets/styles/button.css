@@ -1,0 +1,143 @@
+.btn {
+  @apply px-2 text-sm rounded;
+}
+
+.btn-dark {
+  @apply bg-gray-600 text-white;
+}
+
+.btn-danger {
+  @apply bg-red-700 text-white;
+}
+
+.btn-primary {
+  @apply bg-primary text-white;
+}
+
+.btn-outline {
+  @apply border border-gray-100;
+}
+
+.btn-outline-primary {
+  @apply bg-white border border-gray-200 text-gray-500;
+}
+
+.btn-outline-warning {
+  @apply bg-white border border-gray-200 text-gray-500;
+}
+
+.btn-outline-danger {
+  @apply bg-white border border-gray-200 text-gray-500;
+}
+
+.btn-primary:hover {
+  @apply bg-primary-700;
+}
+
+.btn-outline-primary:hover {
+  @apply border border-primary text-primary;
+}
+
+.btn-outline-warning:hover {
+  @apply border border-warning text-warning;
+}
+
+.btn-outline-danger:hover {
+  @apply border border-danger text-danger;
+}
+
+.btn-dark:hover {
+  @apply bg-gray-800;
+}
+
+/* .button {
+  @apply w-full border border-primary-800 rounded-lg bg-primary-700 text-white text-sm px-5 py-2 whitespace-nowrap;
+} */
+
+
+.button {
+  @apply w-full border border-primary-800 rounded-lg bg-primary-700 text-white text-sm px-5 py-2 whitespace-nowrap;
+}
+
+
+.button-inert {
+  @apply w-full border border-gray-100 rounded bg-gray-50 text-gray-300 text-sm px-5 py-2 whitespace-nowrap;
+}
+
+.button-sm {
+  @apply w-full border border-primary-800 rounded bg-primary-700 text-white text-sm px-5 py-1 whitespace-nowrap;
+}
+
+
+.button-danger {
+  @apply w-full border border-red-800 rounded bg-red-700 text-white text-sm px-5 py-2 whitespace-nowrap;
+}
+
+.button-info {
+  @apply w-full border border-blue-800 rounded bg-blue-700 text-white text-sm px-5 py-2 whitespace-nowrap;
+}
+
+.button-outline {
+  @apply w-full rounded border border-primary-700 text-primary-700 bg-white text-sm px-5 py-2 whitespace-nowrap;
+}
+
+.action-button-sm {
+  @apply w-full rounded bg-primary-700 border border-primary-700 text-white text-xs px-2 whitespace-nowrap;
+  padding: 2px 0;
+}
+
+.action-button {
+  @apply rounded border border-primary-600 text-primary-700 bg-white text-sm px-3 py-2 mr-1 whitespace-nowrap;
+}
+
+.action-button:hover {
+  @apply rounded border border-primary-700 text-white bg-primary-700;
+}
+
+.action-button-sm:hover {
+  @apply rounded border border-primary-700 bg-primary-900;
+}
+
+.button:hover {
+  @apply bg-primary-900;
+}
+
+.button-sm:hover {
+  @apply bg-primary-900;
+}
+
+.button-danger:hover {
+  @apply bg-red-900;
+}
+
+.button-info:hover {
+  @apply bg-blue-900;
+}
+
+.button-outline:hover {
+  @apply border border-primary-900 text-primary-900;
+}
+
+.btn-sm {
+  @apply text-sm px-2;
+}
+
+.btn-outline:hover {
+  @apply bg-gray-50;
+}
+
+.btn-small-text {
+  @apply text-xs;
+}
+
+.pagination-button {
+  @apply border border-primary-800 rounded bg-primary-700 text-white text-sm px-5 py-1 whitespace-nowrap;
+}
+
+.pagination-button:hover{
+  @apply bg-primary-900;
+}
+
+.pagination-button-inert {
+  @apply border border-gray-100 rounded bg-gray-50 text-gray-300 text-sm px-5 py-2 whitespace-nowrap;
+}

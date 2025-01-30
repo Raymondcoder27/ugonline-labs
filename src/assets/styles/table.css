@@ -1,0 +1,41 @@
+table {
+  @apply w-full my-2 text-xs text-black-500 shadow rounded;
+}
+
+.t-header {
+  text-align: left;
+  @apply text-black-500;
+}
+
+.t-header-p {
+  @apply text-black-500;
+}
+
+.header-tr {
+  @apply py-1 border-b-2 border-gray-200 rounded-sm;
+}
+
+.body-tr {
+  @apply py-1 border-b border-gray-200 rounded-sm;
+}
+
+.body-tr-blocked {
+  @apply py-1 bg-red-200 rounded-sm text-red-700;
+}
+
+tr:hover {
+  @apply bg-gray-10;
+}
+
+td,
+th {
+  @apply cursor-pointer p-2;
+}
+
+th {
+  @apply font-bold capitalize py-2 bg-gray-10;
+}
+
+td {
+  @apply border-b border-gray-50;
+}

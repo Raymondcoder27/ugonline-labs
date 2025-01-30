@@ -1,0 +1,37 @@
+table {
+  @apply w-full my-2 text-xs text-black-500 shadow rounded;
+}
+
+.t-header {
+  text-align: left;
+  @apply text-black-500;
+}
+
+.t-header-p {
+  @apply text-black-500;
+}
+
+.header-tr {
+  @apply py-1 border-b-2 border-primary rounded-sm;
+}
+
+.body-tr {
+  @apply py-1 bg-primary-50 rounded-sm;
+}
+
+.row:hover {
+  @apply bg-primary-100;
+}
+
+td,
+th {
+  @apply cursor-pointer py-1 px-1;
+}
+
+th {
+  @apply font-bold capitalize text-sm text-white py-3 bg-gray-50;
+}
+
+.td {
+  @apply border-r border-primary-200;
+}

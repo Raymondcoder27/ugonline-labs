@@ -1,0 +1,52 @@
+.pill {
+  @apply w-full cursor-pointer text-center border border-blue-200 text-gray-600 px-2 py-0.5 rounded bg-gray-10;
+}
+
+.pill:hover {
+  @apply bg-gray-100;
+}
+
+.pill-inert {
+  @apply w-full cursor-pointer text-center border border-gray-200 text-gray-500 px-4 rounded bg-gray-100;
+}
+
+.pill-active{
+  @apply text-xs w-full cursor-pointer border border-green-400 text-green-600 px-4 py-0.5 rounded bg-green-100;
+}
+
+.pill-semi-active {
+  @apply text-xs w-full cursor-pointer border border-green-200 text-green-500 px-4 py-0.5 rounded bg-green-100;
+}
+
+
+.pill-idle{
+  @apply w-full text-xs cursor-pointer text-center border border-blue-200 text-blue-500 px-4 py-0.5 rounded bg-blue-100;
+}
+
+.pill-warning {
+  @apply w-full cursor-pointer border border-warning-500 text-warning-700 px-4 rounded bg-warning-100;
+}
+
+.pill-danger {
+  @apply w-full cursor-pointer border border-danger-300 text-danger-600 px-4 rounded bg-danger-100;
+}
+
+.avi {
+  @apply w-6 h-6 cursor-pointer border border-blue-300;
+}
+
+.avi-inert {
+  @apply w-6 h-6 mx-1;
+}
+
+.plan {
+  @apply cursor-pointer border border-gray-100 py-5 mx-2 bg-white rounded px-3 text-xs shadow-lg;
+}
+
+.plan-active {
+  @apply cursor-pointer border-2 border-primary-500 py-5 mx-2 bg-white rounded px-3 text-xs shadow-lg;
+}
+
+.plan:hover {
+  @apply border-2 border-primary-500 py-5 bg-gray-10 rounded px-3 text-xs shadow-lg;
+}
