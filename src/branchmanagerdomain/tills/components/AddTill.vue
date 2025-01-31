@@ -102,7 +102,7 @@ function submit() {
   loading.value = true;
   store.addTill(payload); // Simply add the branch
   notify.success("Till Created");
-  emit("branchCreated");
+  emit("tillCreated");
   loading.value = false;
 }
 </script>
