@@ -9,8 +9,8 @@ export type BranchType = {
 export type Branch = {
     id: string;
     name: string;
-    location: string;
-    status: string;
+    // location: string;
+    // status: string;
     manager: string;
     createdAt: string;
 };
