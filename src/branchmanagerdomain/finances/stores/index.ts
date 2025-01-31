@@ -108,6 +108,27 @@ export const useBilling = defineStore("billing", () => {
   //   floatRequests.value = floatRequests;
   // }
 
+  const requestFloat = async (payload: RequestFloat) => {
+    return api.post("/till-operator/request-float", payload)
+      .then((response: AxiosResponse<ApiResponse<any>>) => {
+        floatRequest.value = response.data.data
+        console.log("Request Float response:", floatRequest);
+        //push the request to the float requests array
+        // floatRequests.value.push({
+        //   id: floatRequests.value.length + 1,
+        //   requestDate: new Date().toISOString(),
+        //   amount: payload.amount,
+        //   status: "pending",
+        //   // status: "success",
+        //   // tillId: payload.tillId,
+        //         tillId: "Till 1",
+        //   description: "Till " + payload.tillId,
+        // })
+        // floatRequests.value = response.data.data
+      })
+  }
+
+
 
   // Actions to fetch data
   async function fetchTransactions(filter: any) {
