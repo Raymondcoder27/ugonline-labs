@@ -217,6 +217,19 @@ export const useBilling = defineStore("billing", () => {
   }
 
 
+  async function addBranch(newBranch: Branch) {
+    try {
+      const { data } = await api.post("/branch", newBranch);
+      // branches.value = response.data
+      // branches.value?.push(data.data);
+      branches.value?.push(data.data);
+
+    } catch (error) {
+      console.error("Error adding branch:", error);
+    }
+  }
+
+
 
   // using the api
   // async function requestFloat(payload: RequestFloat) {
