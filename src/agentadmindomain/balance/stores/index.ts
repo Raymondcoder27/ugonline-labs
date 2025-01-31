@@ -29,23 +29,23 @@ export const useBalance = defineStore("balance", () => {
   });
 
   const availableBalance = reactive<TotalBalance>({
-    prevBalance: 300000000,
-    currentBalance: 300000000,
+    prevBalance: 450000000,
+    currentBalance: 450000000,
   });
 
   const availableFloat = reactive<TotalAvailableFloat>({
-    prevAvailableFloat: 300000000,
-    currentAvailableFloat: 300000000,
+    prevAvailableFloat: 450000000,
+    currentAvailableFloat: 450000000,
   });
 
   const finalFloat = reactive<TotalFinalFloat>({
-    prevFinalFloat: 300000000,
-    currentFinalFloat: 300000000,
+    prevFinalFloat: 450000000,
+    currentFinalFloat: 450000000,
   });
 
   const availableFinalBalance = reactive<TotalBalance>({
-    prevBalance: 300000000,
-    currentBalance: 300000000,
+    prevBalance: 450000000,
+    currentBalance: 450000000,
   });
 
   const billingStore = useBilling();
