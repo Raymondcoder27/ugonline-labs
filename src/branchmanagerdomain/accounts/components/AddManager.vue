@@ -135,7 +135,7 @@ onMounted(() => {
           v-model="form.tillId"
           class="noFocus form-element e-input w-full"
         >
-          <option :value="null">-- Select Branch --</option>
+          <option :value="null">-- Select Till --</option>
           <option
             v-for="(till, idx) in tillStore.tills"
             :key="idx"
