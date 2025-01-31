@@ -292,7 +292,7 @@ onMounted(() => {
     <div class="flex space-x-2 my-1 pt-1 pb-3">
       <div class="flex-grow">
         <div
-          class="grid grid-cols-6 gap-2 bg-gray-10 border border-gray-200 rounded px-2 py-3"
+          class="grid grid-cols-5 gap-2 bg-gray-10 border border-gray-200 rounded px-2 py-3"
         >
           <select
             v-if="filter.filter !== undefined"
