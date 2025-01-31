@@ -69,7 +69,7 @@ function select(tab: string) {
     <div class="flex pt-5">
       <div
         :class="
-          activeTab == 'floatrequests' ? 'w-2/12 tab-active' : 'w-2/12 tab'
+          activeTab == 'floatrequests' ? 'w-3/12 tab-active' : 'w-2/12 tab'
         "
         @click="select('floatrequests')"
       >
@@ -77,9 +77,9 @@ function select(tab: string) {
       </div>
       <div
         :class="
-          activeTab == 'floatrequests' ? 'w-2/12 tab-active' : 'w-2/12 tab'
+          activeTab == 'floatrequeststomanager' ? 'w-3/12 tab-active' : 'w-2/12 tab'
         "
-        @click="select('floatrequests')"
+        @click="select('floatrequeststomanager')"
       >
         Float Requests To Manager
       </div>
@@ -122,6 +122,8 @@ function select(tab: string) {
         <FloatManagement v-if="activeTab == 'floatmanagement'" />
         <FloatLedgers v-if="activeTab == 'floatledgers'" />
         <FloatRequests v-if="activeTab == 'floatrequests'" />
+        <FloatRequestsToManager v-if="activeTab == 'floatrequeststomanager'" />
+
       </div>
     </div>
   </div>
