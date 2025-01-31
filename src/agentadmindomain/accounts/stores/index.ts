@@ -257,7 +257,6 @@ export const useAccounts = defineStore("user-management", () => {
     }
   }
 
-
   // Fetch dummy manager accounts
   const fetchManagerAccounts = async (filter: IGoFilter) => {
     // Here you would normally process the filter if you had real data
