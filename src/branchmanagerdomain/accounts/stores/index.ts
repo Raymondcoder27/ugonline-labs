@@ -74,17 +74,17 @@ export const useAccounts = defineStore("user-management", () => {
     {
       id: "1", firstName: "Grace", lastName: "Nakato", username: "gracenakato@gmail.com",
       phone: "678-901-2345", role: "admin", createdAt: "2021-06-01",
-      emailVerified: true, phoneVerified: true, activatedAt: "2021-06-01", email: "gracenakato@gmail.com", middleName: "", middleNames:"", status: "", blockedAt: "", idType: "",
+      emailVerified: true, phoneVerified: true, activatedAt: "2021-06-01", email: "gracenakato@gmail.com", middleName: "", middleNames: "", status: "", blockedAt: "", idType: "",
     },
     {
       id: "2", firstName: "Moses", lastName: "Kato", username: "katomoses@gmail.com",
       phone: "789-012-3456", role: "admin", createdAt: "2021-07-01",
-      emailVerified: true, phoneVerified: true, activatedAt: "2021-07-01", email: "katomoses@gmail.com", middleName: "", middleNames:"", status: "", blockedAt: "", idType: "",
+      emailVerified: true, phoneVerified: true, activatedAt: "2021-07-01", email: "katomoses@gmail.com", middleName: "", middleNames: "", status: "", blockedAt: "", idType: "",
     },
     {
       id: "3", firstName: "Jim", lastName: "Kasana", username: "jim@gmail.com",
       phone: "789-012-3456", role: "admin", createdAt: "2021-07-01",
-      emailVerified: true, phoneVerified: true, activatedAt: "2021-07-01", email: "jim@gmail.com", middleName: "", middleNames:"", status: "", blockedAt: "", idType: "",
+      emailVerified: true, phoneVerified: true, activatedAt: "2021-07-01", email: "jim@gmail.com", middleName: "", middleNames: "", status: "", blockedAt: "", idType: "",
     },
     {
       firstName: "Mable", lastName: "Lunkuse", middleNames: "B", username: "Mable Lunkuse",
