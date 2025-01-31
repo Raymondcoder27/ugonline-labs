@@ -51,11 +51,11 @@ function submit() {
 
 <script setup lang="ts">
 import { onMounted, reactive, ref, type Ref } from "vue";
-import { useBranchStore } from "@/branchmanagerdomain/tills/stores";
+import { useTillStore } from "@/branchmanagerdomain/tills/stores";
 import { useNotificationsStore } from "@/stores/notifications";
 import type { ApiError } from "@/types";
 
-const store = useBranchStore();
+const store = useTillStore();
 const loading: Ref<boolean> = ref(false);
 const notify = useNotificationsStore();
 
