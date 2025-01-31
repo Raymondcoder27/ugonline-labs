@@ -73,7 +73,15 @@ function select(tab: string) {
         "
         @click="select('floatrequests')"
       >
-        Float Requests
+        Float Requests From Till
+      </div>
+      <div
+        :class="
+          activeTab == 'floatrequests' ? 'w-2/12 tab-active' : 'w-2/12 tab'
+        "
+        @click="select('floatrequests')"
+      >
+        Float Requests To Manager
       </div>
       <div
         :class="
