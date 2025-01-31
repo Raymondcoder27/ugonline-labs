@@ -11,8 +11,6 @@ const store = useAccounts();
 const loading: Ref<boolean> = ref(false);
 const notify = useNotificationsStore();
 
-
-
 const page: Ref<number> = ref(1);
 const limit: Ref<number> = ref(4);
 // const selectedBackOfficeAccount: Ref<string> = ref("");
@@ -228,7 +226,6 @@ const filteredManagers = computed(() => {
         </tbody>
       </table>
     </div>
-
 
     <div v-if="showPagination" class="flex text-xs mt-auto">
       <div class="w-full border-t border-b border-gray-50">
