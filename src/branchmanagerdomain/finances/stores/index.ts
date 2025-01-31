@@ -161,6 +161,13 @@ export const useBilling = defineStore("billing", () => {
       })
   }
 
+  const fetchFloatRequestsToAdmin = async () => {
+    return api.get("/branch-manager/float-requests")
+      .then((response: AxiosResponse<ApiResponse<any>>) => {
+        floatRequestsToAdmin.value = response.data.data
+      })
+  }
+
   // function submit() {
   //   let payload = {
   //     amount: form.firstName,
@@ -390,6 +397,7 @@ export const useBilling = defineStore("billing", () => {
     adjustFloatLedger,
     rejectFloatRequest,
     fetchFloatRequests,
+    fetchFloatRequestsToAdmin,
     fetchTransactions,
     fetchFloatLedgers,
     fetchBackofficeUsers,

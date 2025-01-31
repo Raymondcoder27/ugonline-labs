@@ -36,7 +36,7 @@ const page = ref(1);
 const loading: Ref<boolean> = ref(false);
 const limit = ref(10);
 const floatRequests: Ref<any[]> = ref([]);
-const totalRecords = computed(() => billingStore.floatRequests.length); // Total floatRequests
+const totalRecords = computed(() => billingStore.floatRequestsToAdmin.length); // Total floatRequests
 const totalPages = computed(() => Math.ceil(totalRecords.value / limit.value));
 const pageInput = ref(1);
 const changePageSize = () => {
