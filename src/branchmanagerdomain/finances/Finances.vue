@@ -8,7 +8,7 @@ import FloatManagement from "@/branchmanagerdomain/finances/FloatAllocationTabbe
 import Transactions from "@/branchmanagerdomain/finances/Transactions.vue";
 // import FloatRequests from "@/branchmanagerdomain/finances/FloatRequests.vue";
 import FloatRequests from "@/branchmanagerdomain/finances/FloatRequests.vue";
-import FloatRequestsToManager from "@/branchmanagerdomain/finances/FloatRequestsToManager.vue";
+import FloatRequestsToAdmin from "@/branchmanagerdomain/finances/FloatRequestsToAdmin.vue";
 import { useBalance } from "@/branchmanagerdomain/balance/stores";
 
 const balanceStore = useBalance();
@@ -78,11 +78,11 @@ function select(tab: string) {
       </div>
       <div
         :class="
-          activeTab == 'floatrequeststomanager' ? 'w-3/12 tab-active' : 'w-3/12 tab'
+          activeTab == 'floatrequeststoadmin' ? 'w-3/12 tab-active' : 'w-3/12 tab'
         "
-        @click="select('floatrequeststomanager')"
+        @click="select('floatrequeststoadmin')"
       >
-        Float Requests To Manager
+        Float Requests To Admin
       </div>
       <div
         :class="
@@ -123,7 +123,7 @@ function select(tab: string) {
         <FloatManagement v-if="activeTab == 'floatmanagement'" />
         <FloatLedgers v-if="activeTab == 'floatledgers'" />
         <FloatRequests v-if="activeTab == 'floatrequests'" />
-        <FloatRequestsToManager v-if="activeTab == 'floatrequeststomanager'" />
+        <FloatRequestsToAdmin v-if="activeTab == 'floatrequeststoadmin'" />
 
       </div>
     </div>
