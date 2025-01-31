@@ -91,7 +91,7 @@ function submit(userId: string) {
   store.assignOperator(payload.userId, payload.tillId);
   // store.assignManager(userId);
   // notify.success(`User successfully ${payload.userId} assigned to branch`);
-  notify.success(`User successfully assigned to branch`);
+  notify.success(`User successfully assigned to till`);
   emit("operatorAssigned");
   loading.value = false;
 }
