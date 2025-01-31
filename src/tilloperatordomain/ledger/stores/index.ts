@@ -196,10 +196,10 @@ export const useBilling = defineStore("billing", () => {
   //     })
   // }
 
-  const requestFloat = async (payload: RequestFloat) => {
-    return api.post("/till-operator-request-float", payload)
-      .then((response: AxiosResponse<ApiResponse<any>>) => {
-        floatRequest.value = response.data.data
+  async requestFloat(payload: RequestFloat){
+    const {data} = await api.post("/till-operator-request-float", payload)
+      // .then((response: AxiosResponse<ApiResponse<any>>) => {
+        floatRequests.value?.push(data.data)
         console.log("Request Float response:", floatRequest);
         //push the request to the float requests array
         // floatRequests.value.push({
@@ -213,21 +213,29 @@ export const useBilling = defineStore("billing", () => {
         //   description: "Till " + payload.tillId,
         // })
         // floatRequests.value = response.data.data
-      })
+      // })
   }
 
-
-  async function addBranch(newBranch: Branch) {
+  async function addBackOfficeAccount(newBackoffice: BackOfficeAccount) {
     try {
-      const { data } = await api.post("/branch", newBranch);
-      // branches.value = response.data
-      // branches.value?.push(data.data);
-      branches.value?.push(data.data);
-
+      const { data } = await api.post("/backoffice", {
+        firstName: newBackoffice.firstName,
+        lastName: newBackoffice.lastName,
+        email: newBackoffice.email,
+        phone: newBackoffice.phone,
+        role: newBackoffice.role,
+        status: newBackoffice.status,
+        createdAt: new Date().toISOString(),
+        emailVerified: true,
+        phoneVerified: true,
+        activatedAt: new Date().toISOString(),
+      });
+      backofficeAccounts.value?.push(data.data);
     } catch (error) {
-      console.error("Error adding branch:", error);
+      console.error("Error adding backoffice account:", error);
     }
   }
+
 
 
 
