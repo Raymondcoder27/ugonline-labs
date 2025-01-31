@@ -196,8 +196,14 @@ export const useBilling = defineStore("billing", () => {
   //     })
   // }
 
-  async requestFloat(payload: RequestFloat){
-    const {data} = await api.post("/till-operator-request-float", payload)
+  async function requestFloat(payload: RequestFloat){
+    const {data} = await api.post("/till-operator-request-float", {
+      amount: payload.amount,
+      tillId: payload.tillId,
+      status: "pending",
+      description: payload.description,
+    }
+    )
       // .then((response: AxiosResponse<ApiResponse<any>>) => {
         floatRequests.value?.push(data.data)
         console.log("Request Float response:", floatRequest);
@@ -215,29 +221,6 @@ export const useBilling = defineStore("billing", () => {
         // floatRequests.value = response.data.data
       // })
   }
-
-  async function addBackOfficeAccount(newBackoffice: BackOfficeAccount) {
-    try {
-      const { data } = await api.post("/backoffice", {
-        firstName: newBackoffice.firstName,
-        lastName: newBackoffice.lastName,
-        email: newBackoffice.email,
-        phone: newBackoffice.phone,
-        role: newBackoffice.role,
-        status: newBackoffice.status,
-        createdAt: new Date().toISOString(),
-        emailVerified: true,
-        phoneVerified: true,
-        activatedAt: new Date().toISOString(),
-      });
-      backofficeAccounts.value?.push(data.data);
-    } catch (error) {
-      console.error("Error adding backoffice account:", error);
-    }
-  }
-
-
-
 
   // using the api
   // async function requestFloat(payload: RequestFloat) {
