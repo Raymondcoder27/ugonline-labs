@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AgentHeader from "@/components/AgentHeader.vue";
-import AgentTopMenu from "../components/AgentTopMenu.vue";
+import TillOperatorTopMenu from "../components/TillOperatorTopMenu.vue";
 import AppNotification from "../components/AppNotification.vue";
 import { useAuth } from "../agentadmindomain/auth/composables"
 import { useAccountStore } from "../agentadmindomain/auth/stores"

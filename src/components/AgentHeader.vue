@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Logo from "@/assets/images/banner.png";
-import AgentTopMenu from "@/components/AgentTopMenu.vue";
+import TillOperatorTopMenu from "@/components/TillOperatorTopMenu.vue";
 import ProfileSection from "@/components/ProfileSection.vue";
 import { useStorage } from "@vueuse/core";
 import { computed, unref, ref } from "vue";
@@ -35,7 +35,7 @@ const topMenuOpen = ref(useStorage("sms", true));
 
       </div>
       <div>
-        <AgentTopMenu />
+        <TillOperatorTopMenu />
 
       </div>
 
