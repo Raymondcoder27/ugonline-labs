@@ -2,7 +2,7 @@
 import { ref, type Ref } from "vue";
 import { defineStore } from "pinia";
 import api from "@/config/api";
-import type { Service, ServiceResponseInterface, ServiceSpecification } from "@/tilloperatordomain/services/types";
+import type { Service, ServiceResponseInterface, ServiceSpecification } from "@/agentdomain/services/types";
 import niraThumbnail from "@/assets/images/nira.png";
 import epostaThumbnail from "@/assets/images/eposta.png";
 import naroThumbnail from "@/assets/images/naro.png";
@@ -31,8 +31,6 @@ export const useServicesStore = defineStore("services", () => {
       service: "Post Office Account",
       description: "Open a Post Office Account",
       thumbnail: epostaThumbnail,
-      acronym: "POA",
-      providerName: "Posta Uganda",
       // name: 'Posta Uganda',
       // thumbnail: '/assets/coa-19c4edfc.png',
       // email: 'info@ugapost.co.ug',
@@ -44,8 +42,6 @@ export const useServicesStore = defineStore("services", () => {
       thumbnail: ursbThumbnail,
       service: "Company Dissolution",
       description: "Dissolve a private or public company",
-      acronym: "URSB",
-      providerName: "URSB",
       // accessibilityTier: "Public",
       // featureId: "7",
       // requirements: ["National ID", "Passport"],
@@ -71,8 +67,6 @@ export const useServicesStore = defineStore("services", () => {
       service: "National ID Registration",
       description: "Register for a National ID",
       thumbnail: niraThumbnail,
-      acronym: "NIRA",
-      providerName: "NIRA",
       // name: 'National Identification & Registration Authority',
       // thumbnail: '/assets/coa-19c4edfc.png',
       // email: 'info@nira.com',
@@ -84,8 +78,6 @@ export const useServicesStore = defineStore("services", () => {
       service: "Land Title Registration",
       description: "Register a land title",
       thumbnail: ministryThumbnail,
-      acronym: "MLHUD",
-      providerName: "Ministry of Lands and Urban Development",
       // name: 'Ministry of Lands and Urban Development',
       // thumbnail: '/assets/coa-19c4edfc.png',
       // email: 'info@mlhud.go.ug',
@@ -97,8 +89,6 @@ export const useServicesStore = defineStore("services", () => {
       service: "Name Reservation",
       description: "Reserve a company name",
       thumbnail: ursbThumbnail,
-      acronym: "URSB",
-      providerName: "URSB",
       // name: 'URSB',
       // thumbnail: '/assets/coa-19c4edfc.png',
       // email: 'ursb@ursb.go.ug',
@@ -110,8 +100,6 @@ export const useServicesStore = defineStore("services", () => {
       service: "Passport Application",
       description: "Apply for a passport",
       thumbnail: niraThumbnail,
-      acronym: "MOIA",
-      providerName: "Ministry of Internal Affairs",
       // name: 'Ministry of Internal Affairs',
       // thumbnail: '/assets/coa-19c4edfc.png',
       // email: 'info@moia.go.ug',
@@ -123,9 +111,6 @@ export const useServicesStore = defineStore("services", () => {
       thumbnail: naroThumbnail,
       service: "Agricultural Research",
       description: "Get agricultural Research Services",
-      acronym: "NARO",
-      providerName: "NARO",
-      // name: 'National Agricultural Research Organization',
       // accessibilityTier: "Public",
       // featureId: "7",
       // requirements: ["National ID", "Passport"],
@@ -140,8 +125,6 @@ export const useServicesStore = defineStore("services", () => {
       thumbnail: ursbThumbnail,
       service: "File Company Returns",
       description: "Company File Resolution for private and public companies",
-      acronym: "URSB",
-      providerName: "URSB",
       // accessibilityTier: "Public",
       // featureId: "7",
       // requirements: ["National ID", "Passport"],
@@ -156,9 +139,6 @@ export const useServicesStore = defineStore("services", () => {
       thumbnail: ministryThumbnail,
       service: "Land Title Search",
       description: "Search for a land title",
-      acronym: "MLHUD",
-      providerName: "Ministry of Lands and Urban Development",
-      // name: 'Ministry of Works and Transport',
       // accessibilityTier: "Public",
       // featureId: "7",
       // requirements: ["National ID", "Passport"],
@@ -173,8 +153,6 @@ export const useServicesStore = defineStore("services", () => {
       thumbnail: ministryThumbnail,
       service: "Land Title Transfer",
       description: "Transfer a land title",
-      acronym: "MLHUD",
-      providerName: "Ministry of Lands and Urban Development",
       // accessibilityTier: "Public",
       // featureId: "7",
       // requirements: ["National ID", "Passport"],
@@ -190,8 +168,6 @@ export const useServicesStore = defineStore("services", () => {
       thumbnail: ministryThumbnail,
       service: "Land Title Withdrawal",
       description: "Withdraw a land title",
-      acronym: "MLHUD",
-      providerName: "Ministry of Lands and Urban Development",
       // accessibilityTier: "Public",
       // featureId: "7",
       // requirements: ["National ID", "Passport"],
@@ -246,16 +222,10 @@ export const useServicesStore = defineStore("services", () => {
       })
   }
 
-  // const fetchServices = async (page: number, limit: number) => {
-  //   return api.get("/registry/v1?page=" + page + "&limit=" + limit).then((response: any) => {
-  //     services.value = response.data.data
-  //   })
-  // }
-
-  const fetchServices = async () => {
-    // return api.get("/registry/v1?page=" + page).then((response: any) => {
-    services.value = dummyServices
-    // })
+  const fetchServices = async (page: number, limit: number) => {
+    return api.get("/registry/v1?page=" + page + "&limit=" + limit).then((response: any) => {
+      services.value = response.data.data
+    })
   }
 
   const fetchServicesByProvider = async (id: string, page: number) => {
