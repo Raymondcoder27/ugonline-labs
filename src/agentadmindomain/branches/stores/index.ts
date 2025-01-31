@@ -60,7 +60,7 @@ export const useBranchStore = defineStore("useBranch", () => {
       const { data } = await api.post("/branch", newBranch);
       // branches.value = response.data
       // branches.value?.push(data.data);
-      branches.value?.push(data);
+      branches.value?.push(data.data);
 
     } catch (error) {
       console.error("Error adding branch:", error);
