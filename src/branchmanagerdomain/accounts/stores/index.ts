@@ -179,7 +179,7 @@ export const useAccounts = defineStore("user-management", () => {
   // }
 
   // add tillOperator account, push to the tillOperator account array
-  const addTillOperator = (newManager: TillOperator) => {
+  const addTillOperator = (newOperator: TillOperator) => {
     tillOperators.value.push(
       {
         // id:  floatAllocations.value.length + 1,
