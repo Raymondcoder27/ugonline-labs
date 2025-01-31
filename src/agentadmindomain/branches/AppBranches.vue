@@ -288,12 +288,12 @@ onMounted(() => {
           </tr>
         </thead>
         <tbody>
-           <tr
+          <tr
             class="body-tr"
             v-for="(branch, idx) in branchStore.branches"
             :key="idx"
-          > 
-          <!--
+          >
+            <!--
           <tr
             class="body-tr"
             v-for="(branch, idx) in paginatedBranches"
