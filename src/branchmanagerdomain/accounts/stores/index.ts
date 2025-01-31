@@ -413,8 +413,8 @@ export const useAccounts = defineStore("user-management", () => {
       });
 
       tillOperators.value?.push(data.data);
-      console.log(`Manager assigned to branch ${branch.name}`);
-      console.log(`Manager assigned to branch ${branchId}`);
+      console.log(`Manager assigned to branch ${till.name}`);
+      console.log(`Manager assigned to branch ${tillId}`);
     } else {
       console.warn(`User with ID ${userId} not found.`);
       alert(`User with ID ${userId} not found.`);
