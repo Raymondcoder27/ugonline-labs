@@ -544,40 +544,7 @@ onMounted(() => {
               <!-- </td> -->
 
               <!-- Third Case: new request -->
-              <div v-else>
-                <!-- <td> -->
-                <span
-                  class="text-xs rounded-md px-1 py-0.5 font-semibold text-white bg-green-600 hover:bg-green-200 hover:text-green-700"
-                  @click="approveFloatRequest(request.id)"
-                >
-                  <i class="fa-solid fa-check"></i>
-                  Approve</span
-                >
-                <!-- <span
-                  class="text-xs rounded-md px-1 py-0.5 font-semibold text-white bg-green-600 hover:text-green-800 hover:bg-green-300"
-                  @click="approveFloatRequest(request.id)"
-                >
-                  <i class="fa-solid fa-check"></i>
-                  Approve</span
-                > -->
-                <!-- edit float request amount -->
-                <span
-                  class="text-xs rounded-md px-1 py-0.5 ml-1 font-semibold text-white bg-blue-600 hover:text-blue-700 hover:bg-blue-200"
-                  @click="editFloatRequest(request)"
-                >
-                  <i class="fa-solid fa-edit"></i>
-                  Edit</span
-                >
 
-                <span
-                  class="text-xs rounded-md px-1 py-0.5 ml-1 font-semibold text-white bg-red-600 hover:text-red-700 hover:bg-red-200"
-                  @click="rejectFloatRequest(request.id)"
-                >
-                  <i class="fa-solid fa-times-square"></i>
-                  Reject</span
-                >
-                <!-- </td> -->
-              </div>
             </td>
 
             <!-- <td class="text-center">
