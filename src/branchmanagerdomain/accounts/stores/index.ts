@@ -198,24 +198,44 @@ export const useAccounts = defineStore("user-management", () => {
 
 
   // add backoffice account, push to the backoffice account array
-  const addBackOfficeAccount = (newBackoffice: BackOfficeAccount) => {
-    backofficeAccounts.value.push(
-      {
-        // id:  floatAllocations.value.length + 1,
-        id: backofficeAccounts.value.length + 1,
+  // const addBackOfficeAccount = (newBackoffice: BackOfficeAccount) => {
+  //   backofficeAccounts.value.push(
+  //     {
+  //       // id:  floatAllocations.value.length + 1,
+  //       id: backofficeAccounts.value.length + 1,
+  //       firstName: newBackoffice.firstName,
+  //       lastName: newBackoffice.lastName,
+  //       middleNames: newBackoffice.middleNames,
+  //       username: newBackoffice.username,
+  //       phone: newBackoffice.phone,
+  //       emailVerified: true,
+  //       phoneVerified: true,
+  //       role: newBackoffice.role,
+  //       createdAt: new Date().toISOString(),
+  //       status: "Active",
+  //       email: newBackoffice.email
+  //     }
+  //   ); // Directly add the backoffice to the array
+  // }
+
+  async function addBackOfficeAccount(newBackoffice: BackOfficeAccount) {
+    try {
+      const { data } = await api.post("/backoffice", {
         firstName: newBackoffice.firstName,
         lastName: newBackoffice.lastName,
-        middleNames: newBackoffice.middleNames,
-        username: newBackoffice.username,
+        email: newBackoffice.email,
         phone: newBackoffice.phone,
+        role: newBackoffice.role,
+        status: newBackoffice.status,
+        createdAt: new Date().toISOString(),
         emailVerified: true,
         phoneVerified: true,
-        role: newBackoffice.role,
-        createdAt: new Date().toISOString(),
-        status: "Active",
-        email: newBackoffice.email
-      }
-    ); // Directly add the backoffice to the array
+        activatedAt: new Date().toISOString(),
+      });
+      backofficeAccounts.value?.push(data.data);
+    } catch (error) {
+      console.error("Error adding backoffice account:", error);
+    }
   }
 
   // const addTillOperator = (newManager: TillOperator) => {
