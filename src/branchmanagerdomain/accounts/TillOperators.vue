@@ -277,7 +277,7 @@ onMounted(() => {
               {{ account.phone }}
             </td>
             <td>
-              {{ account.branch }}
+              {{ account.till }}
             </td>
             <!-- <td class="text-center">
               {{ account.role }}
