@@ -226,12 +226,37 @@ export const useAccounts = defineStore("user-management", () => {
 
   async function addBackOfficeAccount(newBackoffice: BackOfficeAccount) {
     try {
-      const { data } = await api.post("/backoffice", newBackoffice);
+      const { data } = await api.post("/backoffice", {
+        firstName: newBackoffice.firstName,
+        lastName: newBackoffice.lastName,
+        email: newBackoffice.email,
+        phone: newBackoffice.phone,
+        role: newBackoffice.role,
+        status: newBackoffice.status,
+        createdAt: new Date().toISOString(),
+        emailVerified: true,
+        phoneVerified: true,
+        activatedAt: new Date().toISOString(),
+      });
       backofficeAccounts.value?.push(data.data);
     } catch (error) {
       console.error("Error adding backoffice account:", error);
     }
   }
+
+  // const { data} = await api.post("/branch-manager", {
+  //   firstName: user.firstName,
+  //   lastName: user.lastName,
+  //   email: user.email,
+  //   phone: user.phone,
+  //   role: user.role,
+  //   status: user.status,
+  //   createdAt: new Date().toISOString(),
+  //   emailVerified: true,
+  //   phoneVerified: true,
+  //   activatedAt: new Date().toISOString(),
+  //   branch: branch.name, // Include branchId
+  // });
 
   // const addManagerAccount = (newManager: ManagerAccount) => {
   //   managerAccounts.value.push(newManager); // Directly add the manager to the array
