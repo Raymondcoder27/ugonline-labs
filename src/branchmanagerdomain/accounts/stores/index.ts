@@ -249,9 +249,21 @@ export const useAccounts = defineStore("user-management", () => {
   }
 
   // Fetch dummy backoffice accounts
-  const fetchBackofficeAccounts = async (filter: IGoFilter) => {
-    // Here you would normally process the filter if you had real data
-    backofficeAccounts.value = dummyBackofficeAccounts;
+  // const fetchBackofficeAccounts = async (filter: IGoFilter) => {
+  //   // Here you would normally process the filter if you had real data
+  //   backofficeAccounts.value = dummyBackofficeAccounts;
+  // }
+
+  async function fetchBackofficeAccounts() {
+    isLoading.value = true;
+    try {
+      const { data } = await api.get("/branch-manager-backoffice-account");
+      backofficeAccounts.value = data.data;
+    } catch (error) {
+      console.error("Error fetching backoffice accounts:", error);
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   // Fetch dummy tillOperator accounts
