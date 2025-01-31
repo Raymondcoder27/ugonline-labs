@@ -45,13 +45,26 @@ export const useBranchStore = defineStore("useBranch", () => {
   const isLoading: Ref<boolean> = ref(false);
   const managerAssignments: Ref<AssignManager[]> = ref([]);
 
-  const addBranch = (newBranch: Branch) => {
-    branches.value?.push({
-      id: branches.value?.length + 1,
-      name: newBranch.name,
-      location: newBranch.location,
-      status: newBranch.status,
-    })
+  // const addBranch = (newBranch: Branch) => {
+  //   branches.value?.push({
+  //     id: branches.value?.length + 1,
+  //     name: newBranch.name,
+  //     location: newBranch.location,
+  //     status: newBranch.status,
+  //   })
+  // }
+
+
+  async function addBranch(newBranch: Branch) {
+    try {
+      const { data } = await api.post("/branch", newBranch);
+      // branches.value = response.data
+      // branches.value?.push(data.data);
+      branches.value?.push(data);
+
+    } catch (error) {
+      console.error("Error adding branch:", error);
+    }
   }
 
   // const allocateManager = (payload: AllocateManager) => {
