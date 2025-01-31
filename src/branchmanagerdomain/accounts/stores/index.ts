@@ -389,53 +389,54 @@ export const useAccounts = defineStore("user-management", () => {
   // };
 
   async function assignOperator(userId: string, tillId: string) => {
-    console.log('User ID:', userId); // Debugging log
-    console.log('Till ID:', tillId); // Debugging log
+  console.log('User ID:', userId); // Debugging log
+  console.log('Till ID:', tillId); // Debugging log
 
-    const user = backofficeAccounts.value?.find((account) => account.id === userId); // Find user by `userId`
+  const user = backofficeAccounts.value?.find((account) => account.id === userId); // Find user by `userId`
 
-    const till = tillStore.tills?.find((till: Till) => till.id === tillId);
+  const till = tillStore.tills?.find((till: Till) => till.id === tillId);
 
-    // if (user && branch) {
-    if (user && till) {
-      const { data } = await api.post("/till-operator", {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        phone: user.phone,
-        role: user.role,
-        status: user.status,
-        createdAt: new Date().toISOString(),
-        emailVerified: true,
-        phoneVerified: true,
-        activatedAt: new Date().toISOString(),
-        branch: till.name, // Include branchId
-      });
+  // if (user && branch) {
+  if (user && till) {
+    const { data } = await api.post("/till-operator", {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      phone: user.phone,
+      role: user.role,
+      status: user.status,
+      createdAt: new Date().toISOString(),
+      emailVerified: true,
+      phoneVerified: true,
+      activatedAt: new Date().toISOString(),
+      branch: till.name, // Include branchId
+    });
 
-      tillOperators.value?.push(data.data);
-      console.log(`Manager assigned to branch ${till.name}`);
-      console.log(`Manager assigned to branch ${tillId}`);
-    } else {
-      console.warn(`User with ID ${userId} not found.`);
-      alert(`User with ID ${userId} not found.`);
-    }
-  };
+    tillOperators.value?.push(data.data);
+    console.log(`Manager assigned to branch ${till.name}`);
+    console.log(`Manager assigned to branch ${tillId}`);
+  } else {
+    console.warn(`User with ID ${userId} not found.`);
+    alert(`User with ID ${userId} not found.`);
+  }
+};
 
 
-  return {
-    response,
-    userAccounts,
-    backofficeAccounts,
-    tillOperators,
-    tillOperatorAllocations,
-    assignOperator,
-    createAccount,
-    fetchBackofficeAccounts,
-    fetchUserAccounts,
-    fetchTillOperators,
-    addTillOperator,
-    addBackOfficeAccount,
-    allocateTillOperator,
-    resendAccountVerification
-  };
+
+return {
+  response,
+  userAccounts,
+  backofficeAccounts,
+  tillOperators,
+  tillOperatorAllocations,
+  assignOperator,
+  createAccount,
+  fetchBackofficeAccounts,
+  fetchUserAccounts,
+  fetchTillOperators,
+  addTillOperator,
+  addBackOfficeAccount,
+  allocateTillOperator,
+  resendAccountVerification
+};
 });
