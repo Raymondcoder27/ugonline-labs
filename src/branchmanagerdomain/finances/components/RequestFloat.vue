@@ -58,7 +58,7 @@ function submit() {
   console.log("Submitting payload:", payload);
 
   loading.value = true;
-  billingStore.requestFloat(payload); // API call to allocate float
+  billingStore.requestFloatToAdmin(payload); // API call to allocate float
   // .then(() => {
   billingStore.adjustFloatLedger(payload); // Adjust ledger
   // balanceStore.decreaseTotalBalance(payload.amount); // Update balance

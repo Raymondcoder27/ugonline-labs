@@ -112,7 +112,7 @@ export const useBilling = defineStore("billing", () => {
   
     const floatRequestToAdmin = ref<FloatRequest | null>(null);
 
-  const requestFloat = async (payload: RequestFloat) => {
+  const requestFloatToAdmin = async (payload: RequestFloat) => {
     return api.post("/branch-manager-request-float", payload)
       .then((response: AxiosResponse<ApiResponse<any>>) => {
         floatRequestToAdmin.value = response.data.data
@@ -417,7 +417,7 @@ export const useBilling = defineStore("billing", () => {
     floatRequests,
     floatRequestsToAdmin,
     tillOperatorFloatBalance,
-    requestFloat,
+    requestFloatToAdmin,
     reduceFloatLedger,
     approveFloatRequest,
     adjustFloatLedger,
