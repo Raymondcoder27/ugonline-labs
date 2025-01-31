@@ -523,9 +523,27 @@ onMounted(() => {
                   </span>
                 </label>
               </div>
+
+              <!-- Fourth Case: request is pending -->
+              <div v-if="request.status === 'pending'">
+                <!-- <td> -->
+                <label>
+                  <span
+                    class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-white bg-blue-600 hover:text-blue-700 hover:bg-blue-200"
+                    @click="view(request)"
+                  >
+                    <!-- <i class="fa-solid fa-clock text-gray-500"></i>
+                  Pending</span
+                  > -->
+                    <i class="fa-solid fa-eye"></i>
+                    Details</span
+                  >
+                </label>
+                <!-- </td> -->
+              </div>
               <!-- </td> -->
 
-              <!-- Third Case: Fallback, no manager assigned -->
+              <!-- Third Case: new request -->
               <div v-else>
                 <!-- <td> -->
                 <span
