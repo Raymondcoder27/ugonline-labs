@@ -430,7 +430,7 @@ onMounted(() => {
               </div>
 
               <!-- Second Case: Manager directly assigned to till -->
-              <div v-else-if="request.status === 'rejected'">
+              <div v-if="request.status === 'rejected'">
                 <!-- <td> -->
                 <label>
                   <span
@@ -442,7 +442,7 @@ onMounted(() => {
                 </label>
                 <!-- </td> -->
               </div>
-              <div v-else>
+              <div v-if="request.status === 'pending'">
                 <!-- <td> -->
                 <label>
                   <span
@@ -454,6 +454,19 @@ onMounted(() => {
                 </label>
                 <!-- </td> -->
               </div>
+              <!-- Third Case: request.status = 'failed' -->
+              <div v-if="request.status === 'failed'">
+                <!-- <td> -->
+                <label>
+                  <span
+                    class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-red-700 bg-red-200 border border-red-300 hover:text-red-700 hover:bg-red-300"
+                  >
+                    <!-- <i class="fa-solid fa-times-square"></i> -->
+                    Failed</span
+                  >
+                </label>
+              </div>
+                <!-- </td> -->
             </td>
             <td class="text-right">
               <!-- First Case: float request approved -->
@@ -475,7 +488,7 @@ onMounted(() => {
               </div>
 
               <!-- Second Case: Manager directly assigned to till -->
-              <div v-else-if="request.status === 'rejected'">
+              <div v-if="request.status === 'rejected'">
                 <!-- <td> -->
                 <label>
                   <span
@@ -491,6 +504,27 @@ onMounted(() => {
                 </label>
                 <!-- </td> -->
               </div>
+
+              <!-- Third Case: request.status = 'failed' -->
+              <div v-if="request.status === 'failed'">
+                <!-- <td> -->
+                <label>
+                  <!-- <span
+                    class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-white bg-blue-600 hover:text-blue-700 hover:bg-blue-200"
+                    @click="view(request)"
+                  >
+                    <i class="fa-solid fa-eye"></i>
+                    Details</span
+                  > -->
+                  <span
+                  class="bg-blue-600 rounded-md font-semibold text-white px-1 py-1 hover:bg-blue-200 hover:text-blue-700"
+                  @click="view(request)"
+                >
+                  <i class="fa fa-redo"></i>
+                  Resubmit
+                </span>
+                </label>
+                <!-- </td> -->
 
               <!-- Third Case: Fallback, no manager assigned -->
               <div v-else>
