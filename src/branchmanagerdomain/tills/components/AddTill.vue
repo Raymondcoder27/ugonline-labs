@@ -73,7 +73,7 @@ const emit = defineEmits(["cancel", "branchCreated"]);
 
 onMounted(() => {
   loading.value = true;
-  store.fetchBranches().finally(() => (loading.value = false));
+  store.fetchTills().finally(() => (loading.value = false));
 });
 
 // function submit() {
