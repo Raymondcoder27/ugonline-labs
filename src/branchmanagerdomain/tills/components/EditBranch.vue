@@ -59,7 +59,7 @@ let form: ManagerAccount = reactive({
   // emailVerified: "",
   phoneVerified: "",
   activatedAt: "",
-})
+});
 
 const emit = defineEmits(["cancel", "managerAssigned"]);
 
