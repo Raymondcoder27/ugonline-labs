@@ -58,8 +58,8 @@ export interface CreateAccount {
   firstName: string;
   lastName: string;
   // middleName: string;
-  role: string;
-  username: string;
+  // role: string;
+  // username: string;
   phone: string;
   email: string;
 }
