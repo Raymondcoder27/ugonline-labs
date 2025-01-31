@@ -2,7 +2,7 @@ import { ref, type Ref } from "vue";
 import { defineStore } from "pinia";
 import api from "@/config/api";
 import type { Till } from "@/branchmanagerdomain/tills/types"; // Assuming you have a Till type
-import type { AssignManager } from "@/types";
+import type { AssignTillOperator } from "@/types";
 
 export const useTillStore = defineStore("useTill", () => {
 
@@ -44,7 +44,7 @@ export const useTillStore = defineStore("useTill", () => {
   const tills: Ref<Till[] | undefined> = ref([]);
   const till: Ref<Till | undefined> = ref();
   const isLoading: Ref<boolean> = ref(false);
-  const managerAssignments: Ref<AssignManager[]> = ref([]);
+  const managerAssignments: Ref<AssignTillOperator[]> = ref([]);
 
   // const addTill= (newTill: Till) => {
   //   tills.value?.push({
@@ -77,7 +77,7 @@ export const useTillStore = defineStore("useTill", () => {
   //   }
   // };
 
-  const assignManager = (payload: AssignManager) => {
+  const assignTillOperator = (payload: AssignTillOperator) => {
     const tillToUpdate = tills.value?.find(till => till.id === payload.tillId);
     if (tillToUpdate) {
       tillToUpdate.manager = payload.managerId;
@@ -87,7 +87,7 @@ export const useTillStore = defineStore("useTill", () => {
   };
   
   // push new assigned manager managerAccounts array
-  // const assignManager = (payload: AssignManager) => {
+  // const assignTillOperator = (payload: AssignTillOperator) => {
   //   managerAssignments.value.push({
   //     tillId: payload.tillId,
   //     managerId: payload.managerId,
@@ -95,7 +95,7 @@ export const useTillStore = defineStore("useTill", () => {
   // }
 
   //update managerAccounts array with this new manager
-  // const assignManager = (payload: AssignManager) => {
+  // const assignTillOperator = (payload: AssignTillOperator) => {
   //   managerAccounts
 
 
@@ -157,7 +157,7 @@ export const useTillStore = defineStore("useTill", () => {
     till,
     managerAssignments,
     fetchTills,
-    assignManager,
+    assignTillOperator,
     addTill,
     deleteTill,
   };
