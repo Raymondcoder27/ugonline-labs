@@ -41,7 +41,7 @@ export const useTillStore = defineStore("useTill", () => {
 
   // state variables
   // const tills: Ref<Till[] | undefined> = ref(dummyTills);
-  const tills: Ref<Till[] | undefined> = ref();
+  const tills: Ref<Till[] | undefined> = ref([]);
   const till: Ref<Till | undefined> = ref();
   const isLoading: Ref<boolean> = ref(false);
   const managerAssignments: Ref<AssignManager[]> = ref([]);
