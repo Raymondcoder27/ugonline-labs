@@ -380,23 +380,41 @@ export const useAccounts = defineStore("user-management", () => {
         activatedAt: new Date().toISOString(),
         till: till.name, // Include tillId
       });
-      // tillOperatorAccounts.value.push(assignedManager);
-      // localStorageTillOperator.value.push({
-      //   firstName: user.firstName,
-      //   lastName: user.lastName,
-      //   email: user.email,
-      //   phone: user.phone,
-      //   role: user.role,
-      //   status: user.status,
-      //   createdAt: new Date().toISOString(),
-      //   emailVerified: true,
-      //   phoneVerified: true,
-      //   activatedAt: new Date().toISOString(),
-      //   till: till.name, // Include tillId
-      // }) // Update the local storage reference
-      // saveManagerToLocalStorage(); // Save to local storage
       console.log(`Manager assigned to Till ${till.name}`);
       console.log(`Manager assigned to Till ${tillId}`);
+    } else {
+      console.warn(`User with ID ${userId} not found.`);
+      alert(`User with ID ${userId} not found.`);
+    }
+  };
+
+  async function assignManager(userId: string, branchId: string) {
+    console.log('User ID:', userId); // Debugging log
+    console.log('Branch ID:', branchId); // Debugging log
+
+    const user = backofficeAccounts.value?.find((account) => account.id === userId); // Find user by `userId`
+
+    const branch = branchStore.branches?.find((branch: Branch) => branch.id === branchId);
+
+    // if (user && branch) {
+    if (user && branch) {
+      const { data } = await api.post("/branch-manager", {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+        status: user.status,
+        createdAt: new Date().toISOString(),
+        emailVerified: true,
+        phoneVerified: true,
+        activatedAt: new Date().toISOString(),
+        branch: branch.name, // Include branchId
+      });
+
+      managerAccounts.value?.push(data.data);
+      console.log(`Manager assigned to branch ${branch.name}`);
+      console.log(`Manager assigned to branch ${branchId}`);
     } else {
       console.warn(`User with ID ${userId} not found.`);
       alert(`User with ID ${userId} not found.`);
