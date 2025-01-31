@@ -164,11 +164,11 @@ watch(
 //   return store.services.slice(start, end);  // Adjust according to your page & limit
 // });
 
-const paginatedBranches = computed(() => {
-  const start = (page.value - 1) * limit.value;
-  const end = start + limit.value;
-  return branchStore.branches.slice(start, end); // Adjust according to your page & limit
-});
+// const paginatedBranches = computed(() => {
+//   const start = (page.value - 1) * limit.value;
+//   const end = start + limit.value;
+//   return branchStore.branches.slice(start, end); // Adjust according to your page & limit
+// });
 
 // Helper function to assign managers to branches
 const assignManagersToBranches = () => {
@@ -288,16 +288,17 @@ onMounted(() => {
           </tr>
         </thead>
         <tbody>
-          <!-- <tr
+           <tr
             class="body-tr"
             v-for="(branch, idx) in branchStore.branches"
             :key="idx"
-          > -->
+          > 
+          <!--
           <tr
             class="body-tr"
             v-for="(branch, idx) in paginatedBranches"
             :key="idx"
-          >
+          > -->
             <!-- <td width="10px">{{ idx + 1 }}.</td> -->
             <td>
               <label
