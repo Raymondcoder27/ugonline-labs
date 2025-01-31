@@ -124,7 +124,7 @@ watch(
         </div>
       </div> -->
 
-      <div class="flex">
+      <!-- <div class="flex">
         <div class="cell-full">
           <label class="block uppercase text-neutral-600 text-xs font-bold mb-1"
             >NOTE</label
@@ -136,7 +136,7 @@ watch(
             required
           />
         </div>
-      </div>
+      </div> -->
 
       <div class="flex my-2 py-5">
         <div class="w-6/12 px-1">
