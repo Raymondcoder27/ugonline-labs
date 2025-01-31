@@ -195,7 +195,7 @@ onMounted(() => {
   fetchBranches();
   accountStore.fetchManagerAccounts();
   branchStore.fetchBranches();
-  accountStore.fetchManagerAccounts();
+  // accountStore.fetchManagerAccounts();
   // allocateManager();
   assignManagersToBranches();
 });
