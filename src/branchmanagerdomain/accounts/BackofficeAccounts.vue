@@ -428,7 +428,7 @@ watch(
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
     <!-- Chances are high that you're starting with a form -->
-    <EditBackOfficeAccount @cancel="close"/>
+    <EditBackOfficeAccount @cancel="close" @backOfficeAccountCreated="close"/>
     <!-- That's also okay -->
   </AppModal>
 </template>
