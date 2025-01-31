@@ -17,6 +17,8 @@ balanceStore.fetchTotalBalance();
 
 const totalBalance = balanceStore.totalBalance;
 
+const finalFloat = balanceStore.finalFloat;
+
 const activeTab: Ref<string> = ref("floatrequests");
 
 function select(tab: string) {
@@ -47,13 +49,20 @@ function select(tab: string) {
 
           <!-- <span class="px-1">Available Float: {{ availableFloat.toLocaleString() }}/=</span> -->
           <span class="px-1">Available Float: 
-            <span class="text-gray-500">{{ totalBalance.currentBalance.toLocaleString() }}/=</span></span>
+            <span class="text-gray-500">
+              {{ finalFloat.currentFinalFloat.toLocaleString() }}/=
+              <!-- {{ totalBalance.currentBalance.toLocaleString() }}/= -->
+            </span></span>
 
           <span class="px-1">Final Float: 
-            <span class="text-gray-500">
-              <!-- {{ finalFloat.currentFinalFloat.toLocaleString() }}/= -->
+            <!-- <span class="text-gray-500">
+              {{ finalFloat.currentFinalFloat.toLocaleString() }}/=
                 65,000,000/=
-            </span></span>
+            </span> -->
+            <span class="text-gray-500"
+              >{{ totalBalance.currentBalance.toLocaleString() }}/=</span
+            ></span
+          >
           </span>
       </div>
       <!-- <div class="flex">
