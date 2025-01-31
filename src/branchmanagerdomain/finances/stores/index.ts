@@ -361,30 +361,30 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   // approve float request using passed in Id and set status to approved and modify the floatrequests array
-  // function approveFloatRequest(requestId: any) {
-  //   console.log("changing status")
-  //   const floatRequest = floatRequests.value.find((request) => request.id === requestId);
-  //   if (floatRequest) {
-  //     floatRequest.status = "approved";
-  //     //change the float request in the api too
-  //     // floatRequest.approvedBy = "Manager One";
-  //   }
-  // }
+  function approveFloatRequest(requestId: any) {
+    console.log("changing status")
+    const floatRequest = floatRequests.value.find((request) => request.id === requestId);
+    if (floatRequest) {
+      floatRequest.status = "approved";
+      //change the float request in the api too
+      // floatRequest.approvedBy = "Manager One";
+    }
+  }
 
   // //approve the float request using the api
-  async function approveFloatRequest(requestId: any) {
-    console.log("Request ID:", requestId); // Debugging
-    // return api.post(`/branch-manager/approve-float-request/${requestId}`)
-    return api.post("/branch-manager/approve-float-request/" + requestId)
-      .then((response: AxiosResponse<ApiResponse<any>>) => {
-        console.log("Approve Float Request response:", response.data);
-        // const responseData = response.data
-        // floatRequests.value = responseData
-        // fetchFloatRequests();
-        // fetchFloatLedgers();
-        // fetchFloatAllocations();
-      })
-  }
+  // async function approveFloatRequest(requestId: any) {
+  //   console.log("Request ID:", requestId); // Debugging
+  //   // return api.post(`/branch-manager/approve-float-request/${requestId}`)
+  //   return api.post("/branch-manager/approve-float-request/" + requestId)
+  //     .then((response: AxiosResponse<ApiResponse<any>>) => {
+  //       console.log("Approve Float Request response:", response.data);
+  //       // const responseData = response.data
+  //       // floatRequests.value = responseData
+  //       // fetchFloatRequests();
+  //       // fetchFloatLedgers();
+  //       // fetchFloatAllocations();
+  //     })
+  // }
 
   //approve the float request using the api
   //   async function approveFloatRequest(requestId: any) {
