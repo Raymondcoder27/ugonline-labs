@@ -388,7 +388,7 @@ export const useAccounts = defineStore("user-management", () => {
   //   }
   // };
 
-  async function assignOperator(userId: string, tillId: string) => {
+  async function assignOperator(userId: string, tillId: string){
   console.log('User ID:', userId); // Debugging log
   console.log('Till ID:', tillId); // Debugging log
 
