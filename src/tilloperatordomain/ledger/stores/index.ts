@@ -196,17 +196,17 @@ export const useBilling = defineStore("billing", () => {
   //     })
   // }
 
-  async function requestFloat(payload: RequestFloat){
-    const {data} = await api.post("/till-operator-request-float", {
+  async function requestFloat(payload: RequestFloat) {
+    const { data } = await api.post("/till-operator-request-float", {
       amount: payload.amount,
       tillId: payload.tillId,
       status: "pending",
       description: payload.description,
     }
     )
-      // .then((response: AxiosResponse<ApiResponse<any>>) => {
-        floatRequests.value?.push(data.data)
-        console.log("Request Float response:", floatRequest);
+    // .then((response: AxiosResponse<ApiResponse<any>>) => {
+    floatRequests.value?.push(data.data)
+    console.log("Request Float response:", floatRequest);
   }
 
   // using the api
