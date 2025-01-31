@@ -349,7 +349,7 @@ export const useAccounts = defineStore("user-management", () => {
       //   branch: branch.name, // Include branchId
       // });
 
-      const { data} = await api.post("/create-branch-manager", {
+      const { data} = await api.post("/branch-manager", {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
