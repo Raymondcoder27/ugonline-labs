@@ -421,14 +421,14 @@ watch(
 
   <!-- Modal -->
   <AppModal v-model="modalOpen" xl2>
-    <CreateAccount @tillOperatorAccountCreated="close" @cancel="close" />
+    <CreateAccount @tillOperatorAccountCreated="close" @cancel="close" @backOfficeAccountCreated="close" />
   </AppModal>
   <!-- /Modal -->
 
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
     <!-- Chances are high that you're starting with a form -->
-    <EditBackOfficeAccount @cancel="close" @backOfficeAccountCreated="close"/>
+    <EditBackOfficeAccount @cancel="close"/>
     <!-- That's also okay -->
   </AppModal>
 </template>
