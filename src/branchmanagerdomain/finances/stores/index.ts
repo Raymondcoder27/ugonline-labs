@@ -117,18 +117,19 @@ export const useBilling = defineStore("billing", () => {
       .then((response: AxiosResponse<ApiResponse<any>>) => {
         floatRequestToAdmin.value = response.data.data
         console.log("Request Float response:", floatRequestToAdmin);
+      
         //push the request to the float requests array
-        // floatRequests.value.push({
-        //   id: floatRequests.value.length + 1,
-        //   requestDate: new Date().toISOString(),
-        //   amount: payload.amount,
-        //   status: "pending",
-        //   // status: "success",
-        //   // tillId: payload.tillId,
-        //         tillId: "Till 1",
-        //   description: "Till " + payload.tillId,
-        // })
-        // floatRequests.value = response.data.data
+        floatRequestsToAdmin.value.push({
+          id: floatRequests.value.length + 1,
+          requestDate: new Date().toISOString(),
+          amount: payload.amount,
+          status: "pending",
+          // status: "success",
+          // tillId: payload.tillId,
+                tillId: "Till 1",
+          description: "Till " + payload.tillId,
+        })
+        floatRequests.value = response.data.data
       })
   }
 
