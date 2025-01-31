@@ -465,6 +465,7 @@ onMounted(() => {
               </div>
               <!-- </td> -->
             </td>
+
             <td class="text-right">
               <!-- First Case: float request approved -->
               <div v-if="request.status === 'approved'">
