@@ -388,14 +388,14 @@ export const useAccounts = defineStore("user-management", () => {
     }
   };
 
-  async function assignManager(userId: string, branchId: string) {
+  async function assignManager(userId: string, tillId: string) => {
     console.log('User ID:', userId); // Debugging log
-    console.log('Branch ID:', branchId); // Debugging log
+    console.log('Till ID:', tillId); // Debugging log
 
     const user = backofficeAccounts.value?.find((account) => account.id === userId); // Find user by `userId`
 
-    const branch = branchStore.branches?.find((branch: Branch) => branch.id === branchId);
-
+    const till = tillStore.tills?.find((till: Till) => till.id === tillId);
+    
     // if (user && branch) {
     if (user && branch) {
       const { data } = await api.post("/branch-manager", {
@@ -420,28 +420,6 @@ export const useAccounts = defineStore("user-management", () => {
       alert(`User with ID ${userId} not found.`);
     }
   };
-
-
-
-
-
-
-  // push new assigned tillOperator tillOperators array
-  // const assignManager = (payload: AssignManager) => {
-  //   tillOperatorAccounts.value.push({
-  //     firstName: payload.firstName,
-  //     lastName: payload.lastName,
-  //     email: payload.email,
-  //     phone: payload.phone,  
-  //     role: payload.role,
-  //     status: payload.status,
-  //     createdAt: new Date().toISOString(),
-  //     emailVerified: true,
-  //     phoneVerified: true, 
-  //     activatedAt: new Date().toISOString(),
-  //   });
-  // }
-
 
 
   return {
