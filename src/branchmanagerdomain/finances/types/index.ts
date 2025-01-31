@@ -128,7 +128,8 @@ export interface TillOperator {
   username: string;
   fullName: string;
   role: string;
-  branch: string;
+  // branch: string;
+  till: string;
   status: string;
   dateAssigned: string;
 }
