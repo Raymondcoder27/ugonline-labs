@@ -325,38 +325,31 @@ export const useAccounts = defineStore("user-management", () => {
   // const assignManager = (userId: string) => {
   //   console.log('User ID:', userId); // Debugging log
 
-  //   const user = backofficeAccounts.value?.find((account) => account.id === userId);  // Compare `userId` with `account.id`
-
-  //   if (user) {
-  //     managerAccounts.value.push({
-  //       firstName: user.firstName,
-  //       lastName: user.lastName,
-  //       email: user.email,
-  //       phone: user.phone,
-  //       role: user.role,
-  //       status: user.status,
-  //       createdAt: new Date().toISOString(),
-  //       emailVerified: true,
-  //       phoneVerified: true,
-  //       activatedAt: new Date().toISOString(),
-  //     });
-  //   } else {
-  //     console.warn(`User with ID ${userId} not found.`);
-  //     alert(`User with ID ${userId} not found.`);
-  //   }
-  // };
-
-  const assignManager = (userId: string, branchId: string) => {
+  async function assignManager(userId: string, branchId: string){
     console.log('User ID:', userId); // Debugging log
     console.log('Branch ID:', branchId); // Debugging log
 
     const user = backofficeAccounts.value?.find((account) => account.id === userId); // Find user by `userId`
 
-    const branch = branchStore.branches.find((branch: Branch) => branch.id === branchId);
+    const branch = branchStore.branches?.find((branch: Branch) => branch.id === branchId);
 
     // if (user && branch) {
     if (user && branch) {
-      managerAccounts.value.push({
+      // managerAccounts.value.push({
+      //   firstName: user.firstName,
+      //   lastName: user.lastName,
+      //   email: user.email,
+      //   phone: user.phone,
+      //   role: user.role,
+      //   status: user.status,
+      //   createdAt: new Date().toISOString(),
+      //   emailVerified: true,
+      //   phoneVerified: true,
+      //   activatedAt: new Date().toISOString(),
+      //   branch: branch.name, // Include branchId
+      // });
+
+      const { data} = await api.post("/create-branch-manager", {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
@@ -369,6 +362,10 @@ export const useAccounts = defineStore("user-management", () => {
         activatedAt: new Date().toISOString(),
         branch: branch.name, // Include branchId
       });
+
+      managerAccounts.value?.push(data.data);
+
+
       // managerAccounts.value.push(assignedManager);
       // localStorageManagerAccount.value.push({
       //   firstName: user.firstName,
