@@ -523,7 +523,9 @@ onMounted(() => {
                   <i class="fa fa-redo"></i>
                   Resubmit
                 </span>
+
                 </label>
+              </div>
                 <!-- </td> -->
 
               <!-- Third Case: Fallback, no manager assigned -->
