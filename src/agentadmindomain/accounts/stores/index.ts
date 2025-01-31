@@ -9,6 +9,7 @@ import { AxiosError } from "axios";
 import type { AccountResponseInterface, AccountsData, IResendVerificationPayload } from "@/agentadmindomain/accounts/types";
 import type { Branch } from "@/agentadmindomain/branches/types";
 import { useBranchStore } from "@/agentadmindomain/branches/stores";
+import api from "@/config/api";
 
 
 export const useAccounts = defineStore("user-management", () => {
@@ -103,6 +104,7 @@ export const useAccounts = defineStore("user-management", () => {
 
   const managerAccounts: Ref<ManagerAccount[]> = ref([dummyManagerAccounts]);
   const managerAllocations: Ref<AllocateManager[]> = ref([]);
+  const isLoading: Ref<boolean> = ref(false);
 
 
 
