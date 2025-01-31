@@ -43,6 +43,8 @@ const changePageSize = () => {
 };
 const showPagination = computed(() => totalRecords.value >= limit.value);
 
+const showTillCloseModal = ref(false);
+
 const jumpToPage = () => {
   if (pageInput.value > totalPages.value) {
     page.value = totalPages.value;
