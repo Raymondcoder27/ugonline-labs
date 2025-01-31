@@ -52,7 +52,7 @@ function select(tab: string) {
           <span class="px-1">Final Float: 
             <span class="text-gray-500">
               <!-- {{ finalFloat.currentFinalFloat.toLocaleString() }}/= -->
-                25,000,000/=
+                65,000,000/=
             </span></span>
           </span>
       </div>
