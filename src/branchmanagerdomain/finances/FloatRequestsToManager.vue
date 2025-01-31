@@ -292,9 +292,9 @@ onMounted(() => {
     <div class="flex space-x-2 my-1 pt-1 pb-3">
       <div class="flex-grow">
         <div
-          class="grid grid-cols-6 gap-2 bg-gray-10 border border-gray-200 rounded px-2 py-3"
+          class="grid grid-cols-5 gap-2 bg-gray-10 border border-gray-200 rounded px-2 py-3"
         >
-          <select
+          <!-- <select
             v-if="filter.filter !== undefined"
             input-type="text"
             v-model="filter.filter[2].operand"
@@ -306,7 +306,7 @@ onMounted(() => {
             <option value="Till 1">Till 1</option>
             <option value="Till 2">Till 2</option>
             <option value="Till 3">Till 3</option>
-          </select>
+          </select> -->
           <select
             v-if="filter.filter !== undefined"
             input-type="text"
@@ -373,7 +373,7 @@ onMounted(() => {
             <th class="text-left">#</th>
             <th class="text-left">Date</th>
             <!-- <th class="text-left">Name</th> -->
-            <th class="text-left">Till</th>
+            <!-- <th class="text-left">Till</th> -->
             <th class="text-left">Amount</th>
             <th class="text-left">Status</th>
             <th class="text-right">Actions</th>
@@ -400,7 +400,7 @@ onMounted(() => {
             <td class="text-left">{{ request.requestDate }}</td>
             <!-- <td class="text-left">{{ request.createdAt }}</td> -->
             <!-- convertDateTime(request.createdAt) -->
-            <td class="text-left">{{ request.till }}</td>
+            <!-- <td class="text-left">{{ request.till }}</td> -->
             <!-- <td class="text-left">{{ request.amount.toLocaleString() }}</td> -->
             <td class="text-left">{{ request.amount }}</td>
             <td class="text-left">
