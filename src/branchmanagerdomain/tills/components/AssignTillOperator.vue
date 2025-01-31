@@ -189,21 +189,21 @@ const filteredManagers = computed(() => {
             :key="manager.id"
             class="border-b hover:bg-gray-50"
           > -->
-          <!-- <tr
+          <tr
             v-for="manager in store.backofficeAccounts"
             :key="manager.id"
             class="text-xs body-tr border-b"
-          > -->
+          >
           <!-- <tr
             v-for="user in store.backofficeAccounts"
             :key="user.id"
             class="text-xs body-tr border-b"
           > -->
-          <tr
+          <!-- <tr
             v-for="user in paginatedBackofficeAccounts"
             :key="user.id"
             class="text-xs body-tr border-b"
-          >
+          > -->
             <td class="px-4 py-2">{{ user.firstName }} {{ user.lastName }}</td>
             <td class="px-4 py-2">{{ user.email }}</td>
             <td class="px-4 py-2">{{ user.phone }}</td>
