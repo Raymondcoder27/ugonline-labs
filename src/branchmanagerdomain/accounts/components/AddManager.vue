@@ -5,9 +5,9 @@ import { type Ref, ref, reactive, onMounted } from "vue";
 import { useAccounts } from "@/branchmanagerdomain/accounts/stores";
 import { useNotificationsStore } from "@/stores/notifications";
 import { defineEmits } from "vue";
-import { useBranchStore } from "@/branchmanagerdomain/tills/stores";
+import { useTillStore } from "@/branchmanagerdomain/tills/stores";
 
-const branchStore = useBranchStore();
+const tillStore = useTillStore();
 
 
  const form: ManagerAccount = reactive({
@@ -71,8 +71,8 @@ onMounted(() => {
   // loading.value = true;
    store
     .fetchManagerAccounts(),
-    branchStore
-    .fetchBranches()
+    tillStore
+    .fetchTills()
   
     // .finally(() => (loading.value = false));
 });
