@@ -359,7 +359,7 @@ export const useAccounts = defineStore("user-management", () => {
   // const assignManager = (userId: string) => {
   //   console.log('User ID:', userId); // Debugging log
 
-  async function assignManager(userId: string, branchId: string){
+  async function assignManager(userId: string, branchId: string) {
     console.log('User ID:', userId); // Debugging log
     console.log('Branch ID:', branchId); // Debugging log
 
@@ -383,7 +383,7 @@ export const useAccounts = defineStore("user-management", () => {
       //   branch: branch.name, // Include branchId
       // });
 
-      const { data} = await api.post("/branch-manager", {
+      const { data } = await api.post("/branch-manager", {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
