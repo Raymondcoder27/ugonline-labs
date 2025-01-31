@@ -244,13 +244,13 @@ onMounted(() => {
           </tr>
         </thead>
         <tbody>
-          <!-- <tr :class="account.blockedAt ? 'body-tr-blocked' : 'body-tr'"
-            v-for="(account, idx) in store.managerAccounts" :key="idx"> -->
-          <tr
+          <tr :class="account.blockedAt ? 'body-tr-blocked' : 'body-tr'"
+            v-for="(account, idx) in store.managerAccounts" :key="idx">
+          <!-- <tr
             :class="account.blockedAt ? 'body-tr-blocked' : 'body-tr'"
             v-for="(account, idx) in paginatedManagersAccounts"
             :key="idx"
-          >
+          > -->
             <td width="10px">{{ idx + 1 }}.</td>
             <td>
               <label class="font-bold py-1">
