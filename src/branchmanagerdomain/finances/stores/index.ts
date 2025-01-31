@@ -51,7 +51,7 @@ export const useBilling = defineStore("billing", () => {
 
   const dummyFloatRequests: FloatRequest[] = [
     { id: 1, requestDate: "2021-09-01", amount: 12000000, status: "pending", till: "Till 1", approvedBy: null, requesterName: "", createdAt: "" },
-    { id: 4, requestDate: "2021-09-04", amount: 10000000, status: "pending", till: "Till 4", approvedBy: null, requesterName: "", createdAt: "" },
+    { id: 4, requestDate: "2021-09-04", amount: 10000000, status: "failed", till: "Till 4", approvedBy: null, requesterName: "", createdAt: "" },
     { id: 2, requestDate: "2021-09-02", amount: 18000000, status: "approved", till: "Till 2", approvedBy: "Manager One", requesterName: "", createdAt: "", date: "" },
     { id: 3, requestDate: "2021-09-03", amount: 9000000, status: "rejected", till: "Till 3", approvedBy: null, requesterName: "", createdAt: "" },
   ];
