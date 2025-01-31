@@ -424,7 +424,7 @@ export const useAccounts = defineStore("user-management", () => {
         emailVerified: true,
         phoneVerified: true,
         activatedAt: new Date().toISOString(),
-        branch: till.name, // Include branchId
+        till: till.name, // Include branchId
       });
 
       tillOperators.value?.push(data.data);
