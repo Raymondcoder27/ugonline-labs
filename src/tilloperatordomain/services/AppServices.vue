@@ -85,7 +85,7 @@ function fetchServices() {
   // Fetch the services based on the page and limit
   const startIndex = (page.value - 1) * limit.value;
   const endIndex = startIndex + limit.value;
-  services.value = store.services.slice(startIndex, endIndex);
+  services.value = store.services?.slice(startIndex, endIndex);
   loading.value = false;
 }
 
