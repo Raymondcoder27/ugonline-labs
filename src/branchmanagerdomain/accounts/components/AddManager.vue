@@ -132,16 +132,16 @@ onMounted(() => {
           >Select Branch</label
         >
         <select
-          v-model="form.branchId"
+          v-model="form.tillId"
           class="noFocus form-element e-input w-full"
         >
           <option :value="null">-- Select Branch --</option>
           <option
-            v-for="(branch, idx) in branchStore.branches"
+            v-for="(till, idx) in tillStore.tills"
             :key="idx"
-            :value="branch.name"
+            :value="till.name"
           >
-            {{ branch.name }}
+            {{ till.name }}
           </option>
         </select>
       </div>
