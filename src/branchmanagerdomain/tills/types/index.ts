@@ -17,9 +17,10 @@ export type Branch = {
 
 export type Till = {
   id: string;
+  operator: string;
   name: string;
   location: string;
   status: string;
-  manager: string;
+  // manager: string;
   createdAt: string;
 };
