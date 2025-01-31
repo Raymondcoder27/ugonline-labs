@@ -280,7 +280,7 @@ export const useAccounts = defineStore("user-management", () => {
   async function fetchTillOperators() {
     isLoading.value = true;
     try {
-      const { data } = await api.get("/branch-manager");
+      const { data } = await api.get("/till-operator");
       tillOperators.value = data.data;
     } catch (error) {
       console.error("Error fetching manager accounts:", error);
