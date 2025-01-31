@@ -98,7 +98,9 @@ export const useAccounts = defineStore("user-management", () => {
 
   const response: Ref<AccountResponse | undefined> = ref();
   const userAccounts: Ref<Account[]> = ref([dummyUserAccounts]);
-  const backofficeAccounts: Ref<Account[]> = ref([dummyBackofficeAccounts]);
+  // const backofficeAccounts: Ref<Account[]> = ref([dummyBackofficeAccounts]);
+  const backofficeAccounts: Ref<Account[]> = ref();
+
   const managerAccounts: Ref<ManagerAccount[]> = ref([dummyManagerAccounts]);
   const managerAllocations: Ref<AllocateManager[]> = ref([]);
 
@@ -231,10 +233,28 @@ export const useAccounts = defineStore("user-management", () => {
   }
 
   // Fetch dummy backoffice accounts
-  const fetchBackofficeAccounts = async (filter: IGoFilter) => {
-    // Here you would normally process the filter if you had real data
-    backofficeAccounts.value = dummyBackofficeAccounts;
+  // const fetchBackofficeAccounts = async (filter: IGoFilter) => {
+  //   // Here you would normally process the filter if you had real data
+  //   backofficeAccounts.value = dummyBackofficeAccounts;
+  // }
+
+  // const fetchBackofficeAccounts = async (filter: IGoFilter) => {
+  //   // Here you would normally process the filter if you had real data
+  //   backofficeAccounts.value = api.post("/backoffice-accounts", filter);
+  // }
+
+  async function fetchBackofficeAccounts() {
+    isLoading.value = true;
+    try {
+      const { data } = await api.get("/backoffice");
+      backofficeAccounts.value = data.data;
+    } catch (error) {
+      console.error("Error fetching backoffice accounts:", error);
+    } finally {
+      isLoading.value = false;
+    }
   }
+
 
   // Fetch dummy manager accounts
   const fetchManagerAccounts = async (filter: IGoFilter) => {
