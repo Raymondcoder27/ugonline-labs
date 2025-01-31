@@ -254,7 +254,7 @@ export const useServicesStore = defineStore("services", () => {
 
   const fetchServices = async () => {
     // return api.get("/registry/v1?page=" + page).then((response: any) => {
-      services.value = dummyServices
+    services.value = dummyServices
     // })
   }
 
