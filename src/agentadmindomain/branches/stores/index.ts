@@ -84,7 +84,7 @@ export const useBranchStore = defineStore("useBranch", () => {
       console.warn(`Branch with ID ${payload.branchId} not found.`);
     }
   };
-  
+
   // push new assigned manager managerAccounts array
   // const assignManager = (payload: AssignManager) => {
   //   managerAssignments.value.push({
@@ -98,14 +98,14 @@ export const useBranchStore = defineStore("useBranch", () => {
   //   managerAccounts
 
 
-   // Delete branch from the store
+  // Delete branch from the store
   //  const deleteBranch = (branchId: string) => {
   //   branches.value = branches.value?.filter((branch) => branch.id !== branchId); // Remove the branch by ID
   // };
 
 
   const deleteBranch = (branchId: string) => {
-    branches.value = branches.value?.filter((b) => b.id !== branchId); 
+    branches.value = branches.value?.filter((b) => b.id !== branchId);
   }
 
   // const service = subscribedServices.value?.find((s) => s.id === serviceId);
@@ -115,17 +115,17 @@ export const useBranchStore = defineStore("useBranch", () => {
   //   subscribedServices.value = subscribedServices.value?.filter((s) => s.id !== serviceId);
   // }
 
-  
-  
-  
-  
+
+
+
+
 
   // async function fetchBranches(filter: any) {
   //   // isLoading.value = true;
   //   // try {
   //     // Uncomment the following line to fetch data from the API once ready
   //     // const { data } = await api.get(`/branches?page=${page}&limit=${limit}`);
-      
+
   //     // For now, use the dummy data for testing
   //     // branches.value = dummyBranches; // Use dummy data for testing
 
