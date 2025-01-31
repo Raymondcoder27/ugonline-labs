@@ -272,9 +272,21 @@ export const useAccounts = defineStore("user-management", () => {
   }
 
   // Fetch dummy tillOperator accounts
-  const fetchTillOperators = async (filter: IGoFilter) => {
-    // Here you would normally process the filter if you had real data
-    tillOperators.value = dummyTillOperatorAccounts;
+  // const fetchTillOperators = async (filter: IGoFilter) => {
+  //   // Here you would normally process the filter if you had real data
+  //   tillOperators.value = dummyTillOperatorAccounts;
+  // }
+
+  async function fetchTillOperators() {
+    isLoading.value = true;
+    try {
+      const { data } = await api.get("/branch-manager");
+      managerAccounts.value = data.data;
+    } catch (error) {
+      console.error("Error fetching manager accounts:", error);
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   // Simulating resend account verification
