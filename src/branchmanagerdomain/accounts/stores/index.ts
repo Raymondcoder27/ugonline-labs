@@ -281,7 +281,7 @@ export const useAccounts = defineStore("user-management", () => {
     isLoading.value = true;
     try {
       const { data } = await api.get("/branch-manager");
-      managerAccounts.value = data.data;
+      tillOperators.value = data.data;
     } catch (error) {
       console.error("Error fetching manager accounts:", error);
     } finally {
