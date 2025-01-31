@@ -41,7 +41,7 @@ export const useBranchStore = defineStore("useBranch", () => {
 
   // state variables
   // const branches: Ref<Branch[] | undefined> = ref(dummyBranches);
-  const branches: Ref<Branch[] | undefined> = ref();
+  const branches: Ref<Branch[] | undefined> = ref([]);
   const branch: Ref<Branch | undefined> = ref();
   const isLoading: Ref<boolean> = ref(false);
   const managerAssignments: Ref<AssignManager[]> = ref([]);
