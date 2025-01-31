@@ -107,7 +107,7 @@ export const useBranchStore = defineStore("useBranch", () => {
 
   const deleteBranch = (branchId: string) => {
     branches.value = branches.value?.filter((b) => b.id !== branchId);
-  }
+  }     
 
   // const service = subscribedServices.value?.find((s) => s.id === serviceId);
   // if (service) {
@@ -115,11 +115,6 @@ export const useBranchStore = defineStore("useBranch", () => {
   //   services.value?.push(service);
   //   subscribedServices.value = subscribedServices.value?.filter((s) => s.id !== serviceId);
   // }
-
-
-
-
-
 
   // async function fetchBranches(filter: any) {
   //   // isLoading.value = true;
