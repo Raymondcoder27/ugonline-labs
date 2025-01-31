@@ -55,12 +55,12 @@ export const useTillStore = defineStore("useTill", () => {
   //   })
   // }
 
-  async function addTill(newBranch: Branch) {
+  async function addTill(newBranch: Till) {
     try {
-      const { data } = await api.post("/branch", newBranch);
+      const { data } = await api.post("/till", newBranch);
       // branches.value = response.data
       // branches.value?.push(data.data);
-      branches.value?.push(data.data);
+      tills.value?.push(data.data);
 
     } catch (error) {
       console.error("Error adding branch:", error);
