@@ -8,6 +8,7 @@ import FloatManagement from "@/branchmanagerdomain/finances/FloatAllocationTabbe
 import Transactions from "@/branchmanagerdomain/finances/Transactions.vue";
 // import FloatRequests from "@/branchmanagerdomain/finances/FloatRequests.vue";
 import FloatRequests from "@/branchmanagerdomain/finances/FloatRequests.vue";
+import FloatRequestsToManager from "@/branchmanagerdomain/finances/FloatRequestsToManager.vue";
 import { useBalance } from "@/branchmanagerdomain/balance/stores";
 
 const balanceStore = useBalance();
