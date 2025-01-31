@@ -16,7 +16,7 @@ const branchStore = useBranchStore();
   email: "",
   phone: "",
   // role: "admin",
-  branchId: null, 
+  tillId: null, 
 })
 
 const notify = useNotificationsStore()
@@ -55,7 +55,7 @@ function submit() {
     email: form.email,
     phone: form.phone,
     // role: form.role,
-    branchId: form.branchId,
+    tillId: form.tillId,
   };
   loading.value = true;
   store.addManagerAccount(payload); // Simply add the branch
