@@ -9,6 +9,7 @@ import { AxiosError } from "axios";
 import type { AccountResponseInterface, AccountsData, IResendVerificationPayload } from "@/branchmanagerdomain/accounts/types";
 import type { Till } from "@/branchmanagerdomain/tills/types";
 import { useTillStore } from "@/branchmanagerdomain/tills/stores";
+import api from "@/config/api";
 
 
 export const useAccounts = defineStore("user-management", () => {
@@ -18,6 +19,7 @@ export const useAccounts = defineStore("user-management", () => {
   const commons = useCommonsStore();
 
   const tillStore = useTillStore();
+  const isLoading: Ref<boolean> = ref(false);
 
 
   // Dummy Data for testing
