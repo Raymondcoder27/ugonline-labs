@@ -121,23 +121,35 @@ export const useTillStore = defineStore("useTill", () => {
   
   
 
-  async function fetchTills(filter: any) {
-    // isLoading.value = true;
-    // try {
-      // Uncomment the following line to fetch data from the API once ready
-      // const { data } = await api.get(`/tills?page=${page}&limit=${limit}`);
+  // async function fetchTills(filter: any) {
+  //   // isLoading.value = true;
+  //   // try {
+  //     // Uncomment the following line to fetch data from the API once ready
+  //     // const { data } = await api.get(`/tills?page=${page}&limit=${limit}`);
       
-      // For now, use the dummy data for testing
-      tills.value = dummyTills; // Use dummy data for testing
+  //     // For now, use the dummy data for testing
+  //     tills.value = dummyTills; // Use dummy data for testing
 
-      // Uncomment below to assign the API data when it's available
-      // tills.value = data;
-    // } catch (error) {
-      // console.error(error);
-      // throw error;
-    // } finally {
-      // isLoading.value = false;
-    // }
+  //     // Uncomment below to assign the API data when it's available
+  //     // tills.value = data;
+  //   // } catch (error) {
+  //     // console.error(error);
+  //     // throw error;
+  //   // } finally {
+  //     // isLoading.value = false;
+  //   // }
+  // }
+
+  async function fetchTills() {
+    isLoading.value = true;
+    try {
+      const { data } = await api.get("/till");
+      tills.value = data.data;
+    } catch (error) {
+      console.error("Error fetching branches:", error);
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   return {
