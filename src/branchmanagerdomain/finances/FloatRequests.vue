@@ -354,7 +354,7 @@ onMounted(() => {
               v-model="filter.toDate"
             />
           </div>
-          <div class="">
+          <!-- <div class="">
               <button
                 @click="floatRequestModalOpen = true"
                 class="button btn-sm"
@@ -362,7 +362,7 @@ onMounted(() => {
               >
                 <i class="px-1 fa-solid fa-plus"></i> Request Float
               </button>
-            </div>
+            </div> -->
         </div>
       </div>
     </div>
