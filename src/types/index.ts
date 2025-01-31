@@ -144,6 +144,11 @@ export interface AssignManager {
   managerId: string | null;
 }
 
+export interface AssignTillOperator {
+  // branchId: string | null;
+  managerId: string | null;
+}
+
 
 export interface ApiSuccess {
   status: number
