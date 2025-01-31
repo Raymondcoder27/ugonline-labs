@@ -52,12 +52,6 @@ export const useBranchStore = defineStore("useBranch", () => {
       location: newBranch.location,
       status: newBranch.status,
     })
-
-    // allocate branch manager
-    // const manager = branchManagers.value.find((manager) => manager.id === newBranch.managerId);
-    // if (manager) {
-    //   manager.branch = newBranch.id;
-    // }
   }
 
   // const allocateManager = (payload: AllocateManager) => {
