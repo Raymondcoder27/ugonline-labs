@@ -38,8 +38,8 @@ export const useBalance = defineStore("balance", () => {
   // }
 
    const finalFloat = reactive<TotalFinalFloat>({
-      prevFinalFloat: 125000000,
-      currentFinalFloat: 125000000,
+      prevFinalFloat: 175000000,
+      currentFinalFloat: 175000000,
     });
 
 
