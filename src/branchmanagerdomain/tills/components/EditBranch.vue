@@ -139,7 +139,7 @@ function submit(userId: string) {
   accountStore.assignManager(id, payload.branch);
   // store.assignManager(userId);
   // notify.success(`User successfully ${payload.userId} assigned to branch`);
-  notify.success(`User successfully assigned to branch`);
+  notify.success(`User successfully assigned to Branch`);
   emit("managerAssigned");
   loading.value = false;
 }
