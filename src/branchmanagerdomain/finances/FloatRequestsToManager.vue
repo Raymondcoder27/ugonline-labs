@@ -41,7 +41,7 @@ const totalPages = computed(() => Math.ceil(totalRecords.value / limit.value));
 const pageInput = ref(1);
 const changePageSize = () => {
   page.value = 1;
-  fetchFloatRequests();
+  fetchFloatRequestsToAdmin();
 };
 const showPagination = computed(() => totalRecords.value >= limit.value);
 
@@ -65,9 +65,9 @@ const jumpToPage = () => {
   } else {
     page.value = pageInput.value;
   }
-  fetchFloatRequests();
+  fetchFloatRequestsToAdmin();
 };
-function fetchFloatRequests() {
+function fetchFloatRequestsToAdmin() {
   // branchStore
   //   .fetchFloatRequests(page.value, limit.value)
   //   .then(() => (loading.value = false))
@@ -121,21 +121,21 @@ const filter: IGoFilter = reactive({
 const next = () => {
   if (billingStore.floatRequests.length >= billingStore.limit) {
     page.value += 1;
-    billingStore.fetchFloatRequests();
+    billingStore.fetchFloatRequestsToAdmin();
   }
 };
 
 const previous = () => {
   if (page.value > 1) {
     page.value -= 1;
-    billingStore.fetchFloatRequests();
+    billingStore.fetchFloatRequestsToAdmin();
   }
 };
 
 // Debounced filter update function
 const updateFilter = useDebounceFn(
   () => {
-    fetchFloatRequests();
+    fetchFloatRequestsToAdmin();
   },
   300,
   { maxWait: 5000 }
@@ -268,7 +268,7 @@ function convertDateTimeNullable(date?: string) {
 // pass in the requestId
 const approveFloatRequest = (requestId: any) => {
   billingStore.approveFloatRequest(requestId);
-  // billingStore.fetchFloatRequests();
+  // billingStore.fetchFloatRequestsToAdmin();
   balanceStore.approveFloatRequest(requestId);
   billingStore.reduceFloatLedger(requestId);
   billingStore.allocateFloatFromRequest(requestId);
@@ -277,12 +277,12 @@ const approveFloatRequest = (requestId: any) => {
 
 const rejectFloatRequest = (requestId: any) => {
   billingStore.rejectFloatRequest(requestId);
-  billingStore.fetchFloatRequests();
+  billingStore.fetchFloatRequestsToAdmin();
   console.log(`float request with id ${requestId} rejected`);
 };
 
 onMounted(() => {
-  billingStore.fetchFloatRequests();
+  billingStore.fetchFloatRequestsToAdmin();
   console.log(billingStore.floatRequests);
 });
 </script>
@@ -380,21 +380,21 @@ onMounted(() => {
           </tr>
         </thead>
         <tbody>
-          <!-- <tr
+          <tr
             class="text-right"
-            v-for="(request, id) in billingStore.floatRequests"
+            v-for="(request, id) in billingStore.floatRequestsToAdmin"
             :key="id"
-          > -->
+          >
           <!-- <tr
             class="text-right"
             v-for="(request, id) in paginatedFloatRequests"
             :key="id"
           > -->
-          <tr
+          <!-- <tr
             class="text-left"
             v-for="(request, id) in paginatedFloatRequests"
             :key="id"
-          >
+          > -->
             <td>{{ id + 1 }}</td>
             <!-- <td class="text-left">{{  convertDateTime(request.date) }}</td> -->
             <td class="text-left">{{ request.requestDate }}</td>
