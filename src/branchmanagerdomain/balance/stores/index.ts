@@ -37,6 +37,11 @@ export const useBalance = defineStore("balance", () => {
   //   totalBalance.current = fetchedBalance.current;
   // }
 
+   const finalFloat = reactive<TotalFinalFloat>({
+      prevFinalFloat: 850000000,
+      currentFinalFloat: 850000000,
+    });
+
 
   // Increase the total balance and update "prev"
   function increaseTotalBalance(amount: number) {
@@ -102,6 +107,7 @@ async function fetchTotalBalance() {
 
   return {
     totalBalance,
+    finalFloat,
     approveFloatRequest,
     fetchTotalBalance,
     increaseTotalBalance,
