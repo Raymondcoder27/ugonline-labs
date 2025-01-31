@@ -146,7 +146,7 @@ export const useTillStore = defineStore("useTill", () => {
       const { data } = await api.get("/till");
       tills.value = data.data;
     } catch (error) {
-      console.error("Error fetching branches:", error);
+      console.error("Error fetching tills:", error);
     } finally {
       isLoading.value = false;
     }
