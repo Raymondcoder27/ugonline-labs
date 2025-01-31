@@ -289,16 +289,16 @@ onMounted(() => {
           </tr>
         </thead>
         <tbody>
-          <!-- <tr
+          <tr
             class="body-tr"
             v-for="(till, idx) in tillStore.tills"
             :key="idx"
-          > -->
-          <tr
+          >
+          <!-- <tr
             class="body-tr"
             v-for="(till, idx) in paginatedTills"
             :key="idx"
-          >
+          > -->
             <!-- <td width="10px">{{ idx + 1 }}.</td> -->
             <td>
               <label
