@@ -80,7 +80,7 @@ export const useTillStore = defineStore("useTill", () => {
   const assignTillOperator = (payload: AssignTillOperator) => {
     const tillToUpdate = tills.value?.find(till => till.id === payload.tillId);
     if (tillToUpdate) {
-      tillToUpdate.manager = payload.managerId;
+      tillToUpdate.operator = payload.managerId;
     } else {
       console.warn(`Till with ID ${payload.tillId} not found.`);
     }
