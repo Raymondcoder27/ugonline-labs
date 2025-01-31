@@ -13,14 +13,11 @@ import { FloatRequest } from "@/branchmanagerdomain/finances/types";
 import EditFloatRequestAmount from "@/branchmanagerdomain/finances/components/EditFloatRequestAmount.vue";
 import RequestFloat from "@/branchmanagerdomain/finances/components/RequestFloat.vue";
 
-
-
 const editModalOpen: Ref<boolean> = ref(false);
 const viewModalOpen: Ref<boolean> = ref(false);
 
-
-  function editFloatRequest(floatRequest:FloatRequest) {
-  localStorage.setItem("floatRequestEdit", JSON.stringify(floatRequest))
+function editFloatRequest(floatRequest: FloatRequest) {
+  localStorage.setItem("floatRequestEdit", JSON.stringify(floatRequest));
   editModalOpen.value = true;
 }
 function close() {
@@ -355,14 +352,14 @@ onMounted(() => {
             />
           </div>
           <div class="">
-              <button
-                @click="floatRequestModalOpen = true"
-                class="button btn-sm"
-                type="button"
-              >
-                <i class="px-1 fa-solid fa-plus"></i> Request Float
-              </button>
-            </div>
+            <button
+              @click="floatRequestModalOpen = true"
+              class="button btn-sm"
+              type="button"
+            >
+              <i class="px-1 fa-solid fa-plus"></i> Request Float
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -385,12 +382,12 @@ onMounted(() => {
             v-for="(request, id) in billingStore.floatRequestsToAdmin"
             :key="id"
           >
-          <!-- <tr
+            <!-- <tr
             class="text-right"
             v-for="(request, id) in paginatedFloatRequests"
             :key="id"
           > -->
-          <!-- <tr
+            <!-- <tr
             class="text-left"
             v-for="(request, id) in paginatedFloatRequests"
             :key="id"
@@ -466,7 +463,7 @@ onMounted(() => {
                   >
                 </label>
               </div>
-                <!-- </td> -->
+              <!-- </td> -->
             </td>
             <td class="text-right">
               <!-- First Case: float request approved -->
@@ -517,16 +514,15 @@ onMounted(() => {
                     Details</span
                   > -->
                   <span
-                  class="bg-blue-600 rounded-md font-semibold text-white px-1 py-1 hover:bg-blue-200 hover:text-blue-700"
-                  @click="view(request)"
-                >
-                  <i class="fa fa-redo"></i>
-                  Resubmit
-                </span>
-
+                    class="bg-blue-600 rounded-md font-semibold text-white px-1 py-1 hover:bg-blue-200 hover:text-blue-700"
+                    @click="view(request)"
+                  >
+                    <i class="fa fa-redo"></i>
+                    Resubmit
+                  </span>
                 </label>
               </div>
-                <!-- </td> -->
+              <!-- </td> -->
 
               <!-- Third Case: Fallback, no manager assigned -->
               <div v-else>
@@ -545,8 +541,8 @@ onMounted(() => {
                   <i class="fa-solid fa-check"></i>
                   Approve</span
                 > -->
-                 <!-- edit float request amount -->
-                 <span
+                <!-- edit float request amount -->
+                <span
                   class="text-xs rounded-md px-1 py-0.5 ml-1 font-semibold text-white bg-blue-600 hover:text-blue-700 hover:bg-blue-200"
                   @click="editFloatRequest(request)"
                 >
@@ -728,14 +724,14 @@ onMounted(() => {
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
     <!-- Chances are high that you're starting with a form -->
-    <EditFloatRequestAmount @cancel="close"/>
+    <EditFloatRequestAmount @cancel="close" />
     <!-- That's also okay -->
   </AppModal>
 
   <AppModal v-model="floatRequestModalOpen" xl2>
-      <!-- Your modal content goes here -->
-      <RequestFloat @floatAllocated="close" :close="close" />
-    </AppModal>
+    <!-- Your modal content goes here -->
+    <RequestFloat @floatAllocated="close" :close="close" />
+  </AppModal>
 </template>
 
 <style scoped>
