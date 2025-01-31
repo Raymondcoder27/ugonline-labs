@@ -40,25 +40,34 @@ export const useTillStore = defineStore("useTill", () => {
   //   });
 
   // state variables
+  // const tills: Ref<Till[] | undefined> = ref(dummyTills);
   const tills: Ref<Till[] | undefined> = ref(dummyTills);
+
   const till: Ref<Till | undefined> = ref();
   const isLoading: Ref<boolean> = ref(false);
   const managerAssignments: Ref<AssignManager[]> = ref([]);
 
-  const addTill= (newTill: Till) => {
-    tills.value?.push({
-      id: tills.value?.length + 1,
-      name: newTill.name,
-      location: newTill.location,
-      status: newTill.status,
-    })
+  // const addTill= (newTill: Till) => {
+  //   tills.value?.push({
+  //     id: tills.value?.length + 1,
+  //     name: newTill.name,
+  //     location: newTill.location,
+  //     status: newTill.status,
+  //   })
+  // }
 
-    // allocate Till manager
-    // const manager = branchManagers.value.find((manager) => manager.id === newTill.managerId);
-    // if (manager) {
-    //   manager.Till = newTill.id;
-    // }
+  async function addTill(newBranch: Branch) {
+    try {
+      const { data } = await api.post("/branch", newBranch);
+      // branches.value = response.data
+      // branches.value?.push(data.data);
+      branches.value?.push(data.data);
+
+    } catch (error) {
+      console.error("Error adding branch:", error);
+    }
   }
+
 
   // const allocateManager = (payload: AllocateManager) => {
   //   const tillToUpdate = tills.value?.find(till = > till.id === payload.tillId);
