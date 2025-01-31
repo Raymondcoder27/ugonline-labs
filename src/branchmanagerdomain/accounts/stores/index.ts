@@ -409,10 +409,10 @@ export const useAccounts = defineStore("user-management", () => {
         emailVerified: true,
         phoneVerified: true,
         activatedAt: new Date().toISOString(),
-        branch: branch.name, // Include branchId
+        branch: till.name, // Include branchId
       });
 
-      managerAccounts.value?.push(data.data);
+      tillOperators.value?.push(data.data);
       console.log(`Manager assigned to branch ${branch.name}`);
       console.log(`Manager assigned to branch ${branchId}`);
     } else {
