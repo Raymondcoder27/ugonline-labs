@@ -546,6 +546,7 @@ export const useBilling = defineStore("billing", () => {
     approveFloatRequest,
     editFloatRequest,
     adjustFloatLedger,
+    updateTillOperatorFloatLedger,
     rejectFloatRequest,
     fetchFloatRequests,
     fetchFloatRequestsToAdmin,
