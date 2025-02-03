@@ -282,6 +282,8 @@ export const useBilling = defineStore("billing", () => {
   async function adjustFloatLedger(payload: RequestFloat) {
     const { data } = await api.post("/till-operator-float-ledgers", {
       amount: payload.amount,
+      createdAt: new Date().toISOString(),
+      
       description: payload.description,
       status: "pending",
     });
