@@ -384,7 +384,7 @@ export const useBilling = defineStore("billing", () => {
     const { data } = await api.put("/till-operator2-float-requests/" + requestId, {
       status: "approved",
       approvedBy: "Manager One",
-      amount: requestId.amount,
+      amount: requestId?.amount,
       till: requestId.till,
     });
 
