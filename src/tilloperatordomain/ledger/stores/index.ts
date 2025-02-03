@@ -269,7 +269,7 @@ export const useBilling = defineStore("billing", () => {
   //   });
   // }
 
-   async function adjustFloatLedger(payload: RequestFloat) {
+  async function adjustFloatLedger(payload: RequestFloat) {
     const { data } = await api.post("/till-operator-float-ledgers", {
       amount: payload.amount,
       description: payload.description,
