@@ -192,69 +192,6 @@ watch(
   { deep: true }
 );
 
-// watch(
-//   () => filter,
-//   () => {
-//     console.log("Filter updated:", filter);
-//     updateFilter();
-//   },
-//   { deep: true }
-// );
-
-// watch(
-//   () => filter.filter,
-//   () => updateFilter(),
-//   { deep: true }
-// );
-
-// Watch for changes in the modal state
-// watch(
-//   () => modalOpen.value,
-//   (isOpen) => {
-//     if (!isOpen) {
-//       // Handle modal close if needed
-//     }
-//   }
-// );
-
-// // Watch for changes in the filter object
-// watch(
-//   () => filter,
-//   () => {
-//     console.log("Filter updated:", filter);
-//     updateFilter();
-//   },
-//   { deep: true }
-// );
-
-// computed(() => {
-//   const initialBalance = 15000000; // From store or static reference
-//   const transactions = store.floatLedgers;
-
-//   return transactions.reduce((balance, tx) => {
-//     return balance + tx.amount;
-//   }, initialBalance);
-// });
-
-// Compute running balance
-// const computedTransactions = computed(() => {
-//   if (store.floatLedgers.length === 0) {
-//     return [];
-//   }
-
-//   // let runningBalance = balanceStore.totalBalance.current || 0;
-//   let runningBalance = 0;
-
-//   return store.floatLedgers.map((transaction) => {
-//     runningBalance += transaction.amount;
-
-//     return {
-//       ...transaction,
-//       balance: runningBalance,
-//     };
-//   });
-// });
-
 // This is the updated computed property for paginatedFloatLedgers that works with the running balance.
 const paginatedFloatLedgersWithBalance = computed(() => {
   const start = (page.value - 1) * limit.value;
