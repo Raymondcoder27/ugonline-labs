@@ -5,6 +5,7 @@ import { ref } from "vue";
 import api from "@/config/api";
 import type { Transaction, FloatLedger, BackofficeUser, TillOperator, FloatAllocation, FloatRequest } from "@/branchmanagerdomain/finances/types";
 import type { AllocateFloat } from "@/types";
+import { request } from "node_modules/axios/index.d.cts";
 
 export const useBilling = defineStore("billing", () => {
   // Dummy data for testing
@@ -382,7 +383,8 @@ export const useBilling = defineStore("billing", () => {
   async function approveFloatRequest(requestId: any) {
     const { data } = await api.put("/till-operator-float-requests/" + requestId, {
       status: "approved",
-      approvedBy: "Manager One"
+      approvedBy: "Manager One",
+      amount: requestId.amount,
     });
     // );
     floatRequests.value = data.data;

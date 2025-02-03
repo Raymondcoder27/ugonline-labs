@@ -13,14 +13,11 @@ import { FloatRequest } from "@/branchmanagerdomain/finances/types";
 import EditFloatRequestAmount from "@/branchmanagerdomain/finances/components/EditFloatRequestAmount.vue";
 import RequestFloat from "@/branchmanagerdomain/finances/components/RequestFloat.vue";
 
-
-
 const editModalOpen: Ref<boolean> = ref(false);
 const viewModalOpen: Ref<boolean> = ref(false);
 
-
-  function editFloatRequest(floatRequest:FloatRequest) {
-  localStorage.setItem("floatRequestEdit", JSON.stringify(floatRequest))
+function editFloatRequest(floatRequest: FloatRequest) {
+  localStorage.setItem("floatRequestEdit", JSON.stringify(floatRequest));
   editModalOpen.value = true;
 }
 function close() {
@@ -267,18 +264,16 @@ function convertDateTimeNullable(date?: string) {
 
 // pass in the requestId
 const approveFloatRequest = (requestId: any) => {
-
   if (requestId) {
     billingStore.approveFloatRequest(requestId).then(() => {
-    billingStore.fetchFloatRequests();
-    console.log(`float request with id ${requestId} approved`);
-    balanceStore.approveFloatRequest(requestId);
-  billingStore.reduceFloatLedger(requestId);
-  billingStore.allocateFloatFromRequest(requestId);
-  console.log(`float request with id ${requestId} approved`);
-  });
+      billingStore.fetchFloatRequests();
+      console.log(`float request with id ${requestId} approved`);
+      balanceStore.approveFloatRequest(requestId);
+      billingStore.reduceFloatLedger(requestId);
+      billingStore.allocateFloatFromRequest(requestId);
+      console.log(`float request with id ${requestId} approved`);
+    });
   }
-
 };
 
 const rejectFloatRequest = (requestId: any) => {
@@ -515,8 +510,8 @@ onMounted(() => {
                   <i class="fa-solid fa-check"></i>
                   Approve</span
                 > -->
-                 <!-- edit float request amount -->
-                 <span
+                <!-- edit float request amount -->
+                <span
                   class="text-xs rounded-md px-1 py-0.5 ml-1 font-semibold text-white bg-blue-600 hover:text-blue-700 hover:bg-blue-200"
                   @click="editFloatRequest(request)"
                 >
@@ -698,14 +693,14 @@ onMounted(() => {
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
     <!-- Chances are high that you're starting with a form -->
-    <EditFloatRequestAmount @cancel="close"/>
+    <EditFloatRequestAmount @cancel="close" />
     <!-- That's also okay -->
   </AppModal>
 
   <AppModal v-model="floatRequestModalOpen" xl2>
-      <!-- Your modal content goes here -->
-      <RequestFloat @floatAllocated="close" :close="close" />
-    </AppModal>
+    <!-- Your modal content goes here -->
+    <RequestFloat @floatAllocated="close" :close="close" />
+  </AppModal>
 </template>
 
 <style scoped>
