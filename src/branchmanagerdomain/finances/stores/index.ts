@@ -385,6 +385,7 @@ export const useBilling = defineStore("billing", () => {
       status: "approved",
       approvedBy: "Manager One",
       amount: requestId.amount,
+      till: requestId.till,
     });
     // );
     floatRequests.value = data.data;
