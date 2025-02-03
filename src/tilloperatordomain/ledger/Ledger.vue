@@ -210,44 +210,6 @@ const paginatedFloatLedgersWithBalance = computed(() => {
   });
 });
 
-// watch(
-//   computedTransactions,
-//   (transactions) => {
-//     console.log("Computed transactions:", transactions);
-//   },
-//   { deep: true }
-// );
-
-// watch(
-//   () => balanceStore.totalBalance.value,
-//   (newVal, oldVal) => {
-//     console.log("Balance updated:", oldVal, "->", newVal);
-//   },
-//   { deep: true }
-// );
-
-// let description = ref("")
-// watch(
-//     () => description.value,
-//     () => {
-//       fetchFloatLedgers()
-//     },
-// );
-
-// watch(
-//   () => description.value,
-//   () => {
-//     filter.filter = filter.filter.filter((f) => f.field !== "description");
-//     if (description.value) {
-//       filter.filter.push({
-//         field: "description",
-//         operand: description.value,
-//         operator: "EQUALS",
-//       });
-//     }
-//     fetchFloatLedgers();
-//   }
-// );
 
 // Fetch billing data (transactions, float ledgers)
 onMounted(() => {
