@@ -76,6 +76,13 @@ watch(
     console.log("Amount changed:", value);
   }
 );
+
+
+onMounted(() => {
+  console.log("RequestFloat component mounted");
+  billingStore.fetchFloatLedgers();
+  billingStore.fetchFloatRequests();
+});
 </script>
 
 <template>
