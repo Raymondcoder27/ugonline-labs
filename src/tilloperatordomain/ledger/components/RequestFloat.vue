@@ -17,7 +17,7 @@ const balanceStore = useBalance();
 // });
 
 let form: RequestFloat = reactive({
-  tillId: "",
+  till: "",
   amount: 0,
   description: "",
 });
