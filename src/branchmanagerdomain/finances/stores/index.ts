@@ -380,7 +380,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   async function approveFloatRequest(requestId: any) {
-    const { data } = await api.put("/till-operator-float-requests/"+ requestId, {
+    const { data } = await api.put("/till-operator-float-requests/" + requestId, {
       status: "approved",
       approvedBy: "Manager One"
     });
