@@ -66,6 +66,12 @@ export const useBalance = defineStore("balance", () => {
 
     if (payload.status === "approved") {
       // On approval, update the balance.
+
+      //post that float request to the api
+      const {data} = await api.post("/till-operator-float-request-amount", payload.amount);
+      console.log("Float request has been posted to the api");
+      tillOperatorBalance.value = data.data;
+
       totalBalance.prevBalance = totalBalance.currentBalance;
       totalBalance.currentBalance += payload.amount;
       console.log(`Balance updated: increased by ${payload.amount}.`);
