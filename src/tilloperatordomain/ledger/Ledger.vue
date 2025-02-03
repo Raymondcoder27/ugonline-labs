@@ -322,19 +322,18 @@ onMounted(() => {
                 <span>{{ transaction.balance.toLocaleString() }}</span>
               </td> -->
 
-
               <td class="text-left text-gray-800">
-  <span v-if="transaction.status === 'approved'">
-    {{ transaction.balance.toLocaleString() }}
-  </span>
-  <span v-else class="italic text-gray-500">
-    --{{ transaction.balance.toLocaleString() }}--
-  </span>
-</td>
+                <span v-if="transaction.status === 'approved'">
+                  {{ transaction.balance.toLocaleString() }}
+                </span>
+                <span v-else class="italic text-gray-500">
+                  --{{ transaction.balance.toLocaleString() }}--
+                </span>
+              </td>
 
               <!-- <td class="text-left text-gray-800"> -->
-                <!-- only show the updated balance if the transaction status is approved -->
-                <!-- <div
+              <!-- only show the updated balance if the transaction status is approved -->
+              <!-- <div
                   v-if="
                     transaction.status === 'pending' ||
                     transaction.status === 'failed'
@@ -342,7 +341,7 @@ onMounted(() => {
                 >
                   <span>--{{ transaction.balance.toLocaleString() }}--</span>
                 </div> -->
-                <!-- <span>{{ transaction.balance.toLocaleString() }}</span> -->
+              <!-- <span>{{ transaction.balance.toLocaleString() }}</span> -->
               <!-- </td> -->
               <td class="text-center">
                 <span class="text-xs">{{
