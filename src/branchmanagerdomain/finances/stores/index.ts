@@ -392,77 +392,77 @@ export const useBilling = defineStore("billing", () => {
   //   console.log("Float Requests:", floatRequests.value);
   // }
 
-  // async function approveFloatRequest(requestId: string) {
-  //   try {
-  //     // Find the float request by ID
-  //     const floatRequest = floatRequests.value.find(request => request.id === requestId);
-
-  //     if (!floatRequest) {
-  //       console.error("Float request not found for ID:", requestId);
-  //       return;
-  //     }
-
-  //     // Send the API request with all required data
-  //     const { data } = await api.put(`/till-operator2-float-requests/${requestId}`, {
-  //       status: "approved",
-  //       approvedBy: "Manager One",
-  //       amount: floatRequest.amount, // Retrieve amount from the found request
-  //       till: floatRequest.till,     // Retrieve till from the found request
-  //     });
-
-  //     //approve the record's status in the float ledger too
-  //     api.put("/till-operator2-float-ledgers/" + requestId, {
-  //       status: "approved",
-  //       amount: floatRequest.amount,
-  //       till: floatRequest.till,
-  //     });
-
-  //     // Update local state after successful API call
-  //     floatRequest.status = "approved";
-
-  //     console.log("Float request approved successfully:", data);
-  //   } catch (error) {
-  //     console.error("Error approving float request:", error);
-  //   }
-  // }
-
   async function approveFloatRequest(requestId: string) {
     try {
       // Find the float request by ID
       const floatRequest = floatRequests.value.find(request => request.id === requestId);
-  
+
       if (!floatRequest) {
         console.error("Float request not found for ID:", requestId);
         return;
       }
-  
-      // Prepare the request payload
-      const payload = {
+
+      // Send the API request with all required data
+      const { data } = await api.put(`/till-operator2-float-requests/${requestId}`, {
         status: "approved",
         approvedBy: "Manager One",
         amount: floatRequest.amount, // Retrieve amount from the found request
         till: floatRequest.till,     // Retrieve till from the found request
-      };
-  
-      // Send both API requests in parallel
-      const [requestResponse, ledgerResponse] = await Promise.all([
-        api.put(`/till-operator2-float-requests/${requestId}`, payload),
-        api.put(`/till-operator2-float-ledgers/${requestId}`, {
-          status: "approved",
-          amount: floatRequest.amount,
-          till: floatRequest.till,
-        })
-      ]);
-  
-      // Update local state after both requests succeed
+      });
+
+      //approve the record's status in the float ledger too
+      api.put("/till-operator2-float-ledgers/" + requestId, {
+        status: "approved",
+        amount: floatRequest.amount,
+        till: floatRequest.till,
+      });
+
+      // Update local state after successful API call
       floatRequest.status = "approved";
-  
-      console.log("Float request approved successfully:", requestResponse.data);
-      console.log("Float ledger updated successfully:", ledgerResponse.data);
+
+      console.log("Float request approved successfully:", data);
     } catch (error) {
       console.error("Error approving float request:", error);
     }
   }
+
+  // async function approveFloatRequest(requestId: string) {
+  //   try {
+  //     // Find the float request by ID
+  //     const floatRequest = floatRequests.value.find(request => request.id === requestId);
+  
+  //     if (!floatRequest) {
+  //       console.error("Float request not found for ID:", requestId);
+  //       return;
+  //     }
+  
+  //     // Prepare the request payload
+  //     const payload = {
+  //       status: "approved",
+  //       approvedBy: "Manager One",
+  //       amount: floatRequest.amount, // Retrieve amount from the found request
+  //       till: floatRequest.till,     // Retrieve till from the found request
+  //     };
+  
+  //     // Send both API requests in parallel
+  //     const [requestResponse, ledgerResponse] = await Promise.all([
+  //       api.put(`/till-operator2-float-requests/${requestId}`, payload),
+  //       api.put(`/till-operator2-float-ledgers/${requestId}`, {
+  //         status: "approved",
+  //         amount: floatRequest.amount,
+  //         till: floatRequest.till,
+  //       })
+  //     ]);
+  
+  //     // Update local state after both requests succeed
+  //     floatRequest.status = "approved";
+  
+  //     console.log("Float request approved successfully:", requestResponse.data);
+  //     console.log("Float ledger updated successfully:", ledgerResponse.data);
+  //   } catch (error) {
+  //     console.error("Error approving float request:", error);
+  //   }
+  // }
   
 
   // reject float request using passed in Id and set status to rejected
