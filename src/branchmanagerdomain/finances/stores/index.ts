@@ -455,12 +455,12 @@ export const useBilling = defineStore("billing", () => {
   //   try {
   //     // Find the float request by ID
   //     const floatRequest = floatRequests.value.find(request => request.id === requestId);
-  
+
   //     if (!floatRequest) {
   //       console.error("Float request not found for ID:", requestId);
   //       return;
   //     }
-  
+
   //     // Prepare the request payload
   //     const payload = {
   //       status: "approved",
@@ -468,7 +468,7 @@ export const useBilling = defineStore("billing", () => {
   //       amount: floatRequest.amount, // Retrieve amount from the found request
   //       till: floatRequest.till,     // Retrieve till from the found request
   //     };
-  
+
   //     // Send both API requests in parallel
   //     const [requestResponse, ledgerResponse] = await Promise.all([
   //       api.put(`/till-operator2-float-requests/${requestId}`, payload),
@@ -478,17 +478,17 @@ export const useBilling = defineStore("billing", () => {
   //         till: floatRequest.till,
   //       })
   //     ]);
-  
+
   //     // Update local state after both requests succeed
   //     floatRequest.status = "approved";
-  
+
   //     console.log("Float request approved successfully:", requestResponse.data);
   //     console.log("Float ledger updated successfully:", ledgerResponse.data);
   //   } catch (error) {
   //     console.error("Error approving float request:", error);
   //   }
   // }
-  
+
 
   // reject float request using passed in Id and set status to rejected
   // function rejectFloatRequest(requestId: any) {
@@ -508,22 +508,22 @@ export const useBilling = defineStore("billing", () => {
 
   //edit float request amount and allocated the new amount inserted in the form
   async function editFloatRequest(requestId: any, payload: any) {
-   try {
-    const floatRequest = floatRequests.value.find((request) => request.id === requestId);
-    if (!floatRequest) {
-      console.error("Float request not found for ID:", requestId);
-      return;
-    }
+    try {
+      const floatRequest = floatRequests.value.find((request) => request.id === requestId);
+      if (!floatRequest) {
+        console.error("Float request not found for ID:", requestId);
+        return;
+      }
 
-    const { data } = await api.put("/till-operator2-float-requests/" + requestId, {
-      amount: payload.amount,
-      till: payload.till,
-      status: "request edited",
-      approvedBy: "Manager One",
-    });
-    floatRequests.value = data.data;
-    console.log("Float Requests:", floatRequests.value);
-   } catch (error) {
+      const { data } = await api.put("/till-operator2-float-requests/" + requestId, {
+        amount: payload.amount,
+        till: payload.till,
+        status: "request edited",
+        approvedBy: "Manager One",
+      });
+      floatRequests.value = data.data;
+      console.log("Float Requests:", floatRequests.value);
+    } catch (error) {
       console.error("Error editing float request:", error);
     }
   }
