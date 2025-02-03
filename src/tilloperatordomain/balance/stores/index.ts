@@ -49,7 +49,11 @@ export const useBalance = defineStore("balance", () => {
     if (payload.status === "pending") {
       // The float request is pending approval; no change to the balance.
       console.log("Float request is pending approval. No balance update performed.");
-      return;
+      // return;
+      //set the balance to the current balance
+      totalBalance.prevBalance = totalBalance.currentBalance;
+      totalBalance.currentBalance += payload.amount;
+      console.log(`Balance updated: increased by ${payload.amount}.`);
     }
 
     if (payload.status === "approved") {
