@@ -269,12 +269,15 @@ function convertDateTimeNullable(date?: string) {
 const approveFloatRequest = (requestId: any) => {
 
   alert('Approving float request with id: ' + requestId);
-  billingStore.approveFloatRequest(requestId);
-  // billingStore.fetchFloatRequests();
-  balanceStore.approveFloatRequest(requestId);
+  billingStore.approveFloatRequest(requestId).then(() => {
+    billingStore.fetchFloatRequests();
+    console.log(`float request with id ${requestId} approved`);
+    balanceStore.approveFloatRequest(requestId);
   billingStore.reduceFloatLedger(requestId);
   billingStore.allocateFloatFromRequest(requestId);
   console.log(`float request with id ${requestId} approved`);
+  });
+
 };
 
 const rejectFloatRequest = (requestId: any) => {
