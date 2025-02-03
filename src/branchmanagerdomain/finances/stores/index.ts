@@ -426,6 +426,31 @@ export const useBilling = defineStore("billing", () => {
     }
   }
 
+  // {{host}}/till-operator2-float-ledgers/{{floatRequest.id}}
+  //change till operator float ledger record status to approved too 
+  async function updateTillOperatorFloatLedger(requestId: string) {
+    try {
+      // Find the float request by ID
+      const floatRequest = floatRequests.value.find(request => request.id === requestId);
+
+      if (!floatRequest) {
+        console.error("Float request not found for ID:", requestId);
+        return;
+      }
+
+      // Send the API request with all required data
+      const { data } = await api.put(`/till-operator2-float-ledgers/${requestId}`, {
+        status: "approved",
+        amount: floatRequest.amount,
+        till: floatRequest.till,
+      });
+
+      console.log("Float ledger updated successfully:", data);
+    } catch (error) {
+      console.error("Error updating float ledger:", error);
+    }
+  }
+
   // async function approveFloatRequest(requestId: string) {
   //   try {
   //     // Find the float request by ID

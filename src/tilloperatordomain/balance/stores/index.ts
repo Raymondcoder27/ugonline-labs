@@ -94,6 +94,7 @@ export const useBalance = defineStore("balance", () => {
     }
   }
 
+  
 
   // Decrease the total balance and update the "prev" value
   async function decreaseTotalBalance(amount: number) {
