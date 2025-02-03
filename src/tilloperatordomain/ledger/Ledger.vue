@@ -95,51 +95,6 @@ const filter = reactive({
   toDate: "", // Add toDate
 });
 
-// function fetchTransactions() {
-//   filter.limit = limit.value;
-//   filter.page = page.value;
-
-//   // Add date filter if both dates are provided
-//   if (filter.fromDate && filter.toDate) {
-//     filter.filter.push({
-//       field: "date",
-//       operator: "BETWEEN",
-//       operand: [filter.fromDate, filter.toDate],
-//     });
-//   }
-//   console.log("Filter object sent to fetchTransactions:", filter);
-//   store.fetchTransactions(filter); // Fetch transactions based on filter
-// }
-
-// if (filter.fromDate || filter.toDate) {
-//   const dateFilter = {
-//     field: "date",
-//     operator: "BETWEEN",
-//     operand: [filter.fromDate || "1900-01-01", filter.toDate || "2100-12-31"],
-//   };
-//   filter.filter.push(dateFilter);
-// }
-
-// async function fetchFloatLedgers() {
-//   // Remove any previous 'status' filters
-//   filter.filter = filter.filter.filter((f) => f.field !== "description");
-
-//   if (description.value) {
-//     filter.filter.push({
-//       field: "description",
-//       operand: description.value,
-//       operator: "EQUALS",
-//     });
-//   }
-
-//   console.log("Filter before fetch:", filter);
-
-//   // Await the fetch operation
-//   const response = await store.fetchTransactions(filter);
-
-//   // Log the response or handle it
-//   console.log("Fetched transactions:", response);
-// }
 
 function next() {
   page.value += 1;
