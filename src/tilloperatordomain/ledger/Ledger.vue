@@ -154,6 +154,9 @@ const paginatedFloatLedgersWithBalance = computed(() => {
 onMounted(() => {
   fetchFloatLedgers();
   // store.fetchFloatLedgers();
+  console.log("RequestFloat component mounted");
+  store.fetchFloatLedgers();
+  store.fetchFloatRequests();
 });
 </script>
 
