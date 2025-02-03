@@ -115,7 +115,7 @@ export const useBilling = defineStore("billing", () => {
 
   //fetch float ledgers using the api
   async function fetchFloatLedgers() {
-    const { data } = await api.get("/till-operator-float-ledgers");
+    const { data } = await api.get("/till-operator2-float-ledgers");
     floatLedgers.value = data.data;
     console.log("Float Ledgers:", floatLedgers.value);
   }
@@ -150,7 +150,7 @@ export const useBilling = defineStore("billing", () => {
 
   //use api to fetch float requests
   async function fetchFloatRequests() {
-    const { data } = await api.get("/till-operator-float-requests");
+    const { data } = await api.get("/till-operator2-float-requests");
     floatRequests.value = data.data;
     console.log("Float Requests:", floatRequests.value);
   }
@@ -213,7 +213,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   async function requestFloat(payload: RequestFloat) {
-    const { data } = await api.post("/till-operator-float-requests", {
+    const { data } = await api.post("/till-operator2-float-requests", {
       amount: payload.amount,
       // tillId: payload.tillId,
       till: payload.till,
@@ -263,7 +263,7 @@ export const useBilling = defineStore("billing", () => {
 
   //adjust the float ledger in the api
   // async function adjustFloatLedger(payload: RequestFloat) {
-  //   const { data } = await api.post("/till-operator-float-ledgers", {
+  //   const { data } = await api.post("/till-operator2-float-ledgers", {
   //     amount: payload.amount,
   //     description: payload.description,
   //     status: "pending",
@@ -280,7 +280,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   async function adjustFloatLedger(payload: RequestFloat) {
-    const { data } = await api.post("/till-operator-float-ledgers", {
+    const { data } = await api.post("/till-operator2-float-ledgers", {
       amount: payload.amount,
       // createdAt: new Date().toISOString(),
       description: payload.description,

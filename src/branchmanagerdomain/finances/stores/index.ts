@@ -190,7 +190,7 @@ export const useBilling = defineStore("billing", () => {
   // }
   //use api to fetch float requests
   async function fetchFloatRequests() {
-    const { data } = await api.get("/till-operator-float-requests");
+    const { data } = await api.get("/till-operator2-float-requests");
     floatRequests.value = data.data;
     console.log("Float Requests:", floatRequests.value);
   }
@@ -381,7 +381,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   async function approveFloatRequest(requestId: any) {
-    const { data } = await api.put("/till-operator-float-requests/" + requestId, {
+    const { data } = await api.put("/till-operator2-float-requests/" + requestId, {
       status: "approved",
       approvedBy: "Manager One",
       amount: requestId.amount,
@@ -390,13 +390,13 @@ export const useBilling = defineStore("billing", () => {
 
     // approve it also in till operator float ledgers
     // async function fetchFloatLedgers() {
-      //  api.put("/till-operator-float-ledgers"+ requestId, {
-      //   status: "approved",
-      //   approvedBy: "Manager One",
-      //   amount: requestId.amount,
-      //   till: requestId.till,
-      // });
-      // console.log("Approve Float Request response:", data2);
+    //  api.put("/till-operator2-float-ledgers"+ requestId, {
+    //   status: "approved",
+    //   approvedBy: "Manager One",
+    //   amount: requestId.amount,
+    //   till: requestId.till,
+    // });
+    // console.log("Approve Float Request response:", data2);
     // }
     // );
     floatRequests.value = data.data;
