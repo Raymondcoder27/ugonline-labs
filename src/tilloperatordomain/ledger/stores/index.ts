@@ -44,7 +44,9 @@ export const useBilling = defineStore("billing", () => {
   const transactions = ref<Transaction[]>(dummyTransactions); // Use dummy data for now
   const totalAmount = ref(600); // Set a test value
   const totalBalance = ref(3000); // Set a test value
-  const floatLedgers = ref<FloatLedger[]>(dummyFloatLedgers); // Use dummy data for now
+  // const floatLedgers = ref<FloatLedger[]>(dummyFloatLedgers); // Use dummy data for now
+
+  const floatLedgers = ref<FloatLedger[]>([]); // Use dummy data for now
 
   // const allocateFloatFromRequestToLocalStorage = JSON.parse(localStorage.getItem('allocateFloatFromRequestToLocalStorage') || '0');
 
@@ -98,17 +100,24 @@ export const useBilling = defineStore("billing", () => {
   //   floatLedgers.value = filteredData;
   // }
 
-  async function fetchFloatLedgers(filter: any) {
-    console.log("Fetching Float Ledgers with filter:", filter);
+  // async function fetchFloatLedgers(filter: any) {
+  //   console.log("Fetching Float Ledgers with filter:", filter);
 
-    const filteredData = dummyFloatLedgers.filter(item => {
-      // Filter logic...
-    });
+  //   const filteredData = dummyFloatLedgers.filter(item => {
+  //     // Filter logic...
+  //   });
 
-    const limitedData = filteredData.slice(0, filter.limit || dummyFloatLedgers.length);
-    floatLedgers.value = limitedData;
-    console.log("Filtered float ledgers:", limitedData);
-    return limitedData;  // Add this return to make the data available for use
+  //   const limitedData = filteredData.slice(0, filter.limit || dummyFloatLedgers.length);
+  //   floatLedgers.value = limitedData;
+  //   console.log("Filtered float ledgers:", limitedData);
+  //   return limitedData;  // Add this return to make the data available for use
+  // }
+
+  //fetch float ledgers using the api
+  async function fetchFloatLedgers() {
+    const { data } = await api.get("/till-operator-float-ledgers");
+    floatLedgers.value = data.data;
+    console.log("Float Ledgers:", floatLedgers.value);
   }
 
 
