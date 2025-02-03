@@ -105,9 +105,19 @@ export const useBranchStore = defineStore("useBranch", () => {
   // };
 
 
-  const deleteBranch = (branchId: string) => {
-    branches.value = branches.value?.filter((b) => b.id !== branchId);
-  }     
+  // const deleteBranch = (branchId: string) => {
+  //   branches.value = branches.value?.filter((b) => b.id !== branchId);
+  // }     
+
+  //delete using the api
+  async function deleteBranch(branchId: string) {
+    try {
+      await api.delete(`/branches/${branchId}`);
+      branches.value = branches.value?.filter((b) => b.id !== branchId);
+    } catch (error) {
+      console.error("Error deleting branch:", error);
+    }
+  }
 
   // const service = subscribedServices.value?.find((s) => s.id === serviceId);
   // if (service) {
@@ -138,7 +148,7 @@ export const useBranchStore = defineStore("useBranch", () => {
   async function fetchBranches() {
     isLoading.value = true;
     try {
-      const { data } = await api.get("/branch");
+      const { data } = await api.get("/branches");
       branches.value = data.data;
     } catch (error) {
       console.error("Error fetching branches:", error);
