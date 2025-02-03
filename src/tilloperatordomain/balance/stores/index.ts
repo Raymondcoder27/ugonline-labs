@@ -76,7 +76,7 @@ export const useBalance = defineStore("balance", () => {
       // On approval, update the balance.
 
       //post that float request to the api
-      const { data } = await api.post("/till-operator-float-request-amount", {
+      const { data } = await api.post("/till-operator-float-request-amounts", {
         tillId: payload.tillId,
         amount: payload.amount,
         description: payload.description
