@@ -70,7 +70,8 @@ export const useBalance = defineStore("balance", () => {
       //no change to the balance
       totalBalance.currentBalance = totalBalance.prevBalance;
       // totalBalance.currentBalance += payload.amount;
-      console.log(`Balance updated: increased by ${payload.amount}.`);
+      // console.log(`Balance updated: increased by ${payload.amount}.`);
+      console.log(`Balance updated: no change to the balance.`);
     }
 
     if (payload.status === "approved") {

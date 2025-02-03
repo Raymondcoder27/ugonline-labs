@@ -180,11 +180,17 @@ export const useBilling = defineStore("billing", () => {
 
   // using the api
 
-  const fetchFloatRequests = async () => {
-    return api.get("/till-operator/float-requests")
-      .then((response: AxiosResponse<ApiResponse<any>>) => {
-        floatRequests.value = response.data.data
-      })
+  // const fetchFloatRequests = async () => {
+  //   return api.get("/till-operator/float-requests")
+  //     .then((response: AxiosResponse<ApiResponse<any>>) => {
+  //       floatRequests.value = response.data.data
+  //     })
+  // }
+  //use api to fetch float requests
+  async function fetchFloatRequests() {
+    const { data } = await api.get("/till-operator-float-requests");
+    floatRequests.value = data.data;
+    console.log("Float Requests:", floatRequests.value);
   }
 
   const fetchFloatRequestsToAdmin = async () => {
