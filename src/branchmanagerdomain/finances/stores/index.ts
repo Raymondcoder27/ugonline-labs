@@ -382,7 +382,7 @@ export const useBilling = defineStore("billing", () => {
   //   try {
   //     // First, update the float request on the server
   //     await api.put(`/branch-manager/approve-float-request/${requestId}`);
-      
+
   //     // Then update the local state
   //     const floatRequest = floatRequests.value.find(request => request.id === requestId);
   //     if (floatRequest) {
@@ -392,7 +392,7 @@ export const useBilling = defineStore("billing", () => {
   //     console.error("Error approving float request:", error);
   //   }
   // }
-  
+
 
 
   // //approve the float request using the api
