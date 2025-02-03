@@ -519,6 +519,7 @@ export const useBilling = defineStore("billing", () => {
       amount: payload.amount,
       till: payload.till,
       status: "request edited",
+      approvedBy: "Manager One",
     });
     floatRequests.value = data.data;
     console.log("Float Requests:", floatRequests.value);
