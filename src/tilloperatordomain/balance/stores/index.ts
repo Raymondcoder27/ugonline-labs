@@ -45,8 +45,9 @@ export const useBalance = defineStore("balance", () => {
   const tillOperatorBalance = ref(0);
 
   async function updateTotalBalance(payload: {
-    id: string;
+    tillId: string;
     amount: number;
+    description: string;
     status: "pending" | "approved" | "rejected" | "failed";
   }) {
     if (payload.status === "pending") {

@@ -46,6 +46,7 @@ function submit() {
     amount: form.amount,
     tillId: form.tillId,
     description: form.description,
+    status: "pending",
   };
 
   console.log("Submitting payload:", payload);
