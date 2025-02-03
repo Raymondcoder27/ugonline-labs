@@ -491,12 +491,33 @@ export const useBilling = defineStore("billing", () => {
   
 
   // reject float request using passed in Id and set status to rejected
-  function rejectFloatRequest(requestId: any) {
-    const floatRequest = floatRequests.value.find((request) => request.id === requestId);
-    if (floatRequest) {
-      floatRequest.status = "rejected";
-    }
+  // function rejectFloatRequest(requestId: any) {
+  //   const floatRequest = floatRequests.value.find((request) => request.id === requestId);
+  //   if (floatRequest) {
+  //     floatRequest.status = "rejected";
+  //   }
+  // }
+
+  async function rejectFloatRequest(requestId: any) {
+    const { data } = await api.put("/till-operator2-float-requests/" + requestId, {
+      status: "rejected",
+    });
+    floatRequests.value = data.data;
+    console.log("Float Requests:", floatRequests.value);
   }
+
+  //edit float request amount and allocated the new amount inserted in the form
+  async function editFloatRequest(requestId: any, payload: any) {
+   try {
+    const { data } = await api.put("/till-operator2-float-requests/" + requestId, {
+      amount: payload.amount,
+    });
+    floatRequests.value = data.data;
+    console.log("Float Requests:", floatRequests.value);
+   } catch (error) {
+      console.error("Error editing float request:", error);
+    }
+
 
   return {
     transactions,
