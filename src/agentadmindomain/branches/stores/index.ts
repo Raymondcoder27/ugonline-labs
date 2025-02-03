@@ -58,7 +58,7 @@ export const useBranchStore = defineStore("useBranch", () => {
 
   async function addBranch(newBranch: Branch) {
     try {
-      const { data } = await api.post("/branch", newBranch);
+      const { data } = await api.post("/branches", newBranch);
       // branches.value = response.data
       // branches.value?.push(data.data);
       branches.value?.push(data.data);
