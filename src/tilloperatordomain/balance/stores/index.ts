@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { api } from "@/config/api";
 import { ref, reactive } from "vue";
 
 export interface TotalBalance {
@@ -50,6 +51,9 @@ export const useBalance = defineStore("balance", () => {
       // The float request is pending approval; no change to the balance.
       console.log("Float request is pending approval. No balance update performed.");
       // return;
+      //post that float request to the api
+      
+
       //set the balance to the current balance
       totalBalance.prevBalance = totalBalance.currentBalance;
       totalBalance.currentBalance += payload.amount;
