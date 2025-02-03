@@ -163,19 +163,6 @@ function convertDateTime(date: string) {
   return moment(date).format("DD-MM-YYYY HH:mm:ss");
 }
 
-// Debounced filter update function
-// const updateFilter = useDebounceFn(
-//   () => {
-//     fetchTransactions();
-//   },
-//   300,
-//   { maxWait: 5000 }
-// );
-
-// const updateFilter = useDebounceFn(() => {
-//   console.log("Filter updated, fetching transactions...");
-//   store.fetchTransactions(filter);
-// }, 300);
 
 const description = ref("");
 
