@@ -269,6 +269,7 @@ const approveFloatRequest = (requestId: any) => {
       billingStore.fetchFloatRequests();
       console.log(`float request with id ${requestId} approved`);
       balanceStore.approveFloatRequest(requestId);
+      balanceStore.updateTillOperatorFloatLedger(requestId);
       billingStore.reduceFloatLedger(requestId);
       billingStore.allocateFloatFromRequest(requestId);
       console.log(`float request with id ${requestId} approved`);
