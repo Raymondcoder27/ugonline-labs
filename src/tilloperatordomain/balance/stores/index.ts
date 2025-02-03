@@ -14,48 +14,6 @@ export const useBalance = defineStore("balance", () => {
     currentBalance: 15405000, // Initial balance
   });
 
-  // Fetch the total balance (dummy data for now)
-  // async function fetchTotalBalance() {
-  //   // Simulate API call
-  //   totalBalance.value = { ...dummyTotalBalance };
-  // }
-
-  // Increase the total balance and update the "prev" value
-  // async function increaseTotalBalance(amount: number) {
-  //   totalBalance.value = {
-  //     prevBalance: totalBalance.value.current,
-  //     currentBalance: totalBalance.value.current + amount,
-  //   };
-  // }
-
-  // Increase balance
-// async function increaseTotalBalance(amount: number) {
-//   totalBalance.value.prev = totalBalance.value.current;
-//   totalBalance.value.current += amount; // Mutating individual properties
-// }
-
-
-  // Decrease the total balance and update the "prev" value
-  // async function decreaseTotalBalance(amount: number) {
-  //   totalBalance.value = {
-  //     prevBalance: totalBalance.value.current,
-  //     currentBalance: totalBalance.value.current - amount,
-  //   };
-  // }
-
-  // async function decreaseTotalBalance(amount: number) {
-  //   console.log("Previous:", totalBalance.value.prev, "currentBalance:", totalBalance.value.current);
-  //   totalBalance.value = {
-  //     prevBalance: totalBalance.value.current,
-  //     currentBalance: totalBalance.value.current - amount,
-  //   };
-  //   console.log("Updated:", totalBalance.value);
-  // }
-
-  // dummyTotalBalance.current = totalBalance.value.current;
-
-  // totalBalance.value = { ...dummyTotalBalance };
-
     // Increase the total balance and update the "prev" value
     async function increaseTotalBalance(amount: number) {
       totalBalance.prev = totalBalance.current;
