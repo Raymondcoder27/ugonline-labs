@@ -378,20 +378,20 @@ export const useBilling = defineStore("billing", () => {
     }
   }
 
-  async function approveFloatRequest(requestId: string) {
-    try {
-      // First, update the float request on the server
-      await api.put(`/branch-manager/approve-float-request/${requestId}`);
+  // async function approveFloatRequest(requestId: string) {
+  //   try {
+  //     // First, update the float request on the server
+  //     await api.put(`/branch-manager/approve-float-request/${requestId}`);
       
-      // Then update the local state
-      const floatRequest = floatRequests.value.find(request => request.id === requestId);
-      if (floatRequest) {
-        floatRequest.status = "approved";
-      }
-    } catch (error) {
-      console.error("Error approving float request:", error);
-    }
-  }
+  //     // Then update the local state
+  //     const floatRequest = floatRequests.value.find(request => request.id === requestId);
+  //     if (floatRequest) {
+  //       floatRequest.status = "approved";
+  //     }
+  //   } catch (error) {
+  //     console.error("Error approving float request:", error);
+  //   }
+  // }
   
 
 
