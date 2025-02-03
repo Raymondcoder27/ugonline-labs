@@ -258,7 +258,15 @@ export const useBilling = defineStore("billing", () => {
       description: payload.description,
       status: "pending",
     });
-    floatLedgers.value?.push(data.data);
+    // floatLedgers.value?.push(data.data);
+    floatLedgers.value?.push({
+      id: floatLedgers.value.length + 1,
+      date: new Date().toISOString(),
+      description: payload.description,
+      amount: payload.amount,
+      balance: totalBalance.value + payload.amount,
+      status: "pending",
+    });
   }
 
 
