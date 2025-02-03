@@ -42,6 +42,8 @@ export const useBalance = defineStore("balance", () => {
   //   }
   // }
 
+  const tillOperatorBalance = ref(0);
+
   async function updateTotalBalance(payload: {
     id: string;
     amount: number;
@@ -52,7 +54,9 @@ export const useBalance = defineStore("balance", () => {
       console.log("Float request is pending approval. No balance update performed.");
       // return;
       //post that float request to the api
-      
+      const {data} = await api.post("/till-operator-float-request-amount", payload.amount);
+      console.log("Float request has been posted to the api");
+      tillOperatorBalance.value = data.data;
 
       //set the balance to the current balance
       totalBalance.prevBalance = totalBalance.currentBalance;
