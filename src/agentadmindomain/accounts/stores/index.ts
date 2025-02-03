@@ -244,24 +244,6 @@ export const useAccounts = defineStore("user-management", () => {
     }
   }
 
-  // const { data} = await api.post("/branch-manager", {
-  //   firstName: user.firstName,
-  //   lastName: user.lastName,
-  //   email: user.email,
-  //   phone: user.phone,
-  //   role: user.role,
-  //   status: user.status,
-  //   createdAt: new Date().toISOString(),
-  //   emailVerified: true,
-  //   phoneVerified: true,
-  //   activatedAt: new Date().toISOString(),
-  //   branch: branch.name, // Include branchId
-  // });
-
-  // const addManagerAccount = (newManager: ManagerAccount) => {
-  //   managerAccounts.value.push(newManager); // Directly add the manager to the array
-  // }
-
   // Fetch dummy user accounts
   const fetchUserAccounts = async (filter: IGoFilter) => {
     // Here you would normally process the filter if you had real data
@@ -395,7 +377,7 @@ export const useAccounts = defineStore("user-management", () => {
       //   branch: branch.name, // Include branchId
       // });
 
-      const { data } = await api.post("/branch-manager", {
+      const { data } = await api.post("/branch-managers", {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
