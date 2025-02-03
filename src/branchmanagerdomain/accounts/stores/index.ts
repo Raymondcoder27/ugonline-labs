@@ -225,7 +225,7 @@ export const useAccounts = defineStore("user-management", () => {
 
   async function addBackOfficeAccount(newBackoffice: BackOfficeAccount) {
     try {
-      const { data } = await api.post("/branch-manager-backoffice-account", {
+      const { data } = await api.post("/branch-manager-backoffice-accounts", {
         firstName: newBackoffice.firstName,
         lastName: newBackoffice.lastName,
         email: newBackoffice.email,
@@ -413,7 +413,7 @@ export const useAccounts = defineStore("user-management", () => {
 
     // if (user && branch) {
     if (user && till) {
-      const { data } = await api.post("/till-operator", {
+      const { data } = await api.post("/till-operators", {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
