@@ -95,52 +95,6 @@ const filter = reactive({
   toDate: "", // Add toDate
 });
 
-// function fetchTransactions() {
-//   filter.limit = limit.value;
-//   filter.page = page.value;
-
-//   // Add date filter if both dates are provided
-//   if (filter.fromDate && filter.toDate) {
-//     filter.filter.push({
-//       field: "date",
-//       operator: "BETWEEN",
-//       operand: [filter.fromDate, filter.toDate],
-//     });
-//   }
-//   console.log("Filter object sent to fetchTransactions:", filter);
-//   store.fetchTransactions(filter); // Fetch transactions based on filter
-// }
-
-// if (filter.fromDate || filter.toDate) {
-//   const dateFilter = {
-//     field: "date",
-//     operator: "BETWEEN",
-//     operand: [filter.fromDate || "1900-01-01", filter.toDate || "2100-12-31"],
-//   };
-//   filter.filter.push(dateFilter);
-// }
-
-// async function fetchFloatLedgers() {
-//   // Remove any previous 'status' filters
-//   filter.filter = filter.filter.filter((f) => f.field !== "description");
-
-//   if (description.value) {
-//     filter.filter.push({
-//       field: "description",
-//       operand: description.value,
-//       operator: "EQUALS",
-//     });
-//   }
-
-//   console.log("Filter before fetch:", filter);
-
-//   // Await the fetch operation
-//   const response = await store.fetchTransactions(filter);
-
-//   // Log the response or handle it
-//   console.log("Fetched transactions:", response);
-// }
-
 function next() {
   page.value += 1;
   fetchTransactions();
@@ -163,20 +117,6 @@ function convertDateTime(date: string) {
   return moment(date).format("DD-MM-YYYY HH:mm:ss");
 }
 
-// Debounced filter update function
-// const updateFilter = useDebounceFn(
-//   () => {
-//     fetchTransactions();
-//   },
-//   300,
-//   { maxWait: 5000 }
-// );
-
-// const updateFilter = useDebounceFn(() => {
-//   console.log("Filter updated, fetching transactions...");
-//   store.fetchTransactions(filter);
-// }, 300);
-
 const description = ref("");
 
 const updateFilter = useDebounceFn(() => {
@@ -191,69 +131,6 @@ watch(
   },
   { deep: true }
 );
-
-// watch(
-//   () => filter,
-//   () => {
-//     console.log("Filter updated:", filter);
-//     updateFilter();
-//   },
-//   { deep: true }
-// );
-
-// watch(
-//   () => filter.filter,
-//   () => updateFilter(),
-//   { deep: true }
-// );
-
-// Watch for changes in the modal state
-// watch(
-//   () => modalOpen.value,
-//   (isOpen) => {
-//     if (!isOpen) {
-//       // Handle modal close if needed
-//     }
-//   }
-// );
-
-// // Watch for changes in the filter object
-// watch(
-//   () => filter,
-//   () => {
-//     console.log("Filter updated:", filter);
-//     updateFilter();
-//   },
-//   { deep: true }
-// );
-
-// computed(() => {
-//   const initialBalance = 15000000; // From store or static reference
-//   const transactions = store.floatLedgers;
-
-//   return transactions.reduce((balance, tx) => {
-//     return balance + tx.amount;
-//   }, initialBalance);
-// });
-
-// Compute running balance
-// const computedTransactions = computed(() => {
-//   if (store.floatLedgers.length === 0) {
-//     return [];
-//   }
-
-//   // let runningBalance = balanceStore.totalBalance.current || 0;
-//   let runningBalance = 0;
-
-//   return store.floatLedgers.map((transaction) => {
-//     runningBalance += transaction.amount;
-
-//     return {
-//       ...transaction,
-//       balance: runningBalance,
-//     };
-//   });
-// });
 
 // This is the updated computed property for paginatedFloatLedgers that works with the running balance.
 const paginatedFloatLedgersWithBalance = computed(() => {
@@ -273,49 +150,13 @@ const paginatedFloatLedgersWithBalance = computed(() => {
   });
 });
 
-// watch(
-//   computedTransactions,
-//   (transactions) => {
-//     console.log("Computed transactions:", transactions);
-//   },
-//   { deep: true }
-// );
-
-// watch(
-//   () => balanceStore.totalBalance.value,
-//   (newVal, oldVal) => {
-//     console.log("Balance updated:", oldVal, "->", newVal);
-//   },
-//   { deep: true }
-// );
-
-// let description = ref("")
-// watch(
-//     () => description.value,
-//     () => {
-//       fetchFloatLedgers()
-//     },
-// );
-
-// watch(
-//   () => description.value,
-//   () => {
-//     filter.filter = filter.filter.filter((f) => f.field !== "description");
-//     if (description.value) {
-//       filter.filter.push({
-//         field: "description",
-//         operand: description.value,
-//         operator: "EQUALS",
-//       });
-//     }
-//     fetchFloatLedgers();
-//   }
-// );
-
 // Fetch billing data (transactions, float ledgers)
 onMounted(() => {
   fetchFloatLedgers();
   // store.fetchFloatLedgers();
+  console.log("RequestFloat component mounted");
+  store.fetchFloatLedgers();
+  store.fetchFloatRequests();
 });
 </script>
 
@@ -478,9 +319,21 @@ onMounted(() => {
               </td>
 
               <td class="text-left text-gray-800">
-                <!-- <span>{{ transaction.balance.toLocaleString() }}</span> -->
                 <span>{{ transaction.balance.toLocaleString() }}</span>
               </td>
+
+              <!-- <td class="text-left text-gray-800"> -->
+                <!-- only show the updated balance if the transaction status is approved -->
+                <!-- <div
+                  v-if="
+                    transaction.status === 'pending' ||
+                    transaction.status === 'failed'
+                  "
+                >
+                  <span>--{{ transaction.balance.toLocaleString() }}--</span>
+                </div> -->
+                <!-- <span>{{ transaction.balance.toLocaleString() }}</span> -->
+              <!-- </td> -->
               <td class="text-center">
                 <span class="text-xs">{{
                   convertDateTime(transaction.createdAt)
