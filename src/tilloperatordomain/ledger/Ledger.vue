@@ -95,7 +95,6 @@ const filter = reactive({
   toDate: "", // Add toDate
 });
 
-
 function next() {
   page.value += 1;
   fetchTransactions();
