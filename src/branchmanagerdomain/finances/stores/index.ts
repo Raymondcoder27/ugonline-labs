@@ -101,6 +101,7 @@ export const useBilling = defineStore("billing", () => {
   // const floatRequests = ref<FloatRequest[]>(dummyFloatRequests);
   const floatRequests = ref<FloatRequest[]>([]);
   const floatRequestsToAdmin = ref<FloatRequest[]>(dummyFloatRequestsToAdmin);
+  const floatRequest = ref<FloatRequest | null>(null);
   // const floatRequests = ref<FloatRequest[]>([]);
 
 

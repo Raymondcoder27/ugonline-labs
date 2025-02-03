@@ -50,7 +50,7 @@ export interface FloatLedger {
 }
 
 export interface FloatRequest {
-  id: number;
+  id: string;
   requestDate: string;
   amount: number;
   status: string;
