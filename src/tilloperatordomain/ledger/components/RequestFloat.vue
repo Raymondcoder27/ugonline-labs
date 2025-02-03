@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CreateAccount } from "@/types";
+import type { RequestFloat } from "@/tilloperatordomain/ledger/types";
 import { type Ref, ref, reactive, watch, onMounted } from "vue";
 import { useAccounts } from "@/tilloperatordomain/accounts/stores";
 import { useNotificationsStore } from "@/stores/notifications";
@@ -16,7 +16,7 @@ const balanceStore = useBalance();
 //   description: "",
 // });
 
-let form: CreateAccount = reactive({
+let form: RequestFloat = reactive({
   firstName: "",
   lastName: "",
   middleName: "",
