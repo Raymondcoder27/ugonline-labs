@@ -22,27 +22,44 @@ export const useBalance = defineStore("balance", () => {
 
   // balanceStore.updateTotalBalance(payload.amount, payload.status)
   // don't update balance unless the status has been set to approved by the admin from the api
-  async function updateTotalBalance(payload) {
-    //first find that particular transaction in the store
+  // async function updateTotalBalance(payload: {
+  //   id: string;
+  //   amount: number;
+  //   status: "pending" | "approved";
+  // }) {
+  //   if (payload.status === "pending") {
+  //     // The float request is pending approval; no change to the balance.
+  //     console.log("Float request is pending approval. No balance update performed.");
+  //     return;
+  //   }
+    
+  //   if (payload.status === "approved") {
+  //     // On approval, update the balance.
+  //     totalBalance.prevBalance = totalBalance.currentBalance;
+  //     totalBalance.currentBalance += payload.amount;
+  //     console.log(`Balance updated: increased by ${payload.amount}.`);
+  //   }
+  // }
 
-    transactions.value.find((transaction) => {
-      if (transaction.id === payload.id) {
-        return transaction;
-      }
-    });
-    //if the status is approved, update the balance
-    //if the status is pending, return the same balance
-
+  async function updateTotalBalance(payload: {
+    id: string;
+    amount: number;
+    status: "pending" | "approved";
+  }) {
+    if (payload.status === "pending") {
+      // The float request is pending approval; no change to the balance.
+      console.log("Float request is pending approval. No balance update performed.");
+      return;
+    }
+    
     if (payload.status === "approved") {
+      // On approval, update the balance.
       totalBalance.prevBalance = totalBalance.currentBalance;
       totalBalance.currentBalance += payload.amount;
-    }
-    else {
-      // return the same balance without updating it if the status is pending
-      totalBalance.prevBalance = totalBalance.currentBalance;
-      totalBalance.currentBalance = totalBalance.currentBalance;
+      console.log(`Balance updated: increased by ${payload.amount}.`);
     }
   }
+
 
   // Decrease the total balance and update the "prev" value
   async function decreaseTotalBalance(amount: number) {
