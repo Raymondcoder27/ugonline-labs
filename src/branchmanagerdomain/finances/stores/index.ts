@@ -194,6 +194,7 @@ export const useBilling = defineStore("billing", () => {
     console.log("Float Requests:", floatRequests.value);
   }
 
+
   const fetchFloatRequestsToAdmin = async () => {
     return api.get("/branch-manager/float-requests")
       .then((response: AxiosResponse<ApiResponse<any>>) => {
@@ -368,15 +369,26 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   // approve float request using passed in Id and set status to approved and modify the floatrequests array
-  function approveFloatRequest(requestId: any) {
-    console.log("changing status")
-    const floatRequest = floatRequests.value.find((request) => request.id === requestId);
-    if (floatRequest) {
-      floatRequest.status = "approved";
-      //change the float request in the api too
-      // floatRequest.approvedBy = "Manager One";
-    }
+  // function approveFloatRequest(requestId: any) {
+  //   console.log("changing status")
+  //   const floatRequest = floatRequests.value.find((request) => request.id === requestId);
+  //   if (floatRequest) {
+  //     floatRequest.status = "approved";
+  //     //change the float request in the api too
+  //     // floatRequest.approvedBy = "Manager One";
+  //   }
+  // }
+
+  async function approveFloatRequest(requestId: any) {
+    const { data } = await api.put("/till-operator-float-requests/"+ requestId, {
+      status: "approved",
+      approvedBy: "Manager One"
+    });
+    // );
+    floatRequests.value = data.data;
+    console.log("Float Requests:", floatRequests.value);
   }
+
 
   // async function approveFloatRequest(requestId: string) {
   //   try {
