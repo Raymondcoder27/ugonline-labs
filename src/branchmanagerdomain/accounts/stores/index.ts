@@ -262,7 +262,7 @@ export const useAccounts = defineStore("user-management", () => {
   async function fetchBackofficeAccounts() {
     isLoading.value = true;
     try {
-      const { data } = await api.get("/branch-manager-backoffice-account");
+      const { data } = await api.get("/branch-manager-backoffice-accounts");
       backofficeAccounts.value = data.data;
     } catch (error) {
       console.error("Error fetching backoffice accounts:", error);
@@ -280,7 +280,7 @@ export const useAccounts = defineStore("user-management", () => {
   async function fetchTillOperators() {
     isLoading.value = true;
     try {
-      const { data } = await api.get("/till-operator");
+      const { data } = await api.get("/till-operators");
       tillOperators.value = data.data;
     } catch (error) {
       console.error("Error fetching manager accounts:", error);
