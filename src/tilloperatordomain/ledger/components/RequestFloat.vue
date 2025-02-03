@@ -23,6 +23,7 @@ let form: CreateAccount = reactive({
   role: "admin",
   username: "",
   phone: "",
+  email: "",
 });
 const notify = useNotificationsStore();
 const loading: Ref<boolean> = ref(false);
