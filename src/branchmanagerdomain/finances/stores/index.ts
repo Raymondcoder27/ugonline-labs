@@ -101,7 +101,7 @@ export const useBilling = defineStore("billing", () => {
   // const floatRequests = ref<FloatRequest[]>(dummyFloatRequests);
   const floatRequests = ref<FloatRequest[]>([]);
   const floatRequestsToAdmin = ref<FloatRequest[]>(dummyFloatRequestsToAdmin);
-  const floatRequest = ref<FloatRequest | null>(null);
+  // const floatRequest = ref<FloatRequest | null>(null);
   // const floatRequests = ref<FloatRequest[]>([]);
 
 
@@ -396,12 +396,12 @@ export const useBilling = defineStore("billing", () => {
     try {
       // Find the float request by ID
       const floatRequest = floatRequests.value.find(request => request.id === requestId);
-      
+
       if (!floatRequest) {
         console.error("Float request not found for ID:", requestId);
         return;
       }
-  
+
       // Send the API request with all required data
       const { data } = await api.put(`/till-operator2-float-requests/${requestId}`, {
         status: "approved",
@@ -409,16 +409,16 @@ export const useBilling = defineStore("billing", () => {
         amount: floatRequest.amount, // Retrieve amount from the found request
         till: floatRequest.till,     // Retrieve till from the found request
       });
-  
+
       // Update local state after successful API call
       floatRequest.status = "approved";
-  
+
       console.log("Float request approved successfully:", data);
     } catch (error) {
       console.error("Error approving float request:", error);
     }
   }
-  
+
 
   // async function approveFloatRequest(requestId: string) {
   //   try {
