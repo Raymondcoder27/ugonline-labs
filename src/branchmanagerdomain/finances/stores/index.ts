@@ -387,7 +387,9 @@ export const useBilling = defineStore("billing", () => {
   //     amount: requestId.amount,
   //     till: requestId.till,
   //   });
-
+  //   floatRequests.value = data.data;
+  //   console.log("Float Requests:", floatRequests.value);
+  // }
 
   async function approveFloatRequest(requestId: string) {
     try {
@@ -416,22 +418,6 @@ export const useBilling = defineStore("billing", () => {
     }
   }
   
-
-    // approve it also in till operator float ledgers
-    // async function fetchFloatLedgers() {
-    //  api.put("/till-operator2-float-ledgers"+ requestId, {
-    //   status: "approved",
-    //   approvedBy: "Manager One",
-    //   amount: requestId.amount,
-    //   till: requestId.till,
-    // });
-    // console.log("Approve Float Request response:", data2);
-    // }
-    // );
-    floatRequests.value = data.data;
-    console.log("Float Requests:", floatRequests.value);
-  }
-
 
   // async function approveFloatRequest(requestId: string) {
   //   try {
