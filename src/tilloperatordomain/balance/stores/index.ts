@@ -73,7 +73,9 @@ export const useBalance = defineStore("balance", () => {
       tillOperatorBalance.value = data.data;
 
       totalBalance.prevBalance = totalBalance.currentBalance;
-      totalBalance.currentBalance += payload.amount;
+      // totalBalance.currentBalance += payload.amount;
+      //update the balance to the new amount from the api
+      totalBalance.currentBalance = tillOperatorBalance.value;
       console.log(`Balance updated: increased by ${payload.amount}.`);
     }
   }
