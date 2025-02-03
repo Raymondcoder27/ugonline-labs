@@ -23,7 +23,7 @@ export interface FloatRequest {
 
 export interface RequestFloat {
     amount:number
-    till:number
+    till:string
     description:string
     // branch:string
 }
