@@ -67,7 +67,7 @@ function fetchBackofficeAccounts() {
   // Fetch the services based on the page and limit
   const startIndex = (page.value - 1) * limit.value;
   const endIndex = startIndex + limit.value;
-  backofficeAccounts.value = store.backofficeAccounts.slice(
+  backofficeAccounts.value = store.backofficeAccounts?.slice(
     startIndex,
     endIndex
   );
