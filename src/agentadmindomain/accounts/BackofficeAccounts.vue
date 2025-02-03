@@ -19,7 +19,7 @@ const limit: Ref<number> = ref(5);
 const loading: Ref<boolean> = ref(false);
 // const selectedBackOfficeAccount: Ref<string> = ref("");
 const backofficeAccounts: Ref<any[]> = ref([]);
-const totalRecords = computed(() => store.backofficeAccounts.length); // Total backofficeAccounts
+const totalRecords = computed(() => store.backofficeAccounts?.length); // Total backofficeAccounts
 const totalPages = computed(() => Math.ceil(totalRecords.value / limit.value));
 const pageInput = ref(1);
 const changePageSize = () => {
@@ -76,7 +76,7 @@ function fetchBackofficeAccounts() {
 const paginatedBackofficeAccounts = computed(() => {
   const start = (page.value - 1) * limit.value;
   const end = start + limit.value;
-  return store.backofficeAccounts.slice(start, end); // Adjust according to your page & limit
+  return store.backofficeAccounts?.slice(start, end); // Adjust according to your page & limit
 });
 
 const store = useAccounts();
