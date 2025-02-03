@@ -387,6 +387,17 @@ export const useBilling = defineStore("billing", () => {
       amount: requestId.amount,
       till: requestId.till,
     });
+
+    // approve it also in till operator float ledgers
+    // async function fetchFloatLedgers() {
+       api.put("/till-operator-float-ledgers"+ requestId, {
+        status: "approved",
+        approvedBy: "Manager One",
+        amount: requestId.amount,
+        till: requestId.till,
+      });
+      // console.log("Approve Float Request response:", data2);
+    // }
     // );
     floatRequests.value = data.data;
     console.log("Float Requests:", floatRequests.value);
