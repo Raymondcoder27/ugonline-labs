@@ -15,7 +15,7 @@ const page: Ref<number> = ref(1);
 const limit: Ref<number> = ref(4);
 // const selectedBackOfficeAccount: Ref<string> = ref("");
 const backofficeAccounts: Ref<any[]> = ref([]);
-const totalRecords = computed(() => store.backofficeAccounts.length); // Total backofficeAccounts
+const totalRecords = computed(() => store.backofficeAccounts?.length); // Total backofficeAccounts
 const totalPages = computed(() => Math.ceil(totalRecords.value / limit.value));
 const pageInput = ref(1);
 const changePageSize = () => {
