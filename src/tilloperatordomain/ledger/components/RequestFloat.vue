@@ -17,13 +17,9 @@ const balanceStore = useBalance();
 // });
 
 let form: RequestFloat = reactive({
-  firstName: "",
-  lastName: "",
-  middleName: "",
-  role: "admin",
-  username: "",
-  phone: "",
-  email: "",
+  tillId: "",
+  amount: 0,
+  description: "",
 });
 const notify = useNotificationsStore();
 const loading: Ref<boolean> = ref(false);
