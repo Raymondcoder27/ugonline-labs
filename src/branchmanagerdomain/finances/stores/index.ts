@@ -509,8 +509,16 @@ export const useBilling = defineStore("billing", () => {
   //edit float request amount and allocated the new amount inserted in the form
   async function editFloatRequest(requestId: any, payload: any) {
    try {
+    const floatRequest = floatRequests.value.find((request) => request.id === requestId);
+    if (!floatRequest) {
+      console.error("Float request not found for ID:", requestId);
+      return;
+    }
+
     const { data } = await api.put("/till-operator2-float-requests/" + requestId, {
       amount: payload.amount,
+      till: payload.till,
+      status: "request edited",
     });
     floatRequests.value = data.data;
     console.log("Float Requests:", floatRequests.value);
