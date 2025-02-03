@@ -22,10 +22,10 @@ export const useBalance = defineStore("balance", () => {
 
       // balanceStore.updateTotalBalance(payload.amount, payload.status)
     // don't update balance unless the status has been set to approved by the admin from the api
-    async function updateTotalBalance(amount: number, status: string) {
-      if (status === "approved") {
+    async function updateTotalBalance(payload) {
+      if (payload.status === "approved") {
         totalBalance.prevBalance = totalBalance.currentBalance;
-        totalBalance.currentBalance += amount;
+        totalBalance.currentBalance += payload.amount;
       }
       else {
         // return the same balance without updating it if the status is pending
