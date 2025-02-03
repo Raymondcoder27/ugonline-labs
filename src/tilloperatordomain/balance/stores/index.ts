@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { api } from "@/config/api";
+import api from "@/config/api";
 import { ref, reactive } from "vue";
 
 export interface TotalBalance {
