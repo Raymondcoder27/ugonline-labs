@@ -97,7 +97,8 @@ export const useBilling = defineStore("billing", () => {
   const backofficeUsers = ref<BackofficeUser[]>(dummyBackofficeUsers);
   const tillOperators = ref<TillOperator[]>(dummyTillOperators);
   const floatAllocations = ref<FloatAllocation[]>(dummyFloatAllocations);
-  const floatRequests = ref<FloatRequest[]>(dummyFloatRequests);
+  // const floatRequests = ref<FloatRequest[]>(dummyFloatRequests);
+  const floatRequests = ref<FloatRequest[]>([]);
   const floatRequestsToAdmin = ref<FloatRequest[]>(dummyFloatRequestsToAdmin);
   // const floatRequests = ref<FloatRequest[]>([]);
 
