@@ -379,6 +379,28 @@ export const useBilling = defineStore("billing", () => {
   }
 
   // //approve the float request using the api
+  async function approveFloatRequest(requestId: any) {
+    console.log("Request ID:", requestId); // Debugging
+    // return api.post(`/branch-manager/approve-float-request/${requestId}`)
+    // return api.post("/branch-manager/approve-float-request/" + requestId)
+    //it should be a put updating the status of the float request to approved
+    const {data} = api.put("/branch-manager/approve-float-request/" + requestId)
+    // find the particular float request and change the status to approved
+    const floatRequest = floatRequests.value.find((request) => request.id === requestId);
+    if (floatRequest) {
+      floatRequest.status = "approved";
+    }
+  }
+        // const responseData = response.data
+        // floatRequests.value = responseData
+        // fetchFloatRequests();
+        // fetchFloatLedgers();
+        // fetchFloatAllocations();
+      })
+  }
+
+
+  // //approve the float request using the api
   // async function approveFloatRequest(requestId: any) {
   //   console.log("Request ID:", requestId); // Debugging
   //   // return api.post(`/branch-manager/approve-float-request/${requestId}`)
