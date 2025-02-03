@@ -143,7 +143,7 @@ export const useTillStore = defineStore("useTill", () => {
   async function fetchTills() {
     isLoading.value = true;
     try {
-      const { data } = await api.get("/till");
+      const { data } = await api.get("/tills");
       tills.value = data.data;
     } catch (error) {
       console.error("Error fetching tills:", error);
