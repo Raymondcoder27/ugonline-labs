@@ -58,7 +58,8 @@ export const useBalance = defineStore("balance", () => {
       // const {data} = await api.post("/till-operator-float-request-amount", payload.amount);
       const { data } = await api.post("/till-operator-float-request-amount", {
         tillId: payload.tillId,
-        amount: payload.amount,
+        // amount: payload.amount,
+        amount: totalBalance.currentBalance,
         description: payload.description
       });
       console.log("Float request has been posted to the api");
