@@ -14,33 +14,43 @@ export const useBalance = defineStore("balance", () => {
     currentBalance: 15405000, // Initial balance
   });
 
-    // Increase the total balance and update the "prev" value
-    async function increaseTotalBalance(amount: number) {
-      totalBalance.prev = totalBalance.current;
-      totalBalance.current += amount;
-    }
+  // Increase the total balance and update the "prev" value
+  async function increaseTotalBalance(amount: number) {
+    totalBalance.prev = totalBalance.current;
+    totalBalance.current += amount;
+  }
 
-      // balanceStore.updateTotalBalance(payload.amount, payload.status)
-    // don't update balance unless the status has been set to approved by the admin from the api
-    async function updateTotalBalance(payload) {
-      if (payload.status === "approved") {
-        totalBalance.prevBalance = totalBalance.currentBalance;
-        totalBalance.currentBalance += payload.amount;
-      }
-      else {
-        // return the same balance without updating it if the status is pending
-        totalBalance.prevBalance = totalBalance.currentBalance;
-        totalBalance.currentBalance = totalBalance.currentBalance;
-      }
-    }
-  
-    // Decrease the total balance and update the "prev" value
-    async function decreaseTotalBalance(amount: number) {
-      totalBalance.prev = totalBalance.current;
-      totalBalance.current -= amount;
-    }
+  // balanceStore.updateTotalBalance(payload.amount, payload.status)
+  // don't update balance unless the status has been set to approved by the admin from the api
+  async function updateTotalBalance(payload) {
+    //first find that particular transaction in the store
 
-   // Fetch the total balance (Simulate API call)
+    transactions.value.find((transaction) => {
+      if (transaction.id === payload.id) {
+        return transaction;
+      }
+    });
+    //if the status is approved, update the balance
+    //if the status is pending, return the same balance
+
+    if (payload.status === "approved") {
+      totalBalance.prevBalance = totalBalance.currentBalance;
+      totalBalance.currentBalance += payload.amount;
+    }
+    else {
+      // return the same balance without updating it if the status is pending
+      totalBalance.prevBalance = totalBalance.currentBalance;
+      totalBalance.currentBalance = totalBalance.currentBalance;
+    }
+  }
+
+  // Decrease the total balance and update the "prev" value
+  async function decreaseTotalBalance(amount: number) {
+    totalBalance.prev = totalBalance.current;
+    totalBalance.current -= amount;
+  }
+
+  // Fetch the total balance (Simulate API call)
   //  async function fetchTotalBalance() {
   //   // Simulate fetching updated balance data
   //   const fetchedBalance = {
@@ -56,14 +66,14 @@ export const useBalance = defineStore("balance", () => {
       prevBalance: totalBalance.prevBalance, // Setting previous balance to the current value
       currentBalance: totalBalance.currentBalance, // Example of updating balance to a new value
     };
-  
+
     console.log("Fetched balance:", fetchedBalance); // Debugging
     totalBalance.prevBalance = fetchedBalance.prevBalance;
     totalBalance.currentBalance = fetchedBalance.currentBalance;
     console.log("Updated balance in store:", totalBalance); // Debugging
   }
 
-  
+
 
   return {
     totalBalance,
