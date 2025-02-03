@@ -47,7 +47,7 @@ export const useBalance = defineStore("balance", () => {
   async function updateTotalBalance(payload: {
     id: string;
     amount: number;
-    status: "pending" | "approved";
+    status: "pending" | "approved" | "rejected" | "failed";
   }) {
     if (payload.status === "pending") {
       // The float request is pending approval; no change to the balance.
