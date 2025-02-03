@@ -268,8 +268,8 @@ function convertDateTimeNullable(date?: string) {
 // pass in the requestId
 const approveFloatRequest = (requestId: any) => {
 
-  alert('Approving float request with id: ' + requestId);
-  billingStore.approveFloatRequest(requestId).then(() => {
+  if (requestId) {
+    billingStore.approveFloatRequest(requestId).then(() => {
     billingStore.fetchFloatRequests();
     console.log(`float request with id ${requestId} approved`);
     balanceStore.approveFloatRequest(requestId);
@@ -277,6 +277,7 @@ const approveFloatRequest = (requestId: any) => {
   billingStore.allocateFloatFromRequest(requestId);
   console.log(`float request with id ${requestId} approved`);
   });
+  }
 
 };
 
