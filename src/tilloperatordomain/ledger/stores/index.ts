@@ -238,16 +238,27 @@ export const useBilling = defineStore("billing", () => {
   }
 
   // adjust float ledgers with float request
-  function adjustFloatLedger(payload: RequestFloat) {
-    floatLedgers.value.push({
-      id: floatLedgers.value.length + 1,
-      date: new Date().toISOString(),
-      description: payload.description,
+  // function adjustFloatLedger(payload: RequestFloat) {
+  //   floatLedgers.value.push({
+  //     id: floatLedgers.value.length + 1,
+  //     date: new Date().toISOString(),
+  //     description: payload.description,
+  //     amount: payload.amount,
+  //     balance: totalBalance.value + payload.amount,
+  //     status: "pending",
+  //     // status: "success",
+  //   })
+  // }
+
+
+  //adjust the float ledger in the api
+  async function adjustFloatLedger(payload: RequestFloat) {
+    const { data } = await api.post("/till-operator-float-ledgers", {
       amount: payload.amount,
-      balance: totalBalance.value + payload.amount,
+      description: payload.description,
       status: "pending",
-      // status: "success",
-    })
+    });
+    floatLedgers.value?.push(data.data);
   }
 
 
