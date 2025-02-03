@@ -313,7 +313,7 @@ onMounted(() => {
                   <!-- <td> -->
                   <span
                     class="text-xs rounded-md px-1 py-0.5 font-semibold text-green-600 bg-green-100 border border-green-200 hover:text-green-700 hover:bg-green-200"
-                    >Success</span
+                    >Approved</span
                   >
                 </div>
               </td>
