@@ -526,6 +526,7 @@ export const useBilling = defineStore("billing", () => {
    } catch (error) {
       console.error("Error editing float request:", error);
     }
+  }
 
 
   return {
