@@ -380,13 +380,42 @@ export const useBilling = defineStore("billing", () => {
   //   }
   // }
 
-  async function approveFloatRequest(requestId: any) {
-    const { data } = await api.put("/till-operator2-float-requests/" + requestId, {
-      status: "approved",
-      approvedBy: "Manager One",
-      amount: requestId?.amount,
-      till: requestId.till,
-    });
+  // async function approveFloatRequest(requestId: any) {
+  //   const { data } = await api.put("/till-operator2-float-requests/" + requestId, {
+  //     status: "approved",
+  //     approvedBy: "Manager One",
+  //     amount: requestId.amount,
+  //     till: requestId.till,
+  //   });
+
+
+  async function approveFloatRequest(requestId: string) {
+    try {
+      // Find the float request by ID
+      const floatRequest = floatRequests.value.find(request => request.id === requestId);
+      
+      if (!floatRequest) {
+        console.error("Float request not found for ID:", requestId);
+        return;
+      }
+  
+      // Send the API request with all required data
+      const { data } = await api.put(`/till-operator2-float-requests/${requestId}`, {
+        status: "approved",
+        approvedBy: "Manager One",
+        amount: floatRequest.amount, // Retrieve amount from the found request
+        till: floatRequest.till,     // Retrieve till from the found request
+      });
+  
+      // Update local state after successful API call
+      floatRequest.status = "approved";
+  
+      console.log("Float request approved successfully:", data);
+    } catch (error) {
+      console.error("Error approving float request:", error);
+    }
+  }
+  
 
     // approve it also in till operator float ledgers
     // async function fetchFloatLedgers() {
