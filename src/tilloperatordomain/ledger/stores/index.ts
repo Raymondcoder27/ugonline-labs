@@ -204,7 +204,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   async function requestFloat(payload: RequestFloat) {
-    const { data } = await api.post("/till-operator-request-float", {
+    const { data } = await api.post("/till-operator-float-requests", {
       amount: payload.amount,
       tillId: payload.tillId,
       status: "pending",
