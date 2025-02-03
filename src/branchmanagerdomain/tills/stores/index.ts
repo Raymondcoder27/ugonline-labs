@@ -57,7 +57,7 @@ export const useTillStore = defineStore("useTill", () => {
 
   async function addTill(newBranch: Till) {
     try {
-      const { data } = await api.post("/till", newBranch);
+      const { data } = await api.post("/tills", newBranch);
       // branches.value = response.data
       // branches.value?.push(data.data);
       tills.value?.push(data.data);

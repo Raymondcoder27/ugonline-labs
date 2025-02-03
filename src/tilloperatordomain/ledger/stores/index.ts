@@ -131,12 +131,19 @@ export const useBilling = defineStore("billing", () => {
   const floatRequest = ref<FloatRequest | null>(null);
 
   //fetch float requests
+  // async function fetchFloatRequests() {
+  //   // Simulate API call
+  //   // const response = await fetch(`/api/float-requests?limit=${filter.limit}&page=${filter.page}`);
+  //   // const data = await response.json();
+  //   // Use dummy data for now
+  //   floatRequests.value = dummyFloatRequests;
+  // }
+
+  //use api to fetch float requests
   async function fetchFloatRequests() {
-    // Simulate API call
-    // const response = await fetch(`/api/float-requests?limit=${filter.limit}&page=${filter.page}`);
-    // const data = await response.json();
-    // Use dummy data for now
-    floatRequests.value = dummyFloatRequests;
+    const { data } = await api.get("/till-operator/float-requests");
+    floatRequests.value = data.data;
+    console.log("Float Requests:", floatRequests.value);
   }
 
   // allocate float function, push to the float allocation array
