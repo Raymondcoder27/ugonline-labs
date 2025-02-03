@@ -78,8 +78,8 @@ watch(
 
 onMounted(() => {
   console.log("RequestFloat component mounted");
-  billingStore.fetchFloatLedgers();
-  billingStore.fetchFloatRequests();
+  // billingStore.fetchFloatLedgers();
+  // billingStore.fetchFloatRequests();
 });
 </script>
 
