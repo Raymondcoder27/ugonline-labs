@@ -92,6 +92,45 @@ export const useBalance = defineStore("balance", () => {
       totalBalance.currentBalance = tillOperatorBalance.value;
       console.log(`Balance updated: increased by ${payload.amount}.`);
     }
+
+    if (payload.status === "edited") {
+      // On approval, update the balance.
+
+      //post that float request to the api
+      const { data } = await api.post("/till-operator5-float-request-amounts", {
+        tillId: payload.tillId,
+        amount: payload.amount,
+        description: payload.description
+      });
+      console.log("Float request has been posted to the api");
+      tillOperatorBalance.value = data.data;
+
+      totalBalance.prevBalance = totalBalance.currentBalance;
+      // totalBalance.currentBalance += payload.amount;
+      //update the balance to the new amount from the api
+      totalBalance.currentBalance = tillOperatorBalance.value;
+      console.log(`Balance updated: increased by ${payload.amount}.`);
+    }
+
+    if (payload.status === "rejected") {
+      // On approval, update the balance.
+
+      //post that float request to the api
+      const { data } = await api.post("/till-operator5-float-request-amounts", {
+        tillId: payload.tillId,
+        amount: totalBalance.currentBalance,
+        description: payload.description
+      });
+      console.log("Float request has been posted to the api");
+      tillOperatorBalance.value = data.data;
+
+      totalBalance.prevBalance = totalBalance.currentBalance;
+      // totalBalance.currentBalance += payload.amount;
+      //update the balance to the new amount from the api
+      totalBalance.currentBalance = tillOperatorBalance.value;
+      console.log(`Balance updated: increased by ${payload.amount}.`);
+    }
+
   }
 
   
