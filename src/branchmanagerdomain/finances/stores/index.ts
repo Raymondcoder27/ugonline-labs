@@ -123,8 +123,9 @@ export const useBilling = defineStore("billing", () => {
           // requestDate: new Date().toISOString(),
           amount: payload.amount,
           status: "pending",
-          branchId: payload.branch,
+          branch: payload.branch,
           description: payload.description,
+          requestDate: new Date().toISOString(),
         })
         floatRequestsToAdmin.value?.push(data.data);
         console.log("Request Float response:", floatRequestToAdmin);
