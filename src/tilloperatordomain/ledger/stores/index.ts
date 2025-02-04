@@ -80,39 +80,6 @@ export const useBilling = defineStore("billing", () => {
     console.log("Filtered transactions:", filteredData);
   }
 
-
-
-  // async function fetchFloatLedgers(filter: any) {
-  //   // Simulate API call
-  //   // const response = await fetch(`/api/float-ledgers?limit=${filter.limit}&page=${filter.page}`);
-  //   // const data = await response.json();
-  //   // Use dummy data for now
-  //   floatLedgers.value = dummyFloatLedgers;
-  // }
-
-  // async function fetchFloatLedgers(filter: any) {
-  //   // Simulate filtering with dummy data
-  //   const filteredData = dummyFloatLedgers.filter(item => {
-  //     // Example: filter by status
-  //     return !filter.status || item.status === filter.status;
-  //   }).slice(0, filter.limit || dummyFloatLedgers.length);
-
-  //   floatLedgers.value = filteredData;
-  // }
-
-  // async function fetchFloatLedgers(filter: any) {
-  //   console.log("Fetching Float Ledgers with filter:", filter);
-
-  //   const filteredData = dummyFloatLedgers.filter(item => {
-  //     // Filter logic...
-  //   });
-
-  //   const limitedData = filteredData.slice(0, filter.limit || dummyFloatLedgers.length);
-  //   floatLedgers.value = limitedData;
-  //   console.log("Filtered float ledgers:", limitedData);
-  //   return limitedData;  // Add this return to make the data available for use
-  // }
-
   //fetch float ledgers using the api
   async function fetchFloatLedgers() {
     const { data } = await api.get("/till-operator2-float-ledgers");
