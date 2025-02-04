@@ -21,7 +21,7 @@ let form: FloatRequest = reactive({
   description: "",
   requesterName: "",
 });
-const emit = defineEmits(["cancel", "floatAllocated"]);
+const emit = defineEmits(['cancel', 'floatAllocated']);
 
 onMounted(() => {
   let data = JSON.parse(<string>localStorage.getItem("floatRequestEdit"));
