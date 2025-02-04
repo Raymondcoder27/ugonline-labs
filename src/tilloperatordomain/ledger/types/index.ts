@@ -19,6 +19,7 @@ export interface FloatRequest {
     status:string
     branchId:number
     tillId: string
+    balance:number
 }
 
 export interface RequestFloat {
