@@ -183,6 +183,7 @@ const paginatedFloatRequestsWithBalance = computed(() => {
     balanceStore.updateTotalBalance(runningBalance);
     } 
     // If rejected, do nothing (balance stays the same)
+    balanceStore.updateTotalBalance(runningBalance);
 
     return {
       ...transaction,
@@ -197,7 +198,7 @@ const paginatedFloatRequestsWithBalance = computed(() => {
 
 // Fetch billing data (transactions, float ledgers)
 onMounted(() => {
-  fetchFloatLedgers();
+  // fetchFloatLedgers();
   // console.log("RequestFloat component mounted");
   // store.fetchFloatLedgers();
   store.fetchFloatRequests();
