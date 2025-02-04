@@ -333,6 +333,18 @@ onMounted(() => {
                   <!-- </td> -->
                 </div>
 
+                 <!-- Third Case: Manager directly assigned to branch -->
+                 <div v-else-if="transaction.status === 'edited'">
+                  <!-- <td> -->
+                  <label>
+                    <span
+                      class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-red-600 bg-red-100 border border-red-200 hover:text-red-700 hover:bg-red-200"
+                      >Failed</span
+                    >
+                  </label>
+                  <!-- </td> -->
+                </div>
+
                 <!-- Third Case: Fallback, no manager assigned -->
                 <div v-if="transaction.status === 'approved'">
                   <!-- <td> -->

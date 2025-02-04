@@ -18,7 +18,7 @@ const balanceStore = useBalance();
 
 let form: RequestFloat = reactive({
   till: "",
-  amount: 0,
+  amount: "",
   description: "",
 });
 const notify = useNotificationsStore();
