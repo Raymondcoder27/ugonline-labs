@@ -63,7 +63,7 @@ export const useBilling = defineStore("billing", () => {
   const dummyFloatRequestsToAdmin: FloatRequest[] = [
     { id: 1, requestDate: "2021-09-01", amount: 12000000, status: "pending", approvedBy: null, requesterName: "", createdAt: "", description: "Recharge", branch: "Branch 1" },
     { id: 4, requestDate: "2021-09-04", amount: 10000000, status: "failed", approvedBy: null, requesterName: "", createdAt: "", description: "Recharge", branch: "Branch 1" },
-    { id: 2, requestDate: "2021-09-02", amount: 18000000, status: "approved", approvedBy: "Manager One", requesterName: "", createdAt: "", date: "", description: "Recharge", branch: "Branch 1" }, },
+    { id: 2, requestDate: "2021-09-02", amount: 18000000, status: "approved", approvedBy: "Manager One", requesterName: "", createdAt: "", date: "", description: "Recharge", branch: "Branch 1" },
     { id: 3, requestDate: "2021-09-03", amount: 9000000, status: "rejected", approvedBy: null, requesterName: "", createdAt: "", description: "Recharge", branch: "Branch 1" },
   ];
 
@@ -119,7 +119,7 @@ export const useBilling = defineStore("billing", () => {
   const floatRequestToAdmin = ref<FloatRequestToAdmin | null>(null);
 
    async function requestFloatToAdmin(payload: RequestFloatToAdmin){
-    const {data} = await api.post("/branch-manager-request-float", {
+    const {data} = await api.post("/branch-manager-float-requests", {
           // requestDate: new Date().toISOString(),
           amount: payload.amount,
           status: "pending",
@@ -207,11 +207,17 @@ export const useBilling = defineStore("billing", () => {
   }
 
 
-  const fetchFloatRequestsToAdmin = async () => {
-    return api.get("/branch-manager/float-requests")
-      .then((response: AxiosResponse<ApiResponse<any>>) => {
-        floatRequestsToAdmin.value = response.data.data
-      })
+  // const fetchFloatRequestsToAdmin = async () => {
+  //   return api.get("/branch-manager/float-requests")
+  //     .then((response: AxiosResponse<ApiResponse<any>>) => {
+  //       floatRequestsToAdmin.value = response.data.data
+  //     })
+  // }
+
+  async function fetchFloatRequestsToAdmin() {
+    const { data } = await api.get("/branch-manager-float-requests");
+    floatRequestsToAdmin.value = data.data;
+    console.log("Float Requests:", floatRequestsToAdmin.value);
   }
 
   // function submit() {
