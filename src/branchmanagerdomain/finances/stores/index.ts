@@ -492,20 +492,6 @@ export const useBilling = defineStore("billing", () => {
 
     // if (user && branch) {
     if (user && branch) {
-      // managerAccounts.value.push({
-      //   firstName: user.firstName,
-      //   lastName: user.lastName,
-      //   email: user.email,
-      //   phone: user.phone,
-      //   role: user.role,
-      //   status: user.status,
-      //   createdAt: new Date().toISOString(),
-      //   emailVerified: true,
-      //   phoneVerified: true,
-      //   activatedAt: new Date().toISOString(),
-      //   branch: branch.name, // Include branchId
-      // });
-
       const { data } = await api.post("/branch-managers", {
         firstName: user.firstName,
         lastName: user.lastName,
