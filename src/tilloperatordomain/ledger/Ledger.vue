@@ -353,7 +353,7 @@ onMounted(() => {
                     >Approved</span
                   >
                 </div>
-              </td>
+              <!-- </td> -->
 
                  <!-- Fifth Case: Fallback, rejected -->
                  <div v-if="transaction.status === 'rejected'">
@@ -363,7 +363,7 @@ onMounted(() => {
                     >Rejected</span
                   >
                 </div>
-              </td>
+              <!-- </td> -->
 
               <!-- <td class="text-left text-gray-800">
                 <span>{{ transaction.balance.toLocaleString() }}</span>
