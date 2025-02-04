@@ -51,7 +51,7 @@ const emit = defineEmits(["cancel", "requestSubmitted"]);
 function submit() {
   const payload = {
     amount: form.amount,
-    branch: form.branchId,
+    branch: "Branch 1",
     description: form.description,
     status: "pending",
     requestDate: form.requestDate,
