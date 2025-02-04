@@ -56,8 +56,8 @@ export const useBalance = defineStore("balance", () => {
       console.log("Float request is pending approval. No balance update performed.");
       // return;
       //post that float request to the api
-      // const {data} = await api.post("/till-operator6-float-request-amount", payload.amount);
-      const { data } = await api.post("/till-operator6-float-request-amount", {
+      // const {data} = await api.post("/till-operator7-float-request-amount", payload.amount);
+      const { data } = await api.post("/till-operator7-float-request-amount", {
         tillId: payload.tillId,
         // amount: payload.amount,
         amount: totalBalance.currentBalance,
@@ -79,7 +79,7 @@ export const useBalance = defineStore("balance", () => {
       // On approval, update the balance.
 
       //post that float request to the api
-      const { data } = await api.post("/till-operator6-float-request-amounts", {
+      const { data } = await api.post("/till-operator7-float-request-amounts", {
         tillId: payload.tillId,
         amount: payload.amount,
         description: payload.description
@@ -98,7 +98,7 @@ export const useBalance = defineStore("balance", () => {
       // On approval, update the balance.
 
       //post that float request to the api
-      const { data } = await api.post("/till-operator6-float-request-amounts", {
+      const { data } = await api.post("/till-operator7-float-request-amounts", {
         tillId: payload.tillId,
         amount: payload.amount,
         description: payload.description
@@ -117,7 +117,7 @@ export const useBalance = defineStore("balance", () => {
       // On approval, update the balance.
 
       //post that float request to the api
-      const { data } = await api.post("/till-operator6-float-request-amounts", {
+      const { data } = await api.post("/till-operator7-float-request-amounts", {
         tillId: payload.tillId,
         amount: totalBalance.currentBalance,
         description: payload.description

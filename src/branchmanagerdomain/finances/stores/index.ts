@@ -194,7 +194,7 @@ export const useBilling = defineStore("billing", () => {
   // }
   //use api to fetch float requests
   async function fetchFloatRequests() {
-    const { data } = await api.get("/till-operator6-float-requests");
+    const { data } = await api.get("/till-operator7-float-requests");
     floatRequests.value = data.data;
     console.log("Float Requests:", floatRequests.value);
   }
@@ -386,7 +386,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   // async function approveFloatRequest(requestId: any) {
-  //   const { data } = await api.put("/till-operator6-float-requests/" + requestId, {
+  //   const { data } = await api.put("/till-operator7-float-requests/" + requestId, {
   //     status: "approved",
   //     approvedBy: "Manager One",
   //     amount: requestId.amount,
@@ -407,7 +407,7 @@ export const useBilling = defineStore("billing", () => {
       }
 
       // Send the API request with all required data
-      const { data } = await api.put(`/till-operator6-float-requests/${requestId}`, {
+      const { data } = await api.put(`/till-operator7-float-requests/${requestId}`, {
         status: "approved",
         approvedBy: "Manager One",
         amount: floatRequest.amount, // Retrieve amount from the found request
@@ -417,7 +417,7 @@ export const useBilling = defineStore("billing", () => {
       });
 
       //approve the record's status in the float ledger too
-      // api.put("/till-operator6-float-ledgers/" + requestId, {
+      // api.put("/till-operator7-float-ledgers/" + requestId, {
       //   status: "approved",
       //   amount: floatRequest.amount,
       //   till: floatRequest.till,
@@ -476,7 +476,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   // async function rejectFloatRequest(requestId: any) {
-  //   const { data } = await api.put("/till-operator6-float-requests/" + requestId, {
+  //   const { data } = await api.put("/till-operator7-float-requests/" + requestId, {
   //     status: "rejected",
   //   });
   //   floatRequests.value = data.data;
@@ -494,7 +494,7 @@ export const useBilling = defineStore("billing", () => {
       }
 
       // Send the API request with all required data
-      const { data } = await api.put(`/till-operator6-float-requests/${requestId}`, {
+      const { data } = await api.put(`/till-operator7-float-requests/${requestId}`, {
         status: "rejected",
         approvedBy: "Manager One",
         amount: floatRequest.amount, // Retrieve amount from the found request
@@ -504,7 +504,7 @@ export const useBilling = defineStore("billing", () => {
       });
 
       //approve the record's status in the float ledger too
-      // api.put("/till-operator6-float-ledgers/" + requestId, {
+      // api.put("/till-operator7-float-ledgers/" + requestId, {
       //   status: "approved",
       //   amount: floatRequest.amount,
       //   till: floatRequest.till,
@@ -528,7 +528,7 @@ export const useBilling = defineStore("billing", () => {
         return;
       }
 
-      const { data } = await api.put("/till-operator6-float-requests/" + requestId, {
+      const { data } = await api.put("/till-operator7-float-requests/" + requestId, {
         amount: payload.amount,
         till: payload.till,
         // status: "request edited",
