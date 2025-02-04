@@ -131,9 +131,6 @@ const paginatedFloatRequestsWithBalance = computed(() => {
       runningBalance += transaction.amount; // Increase balance only if approved
     // balanceStore.updateTotalBalance(runningBalance);
     } 
-    // If rejected, do nothing (balance stays the same)
-    // balanceStore.updateTotalBalance(runningBalance);
-
     return {
       ...transaction,
       balance: runningBalance, // Maintain the same balance if rejected
@@ -210,21 +207,11 @@ onMounted(() => {
               class="body-tr"
             >
               <td class="text-left">{{ idx + 1 }}</td>
-
-              <td class="text-left">
-                <label
-                  class="cursor-pointer font-bold hover:text-primary-700 mx-2"
-                >
-                  <span class="hover:underline">{{
-                    transaction.description
-                  }}</span>
-                </label>
-              </td>
  <td class="text-left text-gray-800">
                 <span v-if="transaction.status === 'approved'">
                   {{ transaction.balance.toLocaleString() }}
                 </span>
-                <span v-if="transaction.status === 'rejected'">
+                <!-- <span v-if="transaction.status === 'rejected'">
                   {{ transaction.balance.toLocaleString() }}
                 </span>
                 <span v-if="transaction.status === 'edited'">
@@ -232,7 +219,7 @@ onMounted(() => {
                 </span>
                 <span v-if="transaction.status==='pending'" class="italic text-gray-500">
                   --{{ transaction.balance.toLocaleString() }}--
-                </span>
+                </span> -->
               </td>
             </tr>
   </div>
