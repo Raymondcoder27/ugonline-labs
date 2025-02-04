@@ -68,13 +68,15 @@ function submit() {
   store
     .editFloatRequest(id, payload)
     .then(() => {
-      loading.value = false;
+      loading.value = true;
       window.location.reload();
       notify.error("Edited");
+      loading.value = false;
     })
     .catch((error: ApiError) => {
-      loading.value = false;
+      loading.value = true;
       notify.error(error.response.data.message);
+      loading.value = false;
     });
 }
 </script>
