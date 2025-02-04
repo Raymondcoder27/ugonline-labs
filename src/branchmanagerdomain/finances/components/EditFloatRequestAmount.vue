@@ -23,10 +23,11 @@ const emit = defineEmits(["cancel"]);
 onMounted(() => {
   let data = JSON.parse(<string>localStorage.getItem("floatRequestEdit"));
 
-  form.name = data.name;
+  // form.name = data.name;
   form.till = data.till;
   form.amount = data.amount;
   form.status = data.status;
+  form.description = data.description;
   //   form.displayName = data.displayName
   //   form.physicalAddress = data.physicalAddress
   //   form.inquiryEmail = data.inquiryEmail
@@ -40,10 +41,11 @@ function submit() {
 
   let id = data.id;
   let payload = {
-    name: form.name,
+    // name: form.name,
     till: form.till,
     amount: form.amount,
     status: form.status,
+    description: form.description,
     // display_name:form.displayName,
     // inquiry_email:form.inquiryEmail,
     // provider_type:form.providerType,
