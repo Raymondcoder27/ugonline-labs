@@ -277,10 +277,19 @@ const approveFloatRequest = (requestId: any) => {
   }
 };
 
+// const rejectFloatRequest = (requestId: any) => {
+//   billingStore.rejectFloatRequest(requestId);
+//   billingStore.fetchFloatRequests();
+//   console.log(`float request with id ${requestId} rejected`);
+// };
+
 const rejectFloatRequest = (requestId: any) => {
-  billingStore.rejectFloatRequest(requestId);
-  billingStore.fetchFloatRequests();
-  console.log(`float request with id ${requestId} rejected`);
+  if (requestId) {
+    billingStore.rejectFloatRequest(requestId).then(() => {
+      billingStore.fetchFloatRequests();
+      console.log(`float request with id ${requestId} rejected`);
+    });
+  }
 };
 
 onMounted(() => {
