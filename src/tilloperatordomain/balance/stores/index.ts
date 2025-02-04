@@ -145,9 +145,10 @@ export const useBalance = defineStore("balance", () => {
   
   
   async function decreaseTotalBalance(amount: number) {
-    totalBalance.prev = totalBalance.current;
-    totalBalance.current -= amount;
+    totalBalance.prevBalance = totalBalance.currentBalance;
+    totalBalance.currentBalance -= amount;
   }
+  
 
   // Fetch the total balance (Simulate API call)
   //  async function fetchTotalBalance() {
@@ -171,6 +172,23 @@ export const useBalance = defineStore("balance", () => {
     totalBalance.currentBalance = fetchedBalance.currentBalance;
     console.log("Updated balance in store:", totalBalance); // Debugging
   }
+
+
+  //fetching the balance from an api
+  // async function fetchTotalBalance() {
+  //   try {
+  //     console.log("Fetching balance...");
+  //     const { data } = await api.get("/balance"); // Adjust the endpoint
+  //     console.log("Fetched balance from API:", data);
+  
+  //     // Update the store
+  //     totalBalance.prevBalance = totalBalance.currentBalance;
+  //     totalBalance.currentBalance = data.currentBalance; // Use API response
+  //   } catch (error) {
+  //     console.error("Error fetching balance:", error);
+  //   }
+  // }
+  
 
 
 

@@ -117,18 +117,10 @@ const totalBalance = balanceStore.totalBalance;
 //   store.fetchServices(filter); // Fetch services
 // }
 
-// onMounted(() => {
-//   balanceStore.fetchTotalBalance();
-//   fetchServices();
-// });
-
 onMounted(() => {
-  if (!balanceStore.totalBalance) {
-    balanceStore.fetchTotalBalance();
-  }
+  balanceStore.fetchTotalBalance();
   fetchServices();
 });
-
 </script>
 
 <template>
