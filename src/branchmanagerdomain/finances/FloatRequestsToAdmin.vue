@@ -264,18 +264,22 @@ function convertDateTimeNullable(date?: string) {
 
 // pass in the requestId
 const approveFloatRequest = (requestId: any) => {
+  if (requestId){
   billingStore.approveFloatRequest(requestId);
   // billingStore.fetchFloatRequestsToAdmin();
   balanceStore.approveFloatRequest(requestId);
   billingStore.reduceFloatLedger(requestId);
   billingStore.allocateFloatFromRequest(requestId);
   console.log(`float request with id ${requestId} approved`);
+}
 };
 
 const rejectFloatRequest = (requestId: any) => {
+  if (requestId){
   billingStore.rejectFloatRequest(requestId);
   billingStore.fetchFloatRequestsToAdmin();
   console.log(`float request with id ${requestId} rejected`);
+}
 };
 
 onMounted(() => {
@@ -395,8 +399,8 @@ onMounted(() => {
           > -->
             <td class="text-left">{{ id + 1 }}</td>
             <!-- <td class="text-left">{{  convertDateTime(request.date) }}</td> -->
-            <td class="text-left">{{ request.requestDate }}</td>
-            <!-- <td class="text-left">{{ request.createdAt }}</td> -->
+            <!-- <td class="text-left">{{ request.requestDate }}</td> -->
+            <td class="text-left">{{ request.createdAt }}</td>
             <!-- convertDateTime(request.createdAt) -->
             <td class="text-left">{{ request.description }}</td>
             <!-- <td class="text-left">{{ request.amount.toLocaleString() }}</td> -->
