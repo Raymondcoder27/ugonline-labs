@@ -152,23 +152,44 @@ watch(
 // });
 
 //paginated floatrequests with balance
+// const paginatedFloatRequestsWithBalance = computed(() => {
+//   const start = (page.value - 1) * limit.value;
+//   const end = start + limit.value;
+//   const paginatedTransactions = store.floatRequests.slice(start, end);
+//   // const paginatedTransactions = store.floatRequests.slice(start, end);
+
+//   let runningBalance = 0;
+
+//   // Map through the paginated transactions and add the running balance
+//   return paginatedTransactions.map((transaction) => {
+//     runningBalance += transaction.amount;
+//     return {
+//       ...transaction,
+//       balance: runningBalance,
+//     };
+//   });
+// });
+
 const paginatedFloatRequestsWithBalance = computed(() => {
   const start = (page.value - 1) * limit.value;
   const end = start + limit.value;
   const paginatedTransactions = store.floatRequests.slice(start, end);
-  // const paginatedTransactions = store.floatRequests.slice(start, end);
 
   let runningBalance = 0;
 
-  // Map through the paginated transactions and add the running balance
   return paginatedTransactions.map((transaction) => {
-    runningBalance += transaction.amount;
+    if (transaction.status === "approved") {
+      runningBalance += transaction.amount; // Increase balance only if approved
+    } 
+    // If rejected, do nothing (balance stays the same)
+
     return {
       ...transaction,
-      balance: runningBalance,
+      balance: runningBalance, // Maintain the same balance if rejected
     };
   });
 });
+
 
 // Fetch billing data (transactions, float ledgers)
 onMounted(() => {
@@ -372,7 +393,7 @@ onMounted(() => {
                 <span v-if="transaction.status === 'approved'">
                   {{ transaction.balance.toLocaleString() }}
                 </span>
-                <span v-if="transaction.status === 'rejected'">
+                <span class="text-red-600" v-if="transaction.status === 'rejected'">
                   {{ transaction.balance.toLocaleString() }}
                 </span>
                 <span v-if="transaction.status === 'edited'">
