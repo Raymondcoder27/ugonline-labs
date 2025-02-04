@@ -338,8 +338,8 @@ onMounted(() => {
                   <!-- <td> -->
                   <label>
                     <span
-                      class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-red-600 bg-red-100 border border-red-200 hover:text-red-700 hover:bg-red-200"
-                      >Failed</span
+                      class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-green-600 bg-green-100 border border-green-200 hover:text-green-700 hover:bg-green-200"
+                      >Edited</span
                     >
                   </label>
                   <!-- </td> -->
