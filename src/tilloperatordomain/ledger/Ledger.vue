@@ -133,10 +133,29 @@ watch(
 );
 
 // This is the updated computed property for paginatedFloatLedgers that works with the running balance.
-const paginatedFloatLedgersWithBalance = computed(() => {
+// const paginatedFloatLedgersWithBalance = computed(() => {
+//   const start = (page.value - 1) * limit.value;
+//   const end = start + limit.value;
+//   const paginatedTransactions = store.floatLedgers.slice(start, end);
+//   // const paginatedTransactions = store.floatRequests.slice(start, end);
+
+//   let runningBalance = 0;
+
+//   // Map through the paginated transactions and add the running balance
+//   return paginatedTransactions.map((transaction) => {
+//     runningBalance += transaction.amount;
+//     return {
+//       ...transaction,
+//       balance: runningBalance,
+//     };
+//   });
+// });
+
+//paginated floatrequests with balance
+const paginatedFloatRequestsWithBalance = computed(() => {
   const start = (page.value - 1) * limit.value;
   const end = start + limit.value;
-  const paginatedTransactions = store.floatLedgers.slice(start, end);
+  const paginatedTransactions = store.floatRequests.slice(start, end);
   // const paginatedTransactions = store.floatRequests.slice(start, end);
 
   let runningBalance = 0;
@@ -246,8 +265,13 @@ onMounted(() => {
             </tr>
           </thead>
           <tbody>
-            <tr
+            <!-- <tr
               v-for="(transaction, idx) in paginatedFloatLedgersWithBalance"
+              :key="transaction.id"
+              class="body-tr"
+            > -->
+            <tr
+              v-for="(transaction, idx) in paginatedFloatRequestsWithBalance"
               :key="transaction.id"
               class="body-tr"
             >

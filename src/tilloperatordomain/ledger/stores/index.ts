@@ -99,7 +99,8 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   //first make float requests array with statuses: pending, approved, rejected
-  const floatRequests = ref<FloatRequest[]>(dummyFloatRequests);
+  // const floatRequests = ref<FloatRequest[]>(dummyFloatRequests);
+  const floatRequests = ref<FloatRequest[]>([]);
 
   const floatRequest = ref<FloatRequest | null>(null);
 
