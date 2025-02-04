@@ -411,6 +411,7 @@ export const useBilling = defineStore("billing", () => {
         approvedBy: "Manager One",
         amount: floatRequest.amount, // Retrieve amount from the found request
         till: floatRequest.till,     // Retrieve till from the found request
+        // description: floatRequest.description,
       });
 
       //approve the record's status in the float ledger too

@@ -56,6 +56,7 @@ export interface FloatRequest {
   status: string;
   requesterName: string;
   till: string;
+  description: string;
   approvedBy: string | null;
   createdAt: string; 
 }
@@ -141,14 +142,14 @@ export interface TillOperator {
   //   { id: 4, requestDate: "2021-09-04", amount: 40000000, status: "Pending", branch: "Branch 4", approvedBy: null },
   // ];
 
-  export interface FloatRequest {
-    id: number;
-    date: string;
-    amount: number;
-    status: string;
-    till: string;
-    approvedBy: string | null;
-  }
+  // export interface FloatRequest {
+  //   id: number;
+  //   date: string;
+  //   amount: number;
+  //   status: string;
+  //   till: string;
+  //   approvedBy: string | null;
+  // }
 
 export type TAccountVerificationType = (typeof AccountVerificationTypes)[number];
 
