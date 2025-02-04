@@ -70,7 +70,7 @@ function submit() {
     .then(() => {
       loading.value = true;
       window.location.reload();
-      notify.error("Edited");
+      notify.success("Edited");
       loading.value = false;
     })
     .catch((error: ApiError) => {
