@@ -50,7 +50,8 @@ export interface FloatLedger {
 }
 
 export interface FloatRequest {
-  id: number;
+  id: string;
+  description:string;
   requestDate: string;
   amount: number;
   status: string;
@@ -118,6 +119,7 @@ export interface BranchManager {
 
   export interface FloatRequest {
     id: string;
+    description: string;
     date: string;
     amount: number;
     status: string;
