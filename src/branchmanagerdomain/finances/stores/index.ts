@@ -482,39 +482,39 @@ export const useBilling = defineStore("billing", () => {
   }
 
 
-  async function assignManager(userId: string, branchId: string) {
-    console.log('User ID:', userId); // Debugging log
-    console.log('Branch ID:', branchId); // Debugging log
+  // async function assignManager(userId: string, branchId: string) {
+  //   console.log('User ID:', userId); // Debugging log
+  //   console.log('Branch ID:', branchId); // Debugging log
 
-    const user = backofficeAccounts.value?.find((account) => account.id === userId); // Find user by `userId`
+  //   const user = backofficeAccounts.value?.find((account) => account.id === userId); // Find user by `userId`
 
-    const branch = branchStore.branches?.find((branch: Branch) => branch.id === branchId);
+  //   const branch = branchStore.branches?.find((branch: Branch) => branch.id === branchId);
 
-    // if (user && branch) {
-    if (user && branch) {
-      const { data } = await api.post("/branch-managers", {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        phone: user.phone,
-        role: user.role,
-        status: user.status,
-        createdAt: new Date().toISOString(),
-        emailVerified: true,
-        phoneVerified: true,
-        activatedAt: new Date().toISOString(),
-        branch: branch.name, // Include branchId
-      });
+  //   // if (user && branch) {
+  //   if (user && branch) {
+  //     const { data } = await api.post("/branch-managers", {
+  //       firstName: user.firstName,
+  //       lastName: user.lastName,
+  //       email: user.email,
+  //       phone: user.phone,
+  //       role: user.role,
+  //       status: user.status,
+  //       createdAt: new Date().toISOString(),
+  //       emailVerified: true,
+  //       phoneVerified: true,
+  //       activatedAt: new Date().toISOString(),
+  //       branch: branch.name, // Include branchId
+  //     });
 
-      managerAccounts.value?.push(data.data);
+  //     managerAccounts.value?.push(data.data);
 
-      console.log(`Manager assigned to branch ${branch.name}`);
-      console.log(`Manager assigned to branch ${branchId}`);
-    } else {
-      console.warn(`User with ID ${userId} not found.`);
-      alert(`User with ID ${userId} not found.`);
-    }
-  };
+  //     console.log(`Manager assigned to branch ${branch.name}`);
+  //     console.log(`Manager assigned to branch ${branchId}`);
+  //   } else {
+  //     console.warn(`User with ID ${userId} not found.`);
+  //     alert(`User with ID ${userId} not found.`);
+  //   }
+  // };
 
   // async function approveFloatRequest(requestId: string) {
   //   try {
