@@ -51,6 +51,8 @@ function submit() {
     amount: form.amount,
     status: form.status,
     description: form.description,
+    requestDate: form.requestDate,
+    requesterName: form.requesterName,
     // display_name:form.displayName,
     // inquiry_email:form.inquiryEmail,
     // provider_type:form.providerType,
