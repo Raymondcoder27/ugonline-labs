@@ -408,19 +408,6 @@ onMounted(() => {
             <td class="text-left">
               <!-- First Case: float request approved -->
               <div v-if="request.status === 'approved'">
-                <!-- <td> -->
-                <!-- <label> -->
-                <!-- <span
-                  class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-green-700 bg-green-100 border border-green-300 hover:text-green-700 hover:bg-green-200"
-                  @click="approveFloatRequest(request.id)"
-                  >
-                  <i class="fa-solid fa-check"></i>
-                  Approved</span
-                > -->
-                <!-- <span
-                  class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-green-700 bg-green-100 border border-green-300 hover:text-green-700 hover:bg-green-200"
-                  @click="approveFloatRequest(request.id)"
-                > -->
                 <span
                   class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-green-700 bg-green-100 border border-green-300 hover:text-green-700 hover:bg-green-200"
                 >
@@ -432,7 +419,7 @@ onMounted(() => {
               </div>
 
               <!-- Second Case: Manager directly assigned to till -->
-              <div v-else-if="request.status === 'rejected'">
+              <div v-if="request.status === 'rejected'">
                 <!-- <td> -->
                 <label>
                   <span
@@ -444,7 +431,7 @@ onMounted(() => {
                 </label>
                 <!-- </td> -->
               </div>
-              <div v-else>
+              <div  v-if="request.status === 'pending'">
                 <!-- <td> -->
                 <label>
                   <span
@@ -452,6 +439,18 @@ onMounted(() => {
                   >
                     <!-- <i class="fa-solid fa-clock text-gray-500"></i> -->
                     Pending</span
+                  >
+                </label>
+                <!-- </td> -->
+              </div>
+              <div  v-if="request.status === 'edited'">
+                <!-- <td> -->
+                <label>
+                  <span
+                    class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-gray-700 bg-gray-50 border border-gray-300 hover:text-gray-700 hover:bg-gray-200"
+                  >
+                    <!-- <i class="fa-solid fa-clock text-gray-500"></i> -->
+                    Edited</span
                   >
                 </label>
                 <!-- </td> -->
