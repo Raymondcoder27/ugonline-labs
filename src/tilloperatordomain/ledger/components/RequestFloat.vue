@@ -126,7 +126,7 @@ onMounted(() => {
       <div class="flex">
         <div class="cell-full">
           <label class="block uppercase text-neutral-600 text-xs font-bold mb-1"
-            >NOTE</label
+            >Reason</label
           >
           <textarea
             rows="4"
