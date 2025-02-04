@@ -369,6 +369,7 @@ onMounted(() => {
           <tr class="header-tr">
             <th class="text-left">#</th>
             <th class="text-left">Date</th>
+            <th class="text-left">Type</th>
             <!-- <th class="text-left">Name</th> -->
             <!-- <th class="text-left">Till</th> -->
             <th class="text-left">Amount</th>
