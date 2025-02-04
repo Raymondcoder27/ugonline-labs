@@ -74,6 +74,15 @@ export interface FloatRequestToAdmin {
   createdAt: string; 
 }
 
+export interface RequestFloatToAdmin {
+  amount:number
+  branch:string
+  description:string
+  requestDate: string;
+  status: string;
+  // branch:string
+}
+
 //float assignment
 export interface FloatAllocation {
   // id: string;

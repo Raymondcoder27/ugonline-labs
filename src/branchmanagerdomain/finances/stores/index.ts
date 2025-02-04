@@ -3,7 +3,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import api from "@/config/api";
-import type { Transaction, FloatLedger, BackofficeUser, TillOperator, FloatAllocation, FloatRequest } from "@/branchmanagerdomain/finances/types";
+import type { Transaction, FloatLedger, BackofficeUser, TillOperator, FloatAllocation, FloatRequest, RequestFloatToAdmin } from "@/branchmanagerdomain/finances/types";
 import type { AllocateFloat } from "@/types";
 import { request } from "node_modules/axios/index.d.cts";
 // import { useTillBilling } from "@/tilloperatordomain/ledger/stores"; // Import the appropriate store
@@ -118,26 +118,32 @@ export const useBilling = defineStore("billing", () => {
 
   const floatRequestToAdmin = ref<FloatRequestToAdmin | null>(null);
 
-  const requestFloatToAdmin = async (payload: RequestFloatToAdmin) => {
-    return api.post("/branch-manager-request-float", payload)
-      .then((response: AxiosResponse<ApiResponse<any>>) => {
-        floatRequestToAdmin.value = response.data.data
-        console.log("Request Float response:", floatRequestToAdmin);
-
-        //push the request to the float requests array
-        floatRequestsToAdmin.value.push({
-          id: floatRequests.value.length + 1,
-          requestDate: new Date().toISOString(),
+   async function requestFloatToAdmin(payload: RequestFloatToAdmin){
+    const {data} = await api.post("/branch-manager-request-float", {
+          // requestDate: new Date().toISOString(),
           amount: payload.amount,
           status: "pending",
-          // status: "success",
-          // tillId: payload.tillId,
-          branchId: "Branch 1",
-          description: "Branch " + payload.tillId,
+          branchId: payload.branch,
+          description: payload.description,
         })
-        floatRequests.value = response.data.data
-      })
-  }
+        floatRequestsToAdmin.value?.push(data.data);
+        console.log("Request Float response:", floatRequestToAdmin);
+      }
+  
+
+  // async function requestFloat(payload: RequestFloat) {
+  //   const { data } = await api.post("/till-operator7-float-requests", {
+  //     amount: payload.amount,
+  //     // tillId: payload.tillId,
+  //     till: payload.till,
+  //     status: "pending",
+  //     description: payload.description,
+  //   }
+  //   )
+  //   // .then((response: AxiosResponse<ApiResponse<any>>) => {
+  //   floatRequests.value?.push(data.data)
+  //   console.log("Request Float response:", floatRequest);
+  // }
 
 
 
