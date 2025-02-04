@@ -196,6 +196,24 @@ const paginatedFloatRequestsWithBalance = computed(() => {
 });
 
 
+watch(
+  () => store.floatRequests, // Watch changes in transactions
+  (newTransactions) => {
+    let newBalance = balanceStore.totalBalance.currentBalance; // Start from current stored balance
+
+    newTransactions.forEach((transaction) => {
+      if (transaction.status === "approved" || transaction.status === "edited") {
+        newBalance += transaction.amount;
+      }
+    });
+
+    balanceStore.updateTotalBalance(newBalance); // Update store only when transactions change
+  },
+  { deep: true }
+);
+
+
+
 // Fetch billing data (transactions, float ledgers)
 onMounted(() => {
   // fetchFloatLedgers();
