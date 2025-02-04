@@ -57,7 +57,7 @@ function submit() {
     .editFloatRequest(id, payload)
     .then(() => {
       loading.value = false;
-      window.location.reload();
+      // window.location.reload();
       notify.success("Edited");
     })
     .catch((error: ApiError) => {

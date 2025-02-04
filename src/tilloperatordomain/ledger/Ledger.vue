@@ -363,7 +363,7 @@ onMounted(() => {
                     >Rejected</span
                   >
                 </div>
-              <!-- </td> -->
+              </td>
 
               <!-- <td class="text-left text-gray-800">
                 <span>{{ transaction.balance.toLocaleString() }}</span>
