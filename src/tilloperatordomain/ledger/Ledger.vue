@@ -173,7 +173,6 @@ const paginatedFloatRequestsWithBalance = computed(() => {
 // Fetch billing data (transactions, float ledgers)
 onMounted(() => {
   fetchFloatLedgers();
-  // store.fetchFloatLedgers();
   // console.log("RequestFloat component mounted");
   // store.fetchFloatLedgers();
   store.fetchFloatRequests();
