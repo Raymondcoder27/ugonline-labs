@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive, type Ref, ref } from "vue";
+import { onMounted, reactive, type Ref, ref, defineEmits } from "vue";
 // import {useProviderStore} from "@/agentadmindomain/providers/stores";
 import { useBilling } from "@/branchmanagerdomain/finances/stores";
 // import type {CreateServiceProvider} from "@/agentadmindomain/providers/types";
@@ -18,7 +18,7 @@ let form: FloatRequest = reactive({
   amount: "",
   status: "",
 });
-const emit = defineEmits(["cancel"]);
+const emit = defineEmits(["cancel", "floatAllocated"]);
 
 onMounted(() => {
   let data = JSON.parse(<string>localStorage.getItem("floatRequestEdit"));
@@ -57,6 +57,7 @@ function submit() {
     .editFloatRequest(id, payload)
     .then(() => {
       loading.value = false;
+      emit("floatAllocated");
       // window.location.reload();
       notify.success("Edited");
     })
