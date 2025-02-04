@@ -40,7 +40,8 @@ const store = useAccounts();
 
 function submit() {
   const payload = {
-    tillId: form.till,
+    // till: form.till,
+    till: "Till 1",
     amount: form.amount,
     description: form.description,
     status: "pending",
