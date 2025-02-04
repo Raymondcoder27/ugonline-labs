@@ -180,6 +180,7 @@ const paginatedFloatRequestsWithBalance = computed(() => {
   return paginatedTransactions.map((transaction) => {
     if (transaction.status === "approved" || transaction.status === "edited") {
       runningBalance += transaction.amount; // Increase balance only if approved
+    balanceStore.updateTotalBalance(runningBalance);
     } 
     // If rejected, do nothing (balance stays the same)
 
@@ -187,6 +188,9 @@ const paginatedFloatRequestsWithBalance = computed(() => {
       ...transaction,
       balance: runningBalance, // Maintain the same balance if rejected
     };
+
+    //update balance store with current balance
+    // balanceStore.updateTotalBalance(runningBalance);
   });
 });
 
