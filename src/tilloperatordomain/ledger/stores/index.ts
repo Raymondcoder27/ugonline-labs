@@ -249,6 +249,7 @@ export const useBilling = defineStore("billing", () => {
       // createdAt: new Date().toISOString(),
       description: payload.description,
       status: "pending",
+      till: payload.till,
     });
     floatLedgers.value?.push(data.data);
     console.log("Adjust Float Ledger response:", data);
