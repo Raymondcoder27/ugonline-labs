@@ -48,13 +48,15 @@ function select(tab: string) {
           <!-- {{ totalBalance.currentBalance.toLocaleString() }}/= -->
 
           <!-- <span class="px-1">Available Float: {{ availableFloat.toLocaleString() }}/=</span> -->
-          <span class="px-1">Available Float: 
+          <span class="px-1">Total Available Float: 
             <span class="text-gray-500">
               {{ finalFloat.currentFinalFloat.toLocaleString() }}/=
               <!-- {{ totalBalance.currentBalance.toLocaleString() }}/= -->
             </span></span>
 
-          <span class="px-1">Final Float: 
+          <span class="px-1">
+            <!-- Final Float:  -->
+             Remaining Balance:
             <!-- <span class="text-gray-500">
               {{ finalFloat.currentFinalFloat.toLocaleString() }}/=
                 65,000,000/=
