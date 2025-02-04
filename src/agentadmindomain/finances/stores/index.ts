@@ -339,12 +339,48 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   // approve float request using passed in Id and set status to approved and modify the floatrequests array
-  function approveFloatRequest(requestId: any) {
-    console.log("changing status")
-    const floatRequest = floatRequests.value.find((request) => request.id === requestId);
-    if (floatRequest) {
+  // function approveFloatRequest(requestId: any) {
+  //   console.log("changing status")
+  //   const floatRequest = floatRequests.value.find((request) => request.id === requestId);
+  //   if (floatRequest) {
+  //     floatRequest.status = "approved";
+  //     // floatRequest.approvedBy = "Manager One";
+  //   }
+  // }
+
+  async function approveFloatRequest(requestId: string) {
+    try {
+      // Find the float request by ID
+      const floatRequest = floatRequests.value.find(request => request.id === requestId);
+
+      if (!floatRequest) {
+        console.error("Float request not found for ID:", requestId);
+        return;
+      }
+
+      // Send the API request with all required data
+      const { data } = await api.put(`/branch-manager-float-requests/${requestId}`, {
+        status: "approved",
+        approvedBy: "Manager One",
+        amount: floatRequest.amount, // Retrieve amount from the found request
+        // till: floatRequest.till,     // Retrieve till from the found request
+        branch: floatRequest.branch,     // Retrieve till from the found request
+        description: floatRequest.description,
+      });
+
+      //approve the record's status in the float ledger too
+      // api.put("/till-operator7-float-ledgers/" + requestId, {
+      //   status: "approved",
+      //   amount: floatRequest.amount,
+      //   till: floatRequest.till,
+      // });
+
+      // Update local state after successful API call
       floatRequest.status = "approved";
-      // floatRequest.approvedBy = "Manager One";
+
+      console.log("Float request approved successfully:", data);
+    } catch (error) {
+      console.error("Error approving float request:", error);
     }
   }
 
