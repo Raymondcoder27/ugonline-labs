@@ -18,8 +18,8 @@ export const useBalance = defineStore("balance", () => {
 
   // Increase the total balance and update the "prev" value
   async function increaseTotalBalance(amount: number) {
-    totalBalance.prev = totalBalance.current;
-    totalBalance.current += amount;
+    totalBalance.prevBalance = totalBalance.currentBalance;
+    totalBalance.currentBalance += amount;
   }
 
   // balanceStore.updateTotalBalance(payload.amount, payload.status)
