@@ -147,7 +147,6 @@ const latestBalance = computed(() => {
   return transactions[transactions.length - 1].balance; // Get latest balance
 });
 
-
 onMounted(() => {
   balanceStore.fetchTotalBalance();
   fetchServices();
@@ -207,9 +206,8 @@ onMounted(() => {
     </div> -->
 
     <div class="font-semibold text-gray-500 text-sm mr-5">
-  {{ latestBalance.toLocaleString() }}/=
-</div>
-
+      {{ latestBalance.toLocaleString() }}/=
+    </div>
   </div>
 
   <div class="flex justify-end items-center mt-2 mb-2">
