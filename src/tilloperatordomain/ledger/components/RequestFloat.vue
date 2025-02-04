@@ -46,10 +46,8 @@ function submit() {
     description: form.description,
     status: "pending",
   };
-
-  console.log("Submitting payload:", payload);
-
   loading.value = true;
+  console.log("Submitting payload:", payload);
   billingStore.requestFloat(payload); // API call to allocate float
   // .then(() => {
   billingStore.adjustFloatLedger(payload); // Adjust ledger
@@ -59,6 +57,7 @@ function submit() {
   // notify.success(`Float allocated to branch: ${form.branchId}`);
   notify.success(`Float request submitted successfully.`);
   emit("requestSubmitted");
+  loading.value = false;
   // })
   // .catch((err) => {
   // console.error("Error allocating float:", err);
