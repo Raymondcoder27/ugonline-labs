@@ -15,7 +15,7 @@ const notify = useNotificationsStore();
 let form: FloatRequest = reactive({
   name: "",
   till: "",
-  amount: "",
+  amount: 0,
   status: "",
 });
 const emit = defineEmits(["cancel", "floatAllocated"]);
