@@ -676,8 +676,8 @@ onMounted(() => {
               <td class="p-1">{{ selectedFloatRequest?.dateRequested }}</td>
             </tr> -->
             <tr class="border border-gray-50">
-              <td class="p-1 font-bold">Branch</td>
-              <td class="p-1">{{ selectedFloatRequest?.branch }}</td>
+              <td class="p-1 font-bold">Till</td>
+              <td class="p-1">{{ selectedFloatRequest?.till }}</td>
             </tr>
             <tr class="border border-gray-50">
               <td class="p-1 font-bold">Status</td>
