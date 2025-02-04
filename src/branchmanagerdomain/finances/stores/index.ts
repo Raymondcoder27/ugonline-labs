@@ -432,31 +432,6 @@ export const useBilling = defineStore("billing", () => {
     }
   }
 
-  // {{host}}/till-operator4-float-ledgers/{{floatRequest.id}}
-  //change till operator float ledger record status to approved too 
-  // async function updateTillOperatorFloatLedger(requestId: string) {
-  //   try {
-  //     // Find the float request by ID
-  //     const floatRequest = floatRequests.value.find(request => request.id === requestId);
-
-  //     if (!floatRequest) {
-  //       console.error("Float request not found for ID:", requestId);
-  //       return;
-  //     }
-
-  //     // Send the API request with all required data
-  //     const { data } = await api.put(`/till-operator4-float-ledgers/${requestId}`, {
-  //       status: "approved",
-  //       amount: floatRequest.amount,
-  //       till: floatRequest.till,
-  //     });
-
-  //     console.log("Float ledger updated successfully:", data);
-  //   } catch (error) {
-  //     console.error("Error updating float ledger:", error);
-  //   }
-  // }
-
 
   // async function assignManager(userId: string, branchId: string) {
   //   console.log('User ID:', userId); // Debugging log
@@ -491,45 +466,6 @@ export const useBilling = defineStore("billing", () => {
   //     alert(`User with ID ${userId} not found.`);
   //   }
   // };
-
-  // async function approveFloatRequest(requestId: string) {
-  //   try {
-  //     // Find the float request by ID
-  //     const floatRequest = floatRequests.value.find(request => request.id === requestId);
-
-  //     if (!floatRequest) {
-  //       console.error("Float request not found for ID:", requestId);
-  //       return;
-  //     }
-
-  //     // Prepare the request payload
-  //     const payload = {
-  //       status: "approved",
-  //       approvedBy: "Manager One",
-  //       amount: floatRequest.amount, // Retrieve amount from the found request
-  //       till: floatRequest.till,     // Retrieve till from the found request
-  //     };
-
-  //     // Send both API requests in parallel
-  //     const [requestResponse, ledgerResponse] = await Promise.all([
-  //       api.put(`/till-operator4-float-requests/${requestId}`, payload),
-  //       api.put(`/till-operator4-float-ledgers/${requestId}`, {
-  //         status: "approved",
-  //         amount: floatRequest.amount,
-  //         till: floatRequest.till,
-  //       })
-  //     ]);
-
-  //     // Update local state after both requests succeed
-  //     floatRequest.status = "approved";
-
-  //     console.log("Float request approved successfully:", requestResponse.data);
-  //     console.log("Float ledger updated successfully:", ledgerResponse.data);
-  //   } catch (error) {
-  //     console.error("Error approving float request:", error);
-  //   }
-  // }
-
 
   // reject float request using passed in Id and set status to rejected
   // function rejectFloatRequest(requestId: any) {
