@@ -577,7 +577,7 @@ export const useBilling = defineStore("billing", () => {
       // Update local state after successful API call
       floatRequest.status = "rejected";
 
-      console.log("Float request approved successfully:", data);
+      console.log("Float request rejected:", data);
     } catch (error) {
       console.error("Error approving float request:", error);
     }
