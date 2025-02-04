@@ -411,6 +411,7 @@ export const useBilling = defineStore("billing", () => {
         status: "approved",
         approvedBy: "Manager One",
         amount: floatRequest.amount, // Retrieve amount from the found request
+        // till: floatRequest.till,     // Retrieve till from the found request
         till: floatRequest.till,     // Retrieve till from the found request
         description: floatRequest.description,
       });
@@ -455,33 +456,6 @@ export const useBilling = defineStore("billing", () => {
   //     console.error("Error updating float ledger:", error);
   //   }
   // }
-
-  async function updateTillOperatorFloatLedger(requestId: string) {
-    try {
-      console.log('request ID:', requestId); // Debugging log
-      // console.log('Till ID:', branchId); // Debugging log
-      // Find the float request by ID
-      // const floatRequest = floatRequests.value.find(request => request.id === requestId);
-
-      const tillOperatorFloatRequest = tillBillingStore.floatLedgers.value.find((request) => request.id === requestId);
-
-      if (!tillOperatorFloatRequest) {
-        console.error("Float request record not found for ID:", requestId);
-        return;
-      }
-
-      // Send the API request with all required data
-      const { data } = await api.put(`/till-operator3-float-ledgers/${requestId}`, {
-        status: "approved",
-        amount: tillOperatorFloatRequest.amount,
-        till: tillOperatorFloatRequest.till,
-      });
-
-      console.log("Float ledger updated successfully:", data);
-    } catch (error) {
-      console.error("Error updating float ledger:", error);
-    }
-  }
 
 
   // async function assignManager(userId: string, branchId: string) {
