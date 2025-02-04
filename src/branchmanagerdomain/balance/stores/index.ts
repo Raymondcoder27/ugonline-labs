@@ -49,6 +49,11 @@ export const useBalance = defineStore("balance", () => {
     totalBalance.currentBalance += amount;
   }
 
+  function updateTotalBalance(amount: number) {
+    totalBalance.prevBalance = totalBalance.currentBalance;
+    totalBalance.currentBalance += amount;
+  }
+
   // Decrease the total balance and update "prev"
   function decreaseTotalBalance(amount: number) {
     totalBalance.prevBalance = totalBalance.currentBalance;
@@ -112,5 +117,6 @@ async function fetchTotalBalance() {
     fetchTotalBalance,
     increaseTotalBalance,
     decreaseTotalBalance,
+    updateTotalBalance,
   };
 });
