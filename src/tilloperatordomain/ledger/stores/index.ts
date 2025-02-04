@@ -206,11 +206,11 @@ export const useBilling = defineStore("billing", () => {
   //   console.log("Request Float response:", data);
   // }
 
-  const floatRequestToBranchManagerLocalStorage = ref<FloatRequest[]>([]);
+  // const floatRequestToBranchManagerLocalStorage = ref<FloatRequest[]>([]);
 
-  const saveFloatRequestToLocalStorage = () => {
-    localStorage.setItem('floatRequestToBranchManagerLocalStorage', JSON.stringify(floatRequestToBranchManagerLocalStorage.value))
-  }
+  // const saveFloatRequestToLocalStorage = () => {
+  //   localStorage.setItem('floatRequestToBranchManagerLocalStorage', JSON.stringify(floatRequestToBranchManagerLocalStorage.value))
+  // }
 
   // adjust float ledgers with float request
   // function adjustFloatLedger(payload: RequestFloat) {
