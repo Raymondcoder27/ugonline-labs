@@ -13,14 +13,11 @@ import { FloatRequest } from "@/agentadmindomain/finances/types";
 import EditFloatRequestAmount from "@/agentadmindomain/finances/components/EditFloatRequestAmount.vue";
 import { request } from "http";
 
-
-
 const editModalOpen: Ref<boolean> = ref(false);
 const viewModalOpen: Ref<boolean> = ref(false);
 
-
-  function editFloatRequest(floatRequest:FloatRequest) {
-  localStorage.setItem("floatRequestEdit", JSON.stringify(floatRequest))
+function editFloatRequest(floatRequest: FloatRequest) {
+  localStorage.setItem("floatRequestEdit", JSON.stringify(floatRequest));
   editModalOpen.value = true;
 }
 function close() {
@@ -28,8 +25,6 @@ function close() {
   viewModalOpen.value = false;
   editModalOpen.value = false;
 }
-
-
 
 const balanceStore = useBalance();
 
@@ -51,7 +46,6 @@ const showPagination = computed(() => totalRecords.value >= limit.value);
 const selectedFloatRequest: Ref<FloatRequest | undefined> = ref();
 
 const modalOpen: Ref<boolean> = ref(false);
-
 
 function view(request: FloatRequest) {
   modalOpen.value = true;
@@ -162,7 +156,6 @@ function convertDateTime(date: string) {
   return moment(date).format("DD-MM-YYYY HH:mm:ss");
 }
 
-
 function statusStyling(status?: string) {
   if (status == "PENDING") {
     return "flex px-2 py-1 rounded bg-gray-500 text-white";
@@ -270,19 +263,19 @@ function convertDateTimeNullable(date?: string) {
 // pass in the requestId
 const approveFloatRequest = (requestId: any) => {
   if (requestId) {
-  billingStore.approveFloatRequest(requestId).then(()=>{
-    billingStore.fetchFloatRequests();
-    balanceStore.approveFloatRequest(requestId);
-  billingStore.reduceFloatLedger(requestId);
-  billingStore.allocateFloatFromRequest(requestId);
-  console.log(`float request with id ${requestId} approved`);
-  })
-  // billingStore.fetchFloatRequests();
-  // balanceStore.approveFloatRequest(requestId);
-  // billingStore.reduceFloatLedger(requestId);
-  // billingStore.allocateFloatFromRequest(requestId);
-  // console.log(`float request with id ${requestId} approved`);
-}
+    billingStore.approveFloatRequest(requestId).then(() => {
+      billingStore.fetchFloatRequests();
+      balanceStore.approveFloatRequest(requestId);
+      billingStore.reduceFloatLedger(requestId);
+      billingStore.allocateFloatFromRequest(requestId);
+      console.log(`float request with id ${requestId} approved`);
+    });
+    // billingStore.fetchFloatRequests();
+    // balanceStore.approveFloatRequest(requestId);
+    // billingStore.reduceFloatLedger(requestId);
+    // billingStore.allocateFloatFromRequest(requestId);
+    // console.log(`float request with id ${requestId} approved`);
+  }
 };
 
 // const approveFloatRequest = (requestId: any) => {
@@ -300,15 +293,14 @@ const approveFloatRequest = (requestId: any) => {
 // };
 
 const rejectFloatRequest = (requestId: any) => {
-  if (requestId){
-  billingStore.rejectFloatRequest(requestId).then(()=>{
-    billingStore.fetchFloatRequests();
-  console.log(`float request with id ${requestId} rejected`);
-
-  })
-  // billingStore.fetchFloatRequests();
-  // console.log(`float request with id ${requestId} rejected`);
-}
+  if (requestId) {
+    billingStore.rejectFloatRequest(requestId).then(() => {
+      billingStore.fetchFloatRequests();
+      console.log(`float request with id ${requestId} rejected`);
+    });
+    // billingStore.fetchFloatRequests();
+    // console.log(`float request with id ${requestId} rejected`);
+  }
 };
 
 onMounted(() => {
@@ -529,7 +521,6 @@ onMounted(() => {
                   Approve</span
                 >
 
-
                 <!-- edit float request amount -->
                 <span
                   class="text-xs rounded-md px-1 py-0.5 ml-1 font-semibold text-white bg-blue-600 hover:text-blue-700 hover:bg-blue-200"
@@ -627,12 +618,9 @@ onMounted(() => {
     </div>
   </div>
 
-
-
-
-    <!-- Modal -->
-    <AppModal v-model="modalOpen" xl4>
-      <p class="text-xl font-bold">Float Request Details</p>
+  <!-- Modal -->
+  <AppModal v-model="modalOpen" xl4>
+    <p class="text-xl font-bold">Float Request Details</p>
     <div class="flex">
       <div class="w-full">
         <table class="w-12">
@@ -666,7 +654,9 @@ onMounted(() => {
                   <div class="w-6/12">
                     <div :class="statusStyling(selectedFloatRequest?.status)">
                       <div class="w-4/12 text-center">
-                        <i :class="statusIcon(selectedFloatRequest?.status)"></i>
+                        <i
+                          :class="statusIcon(selectedFloatRequest?.status)"
+                        ></i>
                       </div>
                       <div class="w-8/12">
                         <label v-if="selectedFloatRequest?.status == 'SENT'">
@@ -691,7 +681,9 @@ onMounted(() => {
             </tr> -->
             <tr class="border border-gray-50">
               <td class="p-1 font-bold">Date</td>
-              <td class="p-1">{{ convertDateTimeNullable(selectedFloatRequest?.createdAt) }}</td>
+              <td class="p-1">
+                {{ convertDateTimeNullable(selectedFloatRequest?.createdAt) }}
+              </td>
             </tr>
             <!-- <tr class="border border-gray-50">
               <td class="p-1 font-bold">Payload</td>
@@ -703,18 +695,16 @@ onMounted(() => {
                 </div>
               </td>
             </tr> -->
-
           </tbody>
         </table>
       </div>
     </div>
   </AppModal>
 
-
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
     <!-- Chances are high that you're starting with a form -->
-    <EditFloatRequestAmount @cancel="close"/>
+    <EditFloatRequestAmount @cancel="close" />
     <!-- That's also okay -->
   </AppModal>
 </template>

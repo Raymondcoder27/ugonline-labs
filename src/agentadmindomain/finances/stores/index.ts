@@ -385,10 +385,46 @@ export const useBilling = defineStore("billing", () => {
   }
 
   // reject float request using passed in Id and set status to rejected
-  function rejectFloatRequest(requestId: any) {
-    const floatRequest = floatRequests.value.find((request) => request.id === requestId);
-    if (floatRequest) {
+  // function rejectFloatRequest(requestId: any) {
+  //   const floatRequest = floatRequests.value.find((request) => request.id === requestId);
+  //   if (floatRequest) {
+  //     floatRequest.status = "rejected";
+  //   }
+  // }
+
+  async function rejectFloatRequest(requestId: string) {
+    try {
+      // Find the float request by ID
+      const floatRequest = floatRequests.value.find(request => request.id === requestId);
+
+      if (!floatRequest) {
+        console.error("Float request not found for ID:", requestId);
+        return;
+      }
+
+      // Send the API request with all required data
+      const { data } = await api.put(`/branch-manager-float-requests/${requestId}`, {
+        status: "rejected",
+        approvedBy: "Manager One",
+        amount: floatRequest.amount, // Retrieve amount from the found request
+        // till: floatRequest.till,     // Retrieve till from the found request
+        till: floatRequest.till,     // Retrieve till from the found request
+        description: floatRequest.description,
+      });
+
+      //approve the record's status in the float ledger too
+      // api.put("/till-operator7-float-ledgers/" + requestId, {
+      //   status: "approved",
+      //   amount: floatRequest.amount,
+      //   till: floatRequest.till,
+      // });
+
+      // Update local state after successful API call
       floatRequest.status = "rejected";
+
+      console.log("Float request rejected:", data);
+    } catch (error) {
+      console.error("Error rejecting float request:", error);
     }
   }
 
