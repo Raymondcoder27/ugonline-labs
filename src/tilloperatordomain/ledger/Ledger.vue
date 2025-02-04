@@ -178,7 +178,7 @@ const paginatedFloatRequestsWithBalance = computed(() => {
   let runningBalance = 0;
 
   return paginatedTransactions.map((transaction) => {
-    if (transaction.status === "approved") {
+    if (transaction.status === "approved" || transaction.status === "edited") {
       runningBalance += transaction.amount; // Increase balance only if approved
     } 
     // If rejected, do nothing (balance stays the same)
