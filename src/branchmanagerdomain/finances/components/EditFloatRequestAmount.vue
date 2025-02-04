@@ -63,10 +63,12 @@ function submit() {
   store
     .editFloatRequest(id, payload)
     .then(() => {
-      loading.value = false;
+      loading.value = true;
       emit("floatAllocated");
       // window.location.reload();
       notify.success("Edited");
+      loading.value = false;
+
     })
     .catch((error: ApiError) => {
       loading.value = false;
