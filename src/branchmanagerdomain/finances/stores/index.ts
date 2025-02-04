@@ -596,7 +596,7 @@ export const useBilling = defineStore("billing", () => {
         amount: payload.amount,
         till: payload.till,
         // status: "request edited",
-        status: "Edited Allocation",
+        status: "edited",
         description: payload.description,
         approvedBy: "Manager One",
       });
