@@ -107,6 +107,9 @@ const paginatedServices = computed(() => {
   return store.services?.slice(start, end); // Adjust according to your page & limit
 });
 
+  balanceStore.fetchTotalBalance();
+const totalBalance = balanceStore.totalBalance;
+
 // function fetchServices() {
 //   filter.offset = (page.value - 1) * limit.value; // Update offset
 //   filter.limit = limit.value;
@@ -115,7 +118,7 @@ const paginatedServices = computed(() => {
 // }
 
 onMounted(() => {
-  balanceStore.fetchTotalBalance();
+  // balanceStore.fetchTotalBalance();
   fetchServices();
 });
 </script>
@@ -169,7 +172,7 @@ onMounted(() => {
     </div>
     <div class="font-semibold text-gray-500 text-sm mr-5">
       <!-- BALANCE: 15,000,000/= -->
-      {{ balanceStore.totalBalance.currentBalance.toLocaleString() }}/=
+      {{ totalBalance.currentBalance.toLocaleString() }}/=
     </div>
   </div>
 
