@@ -69,6 +69,7 @@ function submit() {
   // notify.success(`Float allocated to branch: ${form.branchId}`);
   notify.success(`Float request submitted successfully.`);
   emit("requestSubmitted");
+  loading.value = false;
   // })
   // .catch((err) => {
   // console.error("Error allocating float:", err);
