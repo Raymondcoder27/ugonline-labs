@@ -243,16 +243,57 @@ export const useBilling = defineStore("billing", () => {
   //   });
   // }
 
-  async function adjustFloatLedger(payload: RequestFloat) {
-    const { data } = await api.post("/till-operator2-float-ledgers", {
-      amount: payload.amount,
-      // createdAt: new Date().toISOString(),
-      description: payload.description,
-      status: "pending",
-      till: payload.till,
-    });
-    floatLedgers.value?.push(data.data);
-    console.log("Adjust Float Ledger response:", data);
+  // async function adjustFloatLedger(payload: RequestFloat) {
+  //   const { data } = await api.post("/till-operator2-float-ledgers", {
+  //     amount: payload.amount,
+  //     // createdAt: new Date().toISOString(),
+  //     description: payload.description,
+  //     status: "pending",
+  //     till: payload.till,
+  //   });
+  //   floatLedgers.value?.push(data.data);
+  //   console.log("Adjust Float Ledger response:", data);
+  // }
+
+  // async function adjustFloatLedger(payload: RequestFloat) {
+  //   const { data } = await api.post("/till-operator2-float-ledgers", {
+  //     amount: payload.amount,
+  //     // createdAt: new Date().toISOString(),
+  //     description: payload.description,
+  //     status: "pending",
+  //     till: payload.till,
+  //   });
+  //   floatLedgers.value?.push(data.data);
+  //   console.log("Adjust Float Ledger response:", data);
+  // }
+
+  async function  adjustFloatLedger(payload: RequestFloat) {
+    try {
+
+      const { data } = await api.post("/till-operator2-float-ledgers", {
+        amount: payload.amount,
+        // createdAt: new Date().toISOString(),
+        description: payload.description,
+        status: "pending",
+        till: payload.till,
+      });
+      floatLedgers.value?.push(data.data);
+      console.log("Adjust Float Ledger response:", data);
+
+      //approve the record's status in the float ledger too
+      api.put("/till-operator2-float-ledgers/" + requestId, {
+        status: "approved",
+        amount: floatRequest.amount,
+        till: floatRequest.till,
+      });
+
+      // Update local state after successful API call
+      floatRequest.status = "approved";
+
+      console.log("Float request approved successfully:", data);
+    } catch (error) {
+      console.error("Error approving float request:", error);
+    }
   }
 
 
