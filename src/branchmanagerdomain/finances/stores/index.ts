@@ -539,12 +539,48 @@ export const useBilling = defineStore("billing", () => {
   //   }
   // }
 
-  async function rejectFloatRequest(requestId: any) {
-    const { data } = await api.put("/till-operator4-float-requests/" + requestId, {
-      status: "rejected",
-    });
-    floatRequests.value = data.data;
-    console.log("Float Requests:", floatRequests.value);
+  // async function rejectFloatRequest(requestId: any) {
+  //   const { data } = await api.put("/till-operator4-float-requests/" + requestId, {
+  //     status: "rejected",
+  //   });
+  //   floatRequests.value = data.data;
+  //   console.log("Float Requests:", floatRequests.value);
+  // }
+
+  async function rejectFloatRequest(requestId: string) {
+    try {
+      // Find the float request by ID
+      const floatRequest = floatRequests.value.find(request => request.id === requestId);
+
+      if (!floatRequest) {
+        console.error("Float request not found for ID:", requestId);
+        return;
+      }
+
+      // Send the API request with all required data
+      const { data } = await api.put(`/till-operator4-float-requests/${requestId}`, {
+        status: "approved",
+        approvedBy: "Manager One",
+        amount: floatRequest.amount, // Retrieve amount from the found request
+        // till: floatRequest.till,     // Retrieve till from the found request
+        till: floatRequest.till,     // Retrieve till from the found request
+        description: floatRequest.description,
+      });
+
+      //approve the record's status in the float ledger too
+      // api.put("/till-operator4-float-ledgers/" + requestId, {
+      //   status: "approved",
+      //   amount: floatRequest.amount,
+      //   till: floatRequest.till,
+      // });
+
+      // Update local state after successful API call
+      floatRequest.status = "approved";
+
+      console.log("Float request approved successfully:", data);
+    } catch (error) {
+      console.error("Error approving float request:", error);
+    }
   }
 
   //edit float request amount and allocated the new amount inserted in the form
