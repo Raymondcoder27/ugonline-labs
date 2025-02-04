@@ -6,7 +6,7 @@ import AppModal from "@/components/AppModal.vue";
 import { useServicesStore } from "@/tilloperatordomain/services/stores";
 import { IGoFilter } from "@/types";
 import { useBalance } from "@/tilloperatordomain/balance/stores";
-import { useBilling } from "@/tilloperatordomain/ledger/stores"; 
+import { useBilling } from "@/tilloperatordomain/ledger/stores";
 const billingStore = useBilling();
 
 const balanceStore = useBalance();
@@ -109,7 +109,7 @@ const paginatedServices = computed(() => {
   return store.services?.slice(start, end); // Adjust according to your page & limit
 });
 
-  // balanceStore.fetchTotalBalance();
+// balanceStore.fetchTotalBalance();
 const totalBalance = balanceStore.totalBalance;
 
 // function fetchServices() {
@@ -129,8 +129,8 @@ const paginatedFloatRequestsWithBalance = computed(() => {
   return paginatedTransactions.map((transaction) => {
     if (transaction.status === "approved" || transaction.status === "edited") {
       runningBalance += transaction.amount; // Increase balance only if approved
-    // balanceStore.updateTotalBalance(runningBalance);
-    } 
+      // balanceStore.updateTotalBalance(runningBalance);
+    }
     return {
       ...transaction,
       balance: runningBalance, // Maintain the same balance if rejected
@@ -139,6 +139,12 @@ const paginatedFloatRequestsWithBalance = computed(() => {
     //update balance store with current balance
     // balanceStore.updateTotalBalance(runningBalance);
   });
+});
+
+const latestBalance = computed(() => {
+  const transactions = paginatedFloatRequestsWithBalance.value;
+  if (transactions.length === 0) return 0;
+  return transactions[transactions.length - 1].balance; // Get latest balance
 });
 
 
@@ -200,28 +206,10 @@ onMounted(() => {
       {{ totalBalance.currentBalance.toLocaleString() }}/=
     </div>
 
+    <div class="font-semibold text-gray-500 text-sm mr-5">
+  {{ latestBalance.toLocaleString() }}/=
+</div>
 
-    <tr
-              v-for="(transaction, idx) in paginatedFloatRequestsWithBalance"
-              :key="transaction.id"
-              class="body-tr"
-            >
-              <td class="text-left">{{ idx + 1 }}</td>
- <td class="text-left text-gray-800">
-                <span v-if="transaction.status === 'approved'">
-                  {{ transaction.balance.toLocaleString() }}
-                </span>
-                <!-- <span v-if="transaction.status === 'rejected'">
-                  {{ transaction.balance.toLocaleString() }}
-                </span>
-                <span v-if="transaction.status === 'edited'">
-                  {{ transaction.balance.toLocaleString() }}
-                </span>
-                <span v-if="transaction.status==='pending'" class="italic text-gray-500">
-                  --{{ transaction.balance.toLocaleString() }}--
-                </span> -->
-              </td>
-            </tr>
   </div>
 
   <div class="flex justify-end items-center mt-2 mb-2">
@@ -267,7 +255,9 @@ onMounted(() => {
     >
       <div class="flex justify-between items-center">
         <img :src="service.thumbnail" alt="" class="w-7 h-7 object-cover" />
-        <p class="font-bold text-xs text-gray-700">{{ service.providerName }}</p>
+        <p class="font-bold text-xs text-gray-700">
+          {{ service.providerName }}
+        </p>
       </div>
       <hr class="my-2" />
       <p class="font-bold text-gray-700 my-1">{{ service.service }}</p>
