@@ -136,7 +136,8 @@ watch(
 const paginatedFloatLedgersWithBalance = computed(() => {
   const start = (page.value - 1) * limit.value;
   const end = start + limit.value;
-  const paginatedTransactions = store.floatLedgers.slice(start, end);
+  // const paginatedTransactions = store.floatLedgers.slice(start, end);
+  const paginatedTransactions = store.floatRequests.slice(start, end);
 
   let runningBalance = 0;
 
