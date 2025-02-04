@@ -416,11 +416,11 @@ export const useBilling = defineStore("billing", () => {
       });
 
       //approve the record's status in the float ledger too
-      api.put("/till-operator3-float-ledgers/" + requestId, {
-        status: "approved",
-        amount: floatRequest.amount,
-        till: floatRequest.till,
-      });
+      // api.put("/till-operator3-float-ledgers/" + requestId, {
+      //   status: "approved",
+      //   amount: floatRequest.amount,
+      //   till: floatRequest.till,
+      // });
 
       // Update local state after successful API call
       floatRequest.status = "approved";
