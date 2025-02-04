@@ -333,8 +333,8 @@ onMounted(() => {
                   <!-- </td> -->
                 </div>
 
-                 <!-- Third Case: Manager directly assigned to branch -->
-                 <div v-else-if="transaction.status === 'edited'">
+                <!-- Third Case: Manager directly assigned to branch -->
+                <div v-else-if="transaction.status === 'edited'">
                   <!-- <td> -->
                   <label>
                     <span
