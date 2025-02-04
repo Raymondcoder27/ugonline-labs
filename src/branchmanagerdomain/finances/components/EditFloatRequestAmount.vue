@@ -42,7 +42,7 @@ function submit(){
   let id = data.id
   let payload = {
     name:form.name,
-    branch: form.branch,
+    till: form.till,
     amount: form.amount,
     status: form.status,
     // display_name:form.displayName,
@@ -57,7 +57,7 @@ function submit(){
       .then(() => {
         loading.value = false
         window.location.reload()
-        notify.error("Edited")
+        notify.success("Edited")
       })
       .catch((error:ApiError) => {
         loading.value = false

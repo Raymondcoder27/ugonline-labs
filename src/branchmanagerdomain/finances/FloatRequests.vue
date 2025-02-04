@@ -20,6 +20,20 @@ function editFloatRequest(floatRequest: FloatRequest) {
   localStorage.setItem("floatRequestEdit", JSON.stringify(floatRequest));
   editModalOpen.value = true;
 }
+
+// const approveFloatRequest = (requestId: any) => {
+//   if (requestId) {
+//     billingStore.approveFloatRequest(requestId).then(() => {
+//       billingStore.fetchFloatRequests();
+//       console.log(`float request with id ${requestId} approved`);
+//       balanceStore.approveFloatRequest(requestId);
+//       // balanceStore.updateTillOperatorFloatLedger(requestId);
+//       billingStore.reduceFloatLedger(requestId);
+//       billingStore.allocateFloatFromRequest(requestId);
+//       console.log(`float request with id ${requestId} approved`);
+//     });
+//   }
+// };
 function close() {
   modalOpen.value = false;
   viewModalOpen.value = false;
