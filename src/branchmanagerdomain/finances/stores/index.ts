@@ -559,7 +559,7 @@ export const useBilling = defineStore("billing", () => {
 
       // Send the API request with all required data
       const { data } = await api.put(`/till-operator4-float-requests/${requestId}`, {
-        status: "approved",
+        status: "rejected",
         approvedBy: "Manager One",
         amount: floatRequest.amount, // Retrieve amount from the found request
         // till: floatRequest.till,     // Retrieve till from the found request
