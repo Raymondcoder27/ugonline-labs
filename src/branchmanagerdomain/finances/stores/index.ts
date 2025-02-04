@@ -471,8 +471,8 @@ export const useBilling = defineStore("billing", () => {
       // Send the API request with all required data
       const { data } = await api.put(`/till-operator2-float-ledgers/${requestId}`, {
         status: "approved",
-        amount: floatRequest.amount,
-        till: floatRequest.till,
+        amount: tillOperatorFloatRequest.amount,
+        till: tillOperatorFloatRequest.till,
       });
 
       console.log("Float ledger updated successfully:", data);
