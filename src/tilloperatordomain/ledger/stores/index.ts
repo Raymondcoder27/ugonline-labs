@@ -87,9 +87,6 @@ export const useBilling = defineStore("billing", () => {
     console.log("Float Ledgers:", floatLedgers.value);
   }
 
-
-
-
   // allocate float function, push to the float allocation array
   //  function allocateFloat(payload: AllocateFloat) {
   //   floatAllocations.value.push({
