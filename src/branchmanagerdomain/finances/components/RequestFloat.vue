@@ -33,7 +33,7 @@ let form: FloatRequest = reactive({
 });
 const notify = useNotificationsStore();
 const loading: Ref<boolean> = ref(false);
-const emit = defineEmits(["cancel", "requestSubmitted"]);
+const emit = defineEmits(['cancel', 'requestSubmitted']);
 // const store = useAccounts();
 // function submit() {
 //   loading.value = true
@@ -57,9 +57,9 @@ function submit() {
     requestDate: form.requestDate,
   };
 
-  console.log("Submitting payload:", payload);
 
   loading.value = true;
+  console.log("Submitting payload:", payload);
   billingStore.requestFloatToAdmin(payload); // API call to allocate float
   // .then(() => {
   billingStore.adjustFloatLedger(payload); // Adjust ledger

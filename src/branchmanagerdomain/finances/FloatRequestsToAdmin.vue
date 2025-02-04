@@ -26,6 +26,12 @@ function close() {
   editModalOpen.value = false;
 }
 
+
+// function close() {
+//   modalOpen.value = false;
+// }
+
+
 const balanceStore = useBalance();
 
 const billingStore = useBilling();
@@ -480,7 +486,7 @@ onMounted(() => {
             </td>
 
 
-            
+
             <td class="text-right">
               <!-- First Case: float request approved -->
               <div v-if="request.status === 'approved'">
@@ -743,7 +749,7 @@ onMounted(() => {
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
     <!-- Chances are high that you're starting with a form -->
-    <EditFloatRequestAmount @cancel="close" />
+    <EditFloatRequestAmount @cancel="close" @floatAllocated="close" />
     <!-- That's also okay -->
   </AppModal>
 

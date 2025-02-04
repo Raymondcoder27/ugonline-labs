@@ -23,7 +23,8 @@ let form: RequestFloat = reactive({
 });
 const notify = useNotificationsStore();
 const loading: Ref<boolean> = ref(false);
-const emit = defineEmits(["cancel", "requestSubmitted"]);
+const emit = defineEmits(['cancel', 'requestSubmitted']);
+// const emit = defineEmits(['cancel', 'backOfficeAccountCreated'])
 const store = useAccounts();
 // function submit() {
 //   loading.value = true
