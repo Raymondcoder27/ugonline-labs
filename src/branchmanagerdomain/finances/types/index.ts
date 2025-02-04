@@ -62,13 +62,14 @@ export interface FloatRequest {
 }
 
 export interface FloatRequestToAdmin {
-  id: number;
+  id: string;
   requestDate: string;
   amount: number;
   status: string;
   branchId: string;
   requesterName: string;
   till: string;
+  description: string;
   approvedBy: string | null;
   createdAt: string; 
 }

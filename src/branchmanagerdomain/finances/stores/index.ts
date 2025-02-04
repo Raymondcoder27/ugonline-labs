@@ -132,8 +132,8 @@ export const useBilling = defineStore("billing", () => {
           status: "pending",
           // status: "success",
           // tillId: payload.tillId,
-          branchId: "Till 1",
-          description: "Till " + payload.tillId,
+          branchId: "Branch 1",
+          description: "Branch " + payload.tillId,
         })
         floatRequests.value = response.data.data
       })
@@ -271,6 +271,7 @@ export const useBilling = defineStore("billing", () => {
         amount: floatRequest.amount,
         status: "Allocated",
         till: floatRequest.till,
+        description: floatRequest.description,
       });
 
 
@@ -411,7 +412,7 @@ export const useBilling = defineStore("billing", () => {
         approvedBy: "Manager One",
         amount: floatRequest.amount, // Retrieve amount from the found request
         till: floatRequest.till,     // Retrieve till from the found request
-        // description: floatRequest.description,
+        description: floatRequest.description,
       });
 
       //approve the record's status in the float ledger too
