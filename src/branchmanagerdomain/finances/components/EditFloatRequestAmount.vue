@@ -17,6 +17,9 @@ let form: FloatRequest = reactive({
   till: "",
   amount: 0,
   status: "",
+  requestDate: "",
+  description: "",
+  requesterName: "",
 });
 const emit = defineEmits(["cancel", "floatAllocated"]);
 
