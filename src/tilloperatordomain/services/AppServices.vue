@@ -107,7 +107,7 @@ const paginatedServices = computed(() => {
   return store.services?.slice(start, end); // Adjust according to your page & limit
 });
 
-  balanceStore.fetchTotalBalance();
+  // balanceStore.fetchTotalBalance();
 const totalBalance = balanceStore.totalBalance;
 
 // function fetchServices() {
