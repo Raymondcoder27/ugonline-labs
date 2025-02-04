@@ -118,7 +118,7 @@ function submit() {
             >Amount</label
           >
           <input
-            type="text"
+            type="number"
             v-model="form.amount"
             class="noFocus form-element e-input w-full"
             required
