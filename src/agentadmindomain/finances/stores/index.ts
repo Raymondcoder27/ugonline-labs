@@ -4,6 +4,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { Transaction, FloatLedger, BackofficeUser, BranchManager, FloatAllocation, FloatRequest } from "@/agentadmindomain/finances/types";
 import type { AllocateFloat } from "@/types";
+import api from "@/config/api";
 
 export const useBilling = defineStore("billing", () => {
   // Dummy data for testing
@@ -150,10 +151,17 @@ export const useBilling = defineStore("billing", () => {
     floatAllocations.value = dummyFloatAllocations;
   }
 
-  async function fetchFloatRequests(filter: any) {
-    // Simulate API call
-    // You can adjust this based on the filtering criteria or paging
-    floatRequests.value = dummyFloatRequests;
+  // async function fetchFloatRequests(filter: any) {
+  //   // Simulate API call
+  //   // You can adjust this based on the filtering criteria or paging
+  //   floatRequests.value = dummyFloatRequests;
+  // }
+
+
+  async function fetchFloatRequests() {
+    const { data } = await api.get("/branch-manager-float-requests");
+    floatRequests.value = data.data;
+    console.log("Float Requests:", floatRequests.value);
   }
 
   // function submit() {
