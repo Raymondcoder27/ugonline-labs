@@ -194,7 +194,7 @@ export const useBilling = defineStore("billing", () => {
   // }
   //use api to fetch float requests
   async function fetchFloatRequests() {
-    const { data } = await api.get("/till-operator2-float-requests");
+    const { data } = await api.get("/till-operator3-float-requests");
     floatRequests.value = data.data;
     console.log("Float Requests:", floatRequests.value);
   }
@@ -385,7 +385,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   // async function approveFloatRequest(requestId: any) {
-  //   const { data } = await api.put("/till-operator2-float-requests/" + requestId, {
+  //   const { data } = await api.put("/till-operator3-float-requests/" + requestId, {
   //     status: "approved",
   //     approvedBy: "Manager One",
   //     amount: requestId.amount,
@@ -406,7 +406,7 @@ export const useBilling = defineStore("billing", () => {
       }
 
       // Send the API request with all required data
-      const { data } = await api.put(`/till-operator2-float-requests/${requestId}`, {
+      const { data } = await api.put(`/till-operator3-float-requests/${requestId}`, {
         status: "approved",
         approvedBy: "Manager One",
         amount: floatRequest.amount, // Retrieve amount from the found request
@@ -414,7 +414,7 @@ export const useBilling = defineStore("billing", () => {
       });
 
       //approve the record's status in the float ledger too
-      api.put("/till-operator2-float-ledgers/" + requestId, {
+      api.put("/till-operator3-float-ledgers/" + requestId, {
         status: "approved",
         amount: floatRequest.amount,
         till: floatRequest.till,
@@ -429,7 +429,7 @@ export const useBilling = defineStore("billing", () => {
     }
   }
 
-  // {{host}}/till-operator2-float-ledgers/{{floatRequest.id}}
+  // {{host}}/till-operator3-float-ledgers/{{floatRequest.id}}
   //change till operator float ledger record status to approved too 
   // async function updateTillOperatorFloatLedger(requestId: string) {
   //   try {
@@ -442,7 +442,7 @@ export const useBilling = defineStore("billing", () => {
   //     }
 
   //     // Send the API request with all required data
-  //     const { data } = await api.put(`/till-operator2-float-ledgers/${requestId}`, {
+  //     const { data } = await api.put(`/till-operator3-float-ledgers/${requestId}`, {
   //       status: "approved",
   //       amount: floatRequest.amount,
   //       till: floatRequest.till,
@@ -469,7 +469,7 @@ export const useBilling = defineStore("billing", () => {
       }
 
       // Send the API request with all required data
-      const { data } = await api.put(`/till-operator2-float-ledgers/${requestId}`, {
+      const { data } = await api.put(`/till-operator3-float-ledgers/${requestId}`, {
         status: "approved",
         amount: tillOperatorFloatRequest.amount,
         till: tillOperatorFloatRequest.till,
@@ -536,8 +536,8 @@ export const useBilling = defineStore("billing", () => {
 
   //     // Send both API requests in parallel
   //     const [requestResponse, ledgerResponse] = await Promise.all([
-  //       api.put(`/till-operator2-float-requests/${requestId}`, payload),
-  //       api.put(`/till-operator2-float-ledgers/${requestId}`, {
+  //       api.put(`/till-operator3-float-requests/${requestId}`, payload),
+  //       api.put(`/till-operator3-float-ledgers/${requestId}`, {
   //         status: "approved",
   //         amount: floatRequest.amount,
   //         till: floatRequest.till,
@@ -564,7 +564,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   async function rejectFloatRequest(requestId: any) {
-    const { data } = await api.put("/till-operator2-float-requests/" + requestId, {
+    const { data } = await api.put("/till-operator3-float-requests/" + requestId, {
       status: "rejected",
     });
     floatRequests.value = data.data;
@@ -580,7 +580,7 @@ export const useBilling = defineStore("billing", () => {
         return;
       }
 
-      const { data } = await api.put("/till-operator2-float-requests/" + requestId, {
+      const { data } = await api.put("/till-operator3-float-requests/" + requestId, {
         amount: payload.amount,
         till: payload.till,
         status: "request edited",
