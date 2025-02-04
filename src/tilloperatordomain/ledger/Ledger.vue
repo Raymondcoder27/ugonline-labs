@@ -345,12 +345,22 @@ onMounted(() => {
                   <!-- </td> -->
                 </div>
 
-                <!-- Third Case: Fallback, no manager assigned -->
+                <!-- Fourth Case: Fallback, approved -->
                 <div v-if="transaction.status === 'approved'">
                   <!-- <td> -->
                   <span
                     class="text-xs rounded-md px-1 py-0.5 font-semibold text-green-600 bg-green-100 border border-green-200 hover:text-green-700 hover:bg-green-200"
                     >Approved</span
+                  >
+                </div>
+              </td>
+
+                 <!-- Fifth Case: Fallback, rejected -->
+                 <div v-if="transaction.status === 'rejected'">
+                  <!-- <td> -->
+                  <span
+                    class="text-xs rounded-md px-1 py-0.5 font-semibold text-red-600 bg-red-100 border border-red-200 hover:text-red-700 hover:bg-red-200"
+                    >Rejected</span
                   >
                 </div>
               </td>
