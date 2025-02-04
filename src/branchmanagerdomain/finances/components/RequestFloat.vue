@@ -33,7 +33,7 @@ let form: FloatRequest = reactive({
 });
 const notify = useNotificationsStore();
 const loading: Ref<boolean> = ref(false);
-const emit = defineEmits(["cancel", "floatAllocated"]);
+const emit = defineEmits(["cancel", "requestSubmitted"]);
 // const store = useAccounts();
 // function submit() {
 //   loading.value = true
@@ -51,8 +51,9 @@ const emit = defineEmits(["cancel", "floatAllocated"]);
 function submit() {
   const payload = {
     amount: form.amount,
-    tillId: form.tillId,
+    branchId: form.branchId,
     description: form.description,
+    status: "pending",
   };
 
   console.log("Submitting payload:", payload);
@@ -62,10 +63,11 @@ function submit() {
   // .then(() => {
   billingStore.adjustFloatLedger(payload); // Adjust ledger
   // balanceStore.decreaseTotalBalance(payload.amount); // Update balance
-  balanceStore.increaseTotalBalance(payload.amount); // Update balance
+  // balanceStore.increaseTotalBalance(payload.amount); // Update balance
+  balanceStore.updateTotalBalance(payload); // Update balance
   // notify.success(`Float allocated to branch: ${form.branchId}`);
   notify.success(`Float request submitted successfully.`);
-  emit("floatAllocated");
+  emit("requestSubmitted");
   // })
   // .catch((err) => {
   // console.error("Error allocating float:", err);
@@ -124,10 +126,10 @@ watch(
         </div>
       </div> -->
 
-      <!-- <div class="flex">
+      <div class="flex">
         <div class="cell-full">
           <label class="block uppercase text-neutral-600 text-xs font-bold mb-1"
-            >NOTE</label
+            >reason</label
           >
           <textarea
             rows="4"
@@ -136,7 +138,7 @@ watch(
             required
           />
         </div>
-      </div> -->
+      </div>
 
       <div class="flex my-2 py-5">
         <div class="w-6/12 px-1">

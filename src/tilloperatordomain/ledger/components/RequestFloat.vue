@@ -23,7 +23,7 @@ let form: RequestFloat = reactive({
 });
 const notify = useNotificationsStore();
 const loading: Ref<boolean> = ref(false);
-const emit = defineEmits(["cancel", "floatAllocated"]);
+const emit = defineEmits(["cancel", "requestSubmitted"]);
 const store = useAccounts();
 // function submit() {
 //   loading.value = true
@@ -58,7 +58,7 @@ function submit() {
   balanceStore.updateTotalBalance(payload); // Update balance
   // notify.success(`Float allocated to branch: ${form.branchId}`);
   notify.success(`Float request submitted successfully.`);
-  emit("floatAllocated");
+  emit("requestSubmitted");
   // })
   // .catch((err) => {
   // console.error("Error allocating float:", err);

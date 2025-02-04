@@ -398,7 +398,7 @@ onMounted(() => {
             <td class="text-left">{{ request.requestDate }}</td>
             <!-- <td class="text-left">{{ request.createdAt }}</td> -->
             <!-- convertDateTime(request.createdAt) -->
-            <!-- <td class="text-left">{{ request.till }}</td> -->
+            <td class="text-left">{{ request.description }}</td>
             <!-- <td class="text-left">{{ request.amount.toLocaleString() }}</td> -->
             <td class="text-left">{{ request.amount }}</td>
             <td class="text-left">
@@ -717,7 +717,7 @@ onMounted(() => {
 
   <AppModal v-model="floatRequestModalOpen" xl2>
     <!-- Your modal content goes here -->
-    <RequestFloat @floatAllocated="close" :close="close" />
+    <RequestFloat @requestSubmitted="close" :close="close" />
   </AppModal>
 </template>
 
