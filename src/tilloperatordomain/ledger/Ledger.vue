@@ -252,7 +252,7 @@ onMounted(() => {
               class="body-tr"
             > -->
             <tr
-              v-for="(transaction, idx) in store.floatLedgers"
+              v-for="(transaction, idx) in store.floatRequests"
               :key="transaction.id"
               class="body-tr"
             >
