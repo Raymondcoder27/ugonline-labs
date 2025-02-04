@@ -212,30 +212,32 @@ const paginatedFloatRequestsWithBalance = computed(() => {
 //   { deep: true }
 // );
 
-async function fetchFloatRequests() {
-  loading.value = true;
 
-  try {
-    await store.fetchFloatRequests(); // Fetch float requests from the API
 
-    // Compute balance only once after fetching data
-    let newBalance = 0;
+// async function fetchFloatRequests() {
+//   loading.value = true;
 
-    store.floatRequests.forEach((transaction) => {
-      if (transaction.status === "approved" || transaction.status === "edited") {
-        newBalance += transaction.amount;
-      }
-    });
+//   try {
+//     await store.fetchFloatRequests(); // Fetch float requests from the API
 
-    // Update balance store once after all transactions are processed
-    balanceStore.updateTotalBalance(newBalance);
+//     // Compute balance only once after fetching data
+//     let newBalance = 0;
 
-  } catch (error) {
-    console.error("Error fetching float requests:", error);
-  } finally {
-    loading.value = false;
-  }
-}
+//     store.floatRequests.forEach((transaction) => {
+//       if (transaction.status === "approved" || transaction.status === "edited") {
+//         newBalance += transaction.amount;
+//       }
+//     });
+
+//     // Update balance store once after all transactions are processed
+//     balanceStore.updateTotalBalance(newBalance);
+
+//   } catch (error) {
+//     console.error("Error fetching float requests:", error);
+//   } finally {
+//     loading.value = false;
+//   }
+// }
 
 
 
@@ -245,8 +247,7 @@ onMounted(() => {
   // fetchFloatLedgers();
   // console.log("RequestFloat component mounted");
   // store.fetchFloatLedgers();
-  // store.fetchFloatRequests();
-  fetchFloatRequests();
+  store.fetchFloatRequests();
 });
 </script>
 

@@ -6,6 +6,8 @@ import AppModal from "@/components/AppModal.vue";
 import { useServicesStore } from "@/tilloperatordomain/services/stores";
 import { IGoFilter } from "@/types";
 import { useBalance } from "@/tilloperatordomain/balance/stores";
+import { useBilling } from "@/tilloperatordomain/ledger/stores"; 
+const billingStore = useBilling();
 
 const balanceStore = useBalance();
 
@@ -117,6 +119,32 @@ const totalBalance = balanceStore.totalBalance;
 //   store.fetchServices(filter); // Fetch services
 // }
 
+const paginatedFloatRequestsWithBalance = computed(() => {
+  const start = (page.value - 1) * limit.value;
+  const end = start + limit.value;
+  const paginatedTransactions = billingStore.floatRequests.slice(start, end);
+
+  let runningBalance = 0;
+
+  return paginatedTransactions.map((transaction) => {
+    if (transaction.status === "approved" || transaction.status === "edited") {
+      runningBalance += transaction.amount; // Increase balance only if approved
+    // balanceStore.updateTotalBalance(runningBalance);
+    } 
+    // If rejected, do nothing (balance stays the same)
+    // balanceStore.updateTotalBalance(runningBalance);
+
+    return {
+      ...transaction,
+      balance: runningBalance, // Maintain the same balance if rejected
+    };
+
+    //update balance store with current balance
+    // balanceStore.updateTotalBalance(runningBalance);
+  });
+});
+
+
 onMounted(() => {
   balanceStore.fetchTotalBalance();
   fetchServices();
@@ -174,6 +202,39 @@ onMounted(() => {
       <!-- BALANCE: 15,000,000/= -->
       {{ totalBalance.currentBalance.toLocaleString() }}/=
     </div>
+
+
+    <tr
+              v-for="(transaction, idx) in paginatedFloatRequestsWithBalance"
+              :key="transaction.id"
+              class="body-tr"
+            >
+              <td class="text-left">{{ idx + 1 }}</td>
+
+              <td class="text-left">
+                <label
+                  class="cursor-pointer font-bold hover:text-primary-700 mx-2"
+                >
+                  <span class="hover:underline">{{
+                    transaction.description
+                  }}</span>
+                </label>
+              </td>
+ <td class="text-left text-gray-800">
+                <span v-if="transaction.status === 'approved'">
+                  {{ transaction.balance.toLocaleString() }}
+                </span>
+                <span v-if="transaction.status === 'rejected'">
+                  {{ transaction.balance.toLocaleString() }}
+                </span>
+                <span v-if="transaction.status === 'edited'">
+                  {{ transaction.balance.toLocaleString() }}
+                </span>
+                <span v-if="transaction.status==='pending'" class="italic text-gray-500">
+                  --{{ transaction.balance.toLocaleString() }}--
+                </span>
+              </td>
+            </tr>
   </div>
 
   <div class="flex justify-end items-center mt-2 mb-2">
