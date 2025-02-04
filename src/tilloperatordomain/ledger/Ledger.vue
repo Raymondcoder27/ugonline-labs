@@ -196,21 +196,47 @@ const paginatedFloatRequestsWithBalance = computed(() => {
 });
 
 
-watch(
-  () => store.floatRequests, // Watch changes in transactions
-  (newTransactions) => {
-    let newBalance = balanceStore.totalBalance.currentBalance; // Start from current stored balance
+// watch(
+//   () => store.floatRequests, // Watch changes in transactions
+//   (newTransactions) => {
+//     let newBalance = balanceStore.totalBalance.currentBalance; // Start from current stored balance
 
-    newTransactions.forEach((transaction) => {
+//     newTransactions.forEach((transaction) => {
+//       if (transaction.status === "approved" || transaction.status === "edited") {
+//         newBalance += transaction.amount;
+//       }
+//     });
+
+//     balanceStore.updateTotalBalance(newBalance); // Update store only when transactions change
+//   },
+//   { deep: true }
+// );
+
+async function fetchFloatRequests() {
+  loading.value = true;
+
+  try {
+    await store.fetchFloatRequests(); // Fetch float requests from the API
+
+    // Compute balance only once after fetching data
+    let newBalance = 0;
+
+    store.floatRequests.forEach((transaction) => {
       if (transaction.status === "approved" || transaction.status === "edited") {
         newBalance += transaction.amount;
       }
     });
 
-    balanceStore.updateTotalBalance(newBalance); // Update store only when transactions change
-  },
-  { deep: true }
-);
+    // Update balance store once after all transactions are processed
+    balanceStore.updateTotalBalance(newBalance);
+
+  } catch (error) {
+    console.error("Error fetching float requests:", error);
+  } finally {
+    loading.value = false;
+  }
+}
+
 
 
 
@@ -219,7 +245,8 @@ onMounted(() => {
   // fetchFloatLedgers();
   // console.log("RequestFloat component mounted");
   // store.fetchFloatLedgers();
-  store.fetchFloatRequests();
+  // store.fetchFloatRequests();
+  fetchFloatRequests();
 });
 </script>
 
