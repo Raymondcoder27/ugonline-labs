@@ -6,6 +6,7 @@ import api from "@/config/api";
 import type { Transaction, FloatLedger, BackofficeUser, TillOperator, FloatAllocation, FloatRequest } from "@/branchmanagerdomain/finances/types";
 import type { AllocateFloat } from "@/types";
 import { request } from "node_modules/axios/index.d.cts";
+import { useBilling } from "@/tilloperatordomain/ledger/stores"; // Import the appropriate store
 
 export const useBilling = defineStore("billing", () => {
   // Dummy data for testing
