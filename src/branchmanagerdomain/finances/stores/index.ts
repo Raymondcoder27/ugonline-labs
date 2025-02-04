@@ -456,7 +456,7 @@ export const useBilling = defineStore("billing", () => {
 
   async function updateTillOperatorFloatLedger(requestId: string) {
     try {
-      console.log('request ID:', userId); // Debugging log
+      console.log('request ID:', requestId); // Debugging log
       // console.log('Till ID:', branchId); // Debugging log
       // Find the float request by ID
       const floatRequest = floatRequests.value.find(request => request.id === requestId);
