@@ -11,6 +11,7 @@ import { useBalance } from "@/agentadmindomain/balance/stores";
 // import { FloatRequest } from "@/tilloperatordomain/ledger/types/chart";
 import { FloatRequest } from "@/agentadmindomain/finances/types";
 import EditFloatRequestAmount from "@/agentadmindomain/finances/components/EditFloatRequestAmount.vue";
+import { request } from "http";
 
 
 
@@ -268,18 +269,46 @@ function convertDateTimeNullable(date?: string) {
 
 // pass in the requestId
 const approveFloatRequest = (requestId: any) => {
-  billingStore.approveFloatRequest(requestId);
-  // billingStore.fetchFloatRequests();
-  balanceStore.approveFloatRequest(requestId);
+  if (requestId) {
+  billingStore.approveFloatRequest(requestId).then(()=>{
+    billingStore.fetchFloatRequests();
+    balanceStore.approveFloatRequest(requestId);
   billingStore.reduceFloatLedger(requestId);
   billingStore.allocateFloatFromRequest(requestId);
   console.log(`float request with id ${requestId} approved`);
+  })
+  // billingStore.fetchFloatRequests();
+  // balanceStore.approveFloatRequest(requestId);
+  // billingStore.reduceFloatLedger(requestId);
+  // billingStore.allocateFloatFromRequest(requestId);
+  // console.log(`float request with id ${requestId} approved`);
+}
 };
 
+// const approveFloatRequest = (requestId: any) => {
+//   if (requestId) {
+//     billingStore.approveFloatRequest(requestId).then(() => {
+//       billingStore.fetchFloatRequests();
+//       console.log(`float request with id ${requestId} approved`);
+//       balanceStore.approveFloatRequest(requestId);
+//       // balanceStore.updateTillOperatorFloatLedger(requestId);
+//       billingStore.reduceFloatLedger(requestId);
+//       billingStore.allocateFloatFromRequest(requestId);
+//       console.log(`float request with id ${requestId} approved`);
+//     });
+//   }
+// };
+
 const rejectFloatRequest = (requestId: any) => {
-  billingStore.rejectFloatRequest(requestId);
-  billingStore.fetchFloatRequests();
+  if (requestId){
+  billingStore.rejectFloatRequest(requestId).then(()=>{
+    billingStore.fetchFloatRequests();
   console.log(`float request with id ${requestId} rejected`);
+
+  })
+  // billingStore.fetchFloatRequests();
+  // console.log(`float request with id ${requestId} rejected`);
+}
 };
 
 onMounted(() => {
