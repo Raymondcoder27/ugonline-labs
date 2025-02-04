@@ -459,10 +459,12 @@ export const useBilling = defineStore("billing", () => {
       console.log('request ID:', requestId); // Debugging log
       // console.log('Till ID:', branchId); // Debugging log
       // Find the float request by ID
-      const floatRequest = floatRequests.value.find(request => request.id === requestId);
+      // const floatRequest = floatRequests.value.find(request => request.id === requestId);
 
-      if (!floatRequest) {
-        console.error("Float request not found for ID:", requestId);
+      const tillOperatorFloatRequest = tillBillingStore.floatLedgers.value.find((request) => request.id === requestId);
+
+      if (!tillOperatorFloatRequest) {
+        console.error("Float request record not found for ID:", requestId);
         return;
       }
 
