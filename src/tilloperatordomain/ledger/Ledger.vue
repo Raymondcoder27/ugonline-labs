@@ -302,12 +302,12 @@ onMounted(() => {
               >
                 <span>{{ transaction.amount }}</span>
               </td> -->
-              <td
+              <!-- <td
                 class="text-left text-blue-600"
                 :class="{ 'text-red-600': transaction.amount < 0 }"
               >
                 <span>{{ transaction.amount.toLocaleString() }}</span>
-              </td>
+              </td> -->
               <td class="text-left">
                 <!-- First Case: float request approved -->
                 <div v-if="transaction.status === 'pending'">
