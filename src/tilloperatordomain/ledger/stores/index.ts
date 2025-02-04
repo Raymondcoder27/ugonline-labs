@@ -280,7 +280,7 @@ export const useBilling = defineStore("billing", () => {
       floatLedgers.value?.push(data.data);
       console.log("Adjust Float Ledger response:", data);
 
-      
+
       //approve the record's status in the float ledger too
       api.put("/till-operator2-float-requests/" + requestId, {
         floatLedgerRecordId: data.data.id,
@@ -290,7 +290,7 @@ export const useBilling = defineStore("billing", () => {
       });
 
       // Update local state after successful API call
-      floatRequest.status = "approved";
+      // floatRequest.status = "approved";
 
       console.log("Float request approved successfully:", data);
     } catch (error) {
