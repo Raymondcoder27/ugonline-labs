@@ -183,7 +183,7 @@ const paginatedFloatRequestsWithBalance = computed(() => {
     // balanceStore.updateTotalBalance(runningBalance);
     } 
     // If rejected, do nothing (balance stays the same)
-    balanceStore.updateTotalBalance(runningBalance);
+    // balanceStore.updateTotalBalance(runningBalance);
 
     return {
       ...transaction,
