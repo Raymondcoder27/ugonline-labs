@@ -159,8 +159,12 @@ const computedFloatRequestsWithBalance = computed(() => {
 
   // Process transactions chronologically
   return paginatedFloatRequests.map((transaction) => {
+    if (transaction.status === "approved" || transaction.status === "edited") {
+      runningBalance += transaction.amount; // Increase balance only if approved
+    // balanceStore.updateTotalBalance(runningBalance);
+    } 
     // Adjust the running balance based on transaction amount
-    runningBalance += transaction.amount;
+    // runningBalance += transaction.amount;
 
     return {
       ...transaction,
