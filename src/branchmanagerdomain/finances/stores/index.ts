@@ -119,19 +119,19 @@ export const useBilling = defineStore("billing", () => {
 
   const floatRequestToAdmin = ref<FloatRequestToAdmin | null>(null);
 
-   async function requestFloatToAdmin(payload: RequestFloatToAdmin){
-    const {data} = await api.post("/branch-manager3-float-requests", {
-          // requestDate: new Date().toISOString(),
-          amount: payload.amount,
-          status: "pending",
-          branch: payload.branch,
-          description: payload.description,
-          requestDate: new Date().toISOString(),
-        })
-        floatRequestsToAdmin.value?.push(data.data);
-        console.log("Request Float response:", floatRequestToAdmin);
-      }
-  
+  async function requestFloatToAdmin(payload: RequestFloatToAdmin) {
+    const { data } = await api.post("/branch-manager3-float-requests", {
+      // requestDate: new Date().toISOString(),
+      amount: payload.amount,
+      status: "pending",
+      branch: payload.branch,
+      description: payload.description,
+      requestDate: new Date().toISOString(),
+    })
+    floatRequestsToAdmin.value?.push(data.data);
+    console.log("Request Float response:", floatRequestToAdmin);
+  }
+
 
   // async function requestFloat(payload: RequestFloat) {
   //   const { data } = await api.post("/till-operator7-float-requests", {
@@ -334,18 +334,18 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   // allocate float allocation to float ledger array
-function adjustFloatLedger(payload: FloatLedger) {
-  // If description is "Recharge", ensure amount is positive, otherwise keep it negative
-  const adjustedAmount = payload.description === "Recharge" && payload.amount > 0 ? payload.amount : -payload.amount;
-  
-  floatLedgers.value.push({
-    id: floatLedgers.value.length + 1,
-    date: new Date().toISOString(),
-    description: payload.description,
-    amount: adjustedAmount,
-    // balance: totalBalance.value + adjustedAmount,
-  });
-}
+  function adjustFloatLedger(payload: FloatLedger) {
+    // If description is "Recharge", ensure amount is positive, otherwise keep it negative
+    const adjustedAmount = payload.description === "Recharge" && payload.amount > 0 ? payload.amount : -payload.amount;
+
+    floatLedgers.value.push({
+      id: floatLedgers.value.length + 1,
+      date: new Date().toISOString(),
+      description: payload.description,
+      amount: adjustedAmount,
+      // balance: totalBalance.value + adjustedAmount,
+    });
+  }
 
 
   // async function adjustFloatLedger(payload: FloatLedger) {
@@ -369,7 +369,7 @@ function adjustFloatLedger(payload: FloatLedger) {
   //   }
   // }
 
-  
+
 
   //   const allocateFloatFromRequestToLocalStorage = ref<FloatRequest[]>([]);
 
