@@ -132,17 +132,17 @@ export const useBilling = defineStore("billing", () => {
     console.log("Request Float response:", floatRequestToAdmin);
 
 
-    const adjustedAmount = payload.description === "Recharge" && payload.amount > 0 ? payload.amount : -payload.amount;
+    // const adjustedAmount = payload.description === "Recharge" && payload.amount > 0 ? payload.amount : -payload.amount;
 
-    floatLedgers.value.push({
-      id: floatLedgers.value.length + 1,
-      date: new Date().toISOString(),
-      // description: "Till " + payload.tillId,
-      description: payload.description,
-      amount: adjustedAmount,
-      status: payload.status,
-      // balance: totalBalance.value + payload.amount,
-    })
+    // floatLedgers.value.push({
+    //   id: floatLedgers.value.length + 1,
+    //   date: new Date().toISOString(),
+    //   // description: "Till " + payload.tillId,
+    //   description: payload.description,
+    //   amount: adjustedAmount,
+    //   status: payload.status,
+    //   // balance: totalBalance.value + payload.amount,
+    // })
   }
 
 
