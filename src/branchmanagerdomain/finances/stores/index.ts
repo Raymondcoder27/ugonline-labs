@@ -321,12 +321,12 @@ export const useBilling = defineStore("billing", () => {
   //   localStorage.setItem('allocateFloatFromRequestToLocalStorage', JSON.stringify(allocateFloatFromRequestToLocalStorage.value))
   // }
   // allocate float allocation to float ledger array
-  function adjustFloatLedger(payload: AllocateFloat) {
+  function adjustFloatLedger(payload: FloatLedger) {
     floatLedgers.value.push({
       id: floatLedgers.value.length + 1,
       date: new Date().toISOString(),
       // description: "Till " + payload.tillId,
-      description: payload.tillId,
+      description: payload.description,
       amount: -payload.amount,
       // balance: totalBalance.value + payload.amount,
     })
