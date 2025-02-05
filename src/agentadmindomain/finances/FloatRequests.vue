@@ -411,10 +411,10 @@ onMounted(() => {
             v-for="(request, id) in paginatedFloatRequests"
             :key="id"
           > -->
-            <td>{{ id + 1 }}</td>
+            <td class="text-left">{{ id + 1 }}</td>
             <!-- <td class="text-left">{{  convertDateTime(request.date) }}</td> -->
             <!-- <td class="text-left">{{ request.requestDate }}</td> -->
-            <td>{{convertDateTime(request.createdAt)}}</td>
+            <td class="text-left">{{convertDateTime(request.createdAt)}}</td>
             <td class="text-left">{{ request.branch }}</td>
             <td class="text-left">{{ request.amount.toLocaleString() }}</td>
             <td class="text-left">

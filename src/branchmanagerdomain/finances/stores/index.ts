@@ -119,7 +119,7 @@ export const useBilling = defineStore("billing", () => {
   const floatRequestToAdmin = ref<FloatRequestToAdmin | null>(null);
 
    async function requestFloatToAdmin(payload: RequestFloatToAdmin){
-    const {data} = await api.post("/branch-manager-float-requests", {
+    const {data} = await api.post("/branch-manager2-float-requests", {
           // requestDate: new Date().toISOString(),
           amount: payload.amount,
           status: "pending",
@@ -215,7 +215,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   async function fetchFloatRequestsToAdmin() {
-    const { data } = await api.get("/branch-manager-float-requests");
+    const { data } = await api.get("/branch-manager2-float-requests");
     floatRequestsToAdmin.value = data.data;
     console.log("Float Requests:", floatRequestsToAdmin.value);
   }
