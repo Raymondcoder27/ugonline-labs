@@ -156,12 +156,14 @@ export const useBilling = defineStore("billing", () => {
         };
 
         const ledgerResponse = await api.post("/branch-manager-float-ledgers", ledgerEntry);
-        console.log("Float ledger entry created:", ledgerResponse.data, floatRequestToAdmin);
+        floatLedgers.value.push(ledgerResponse.data.data); // Store ledger entry in state
+        console.log("Float ledger entry created:", ledgerResponse.data);
 
     } catch (error) {
         console.error("Error in requestFloatToAdmin:", error);
     }
 }
+
 
 
   
