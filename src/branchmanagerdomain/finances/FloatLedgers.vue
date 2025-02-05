@@ -332,9 +332,7 @@ watch(
             <th class="t-header">Date</th>
             <th class="t-header">Type</th>
             <th class="text-right t-header">Amount</th>
-            <th class="text-right first-letter:capitalize t-header">
-    Status
-  </th>
+            <th class="text-right first-letter:capitalize t-header">Status</th>
             <th class="text-right t-header">Balance</th>
           </tr>
         </thead>
@@ -355,7 +353,7 @@ watch(
             > -->
 
           <tr
-            v-for="transaction, id in computedLedgerWithBalance"
+            v-for="(transaction, id) in computedLedgerWithBalance"
             :key="transaction.id"
             class="body-tr"
           >
@@ -400,92 +398,90 @@ watch(
               <span>{{ transaction.amount.toLocaleString() }}</span>
             </td>
             <td class="text-left">
-    <!-- First Case: float request approved -->
-    <div v-if="transaction.status === 'pending'">
-      <!-- <td> -->
-      <!-- <label> -->
-      <span
-        class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-gray-600 bg-gray-50 border border-gray-200 hover:text-gray-700 hover:bg-gray-200"
-        >Pending</span
-      >
-      <!-- </label> -->
-      <!-- </td> -->
-    </div>
+              <!-- First Case: float request approved -->
+              <div v-if="transaction.status === 'pending'">
+                <!-- <td> -->
+                <!-- <label> -->
+                <span
+                  class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-gray-600 bg-gray-50 border border-gray-200 hover:text-gray-700 hover:bg-gray-200"
+                  >Pending</span
+                >
+                <!-- </label> -->
+                <!-- </td> -->
+              </div>
 
-    <!-- Second Case: Manager directly assigned to branch -->
-    <div v-else-if="transaction.status === 'failed'">
-      <!-- <td> -->
-      <label>
-        <span
-          class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-red-600 bg-red-100 border border-red-200 hover:text-red-700 hover:bg-red-200"
-          >Failed</span
-        >
-      </label>
-      <!-- </td> -->
-    </div>
+              <!-- Second Case: Manager directly assigned to branch -->
+              <div v-else-if="transaction.status === 'failed'">
+                <!-- <td> -->
+                <label>
+                  <span
+                    class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-red-600 bg-red-100 border border-red-200 hover:text-red-700 hover:bg-red-200"
+                    >Failed</span
+                  >
+                </label>
+                <!-- </td> -->
+              </div>
 
-    <!-- Third Case: Manager directly assigned to branch -->
-    <div v-else-if="transaction.status === 'edited'">
-      <!-- <td> -->
-      <label>
-        <span
-          class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-green-600 bg-green-100 border border-green-200 hover:text-green-700 hover:bg-green-200"
-          >Edited</span
-        >
-      </label>
-      <!-- </td> -->
-    </div>
+              <!-- Third Case: Manager directly assigned to branch -->
+              <div v-else-if="transaction.status === 'edited'">
+                <!-- <td> -->
+                <label>
+                  <span
+                    class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-green-600 bg-green-100 border border-green-200 hover:text-green-700 hover:bg-green-200"
+                    >Edited</span
+                  >
+                </label>
+                <!-- </td> -->
+              </div>
 
-    <!-- Fourth Case: Fallback, approved -->
-    <div v-if="transaction.status === 'approved'">
-      <!-- <td> -->
-      <span
-        class="text-xs rounded-md px-1 py-0.5 font-semibold text-green-600 bg-green-100 border border-green-200 hover:text-green-700 hover:bg-green-200"
-        >Approved</span
-      >
-    </div>
-  <!-- </td> -->
+              <!-- Fourth Case: Fallback, approved -->
+              <div v-if="transaction.status === 'approved'">
+                <!-- <td> -->
+                <span
+                  class="text-xs rounded-md px-1 py-0.5 font-semibold text-green-600 bg-green-100 border border-green-200 hover:text-green-700 hover:bg-green-200"
+                  >Approved</span
+                >
+              </div>
+              <!-- </td> -->
 
-     <!-- Fifth Case: Fallback, rejected -->
-     <div v-if="transaction.status === 'rejected'">
-      <!-- <td> -->
-      <span
-        class="text-xs rounded-md px-1 py-0.5 font-semibold text-red-600 bg-red-100 border border-red-200 hover:text-red-700 hover:bg-red-200"
-        >Rejected</span
-      >
-    </div>
-  </td>
+              <!-- Fifth Case: Fallback, rejected -->
+              <div v-if="transaction.status === 'rejected'">
+                <!-- <td> -->
+                <span
+                  class="text-xs rounded-md px-1 py-0.5 font-semibold text-red-600 bg-red-100 border border-red-200 hover:text-red-700 hover:bg-red-200"
+                  >Rejected</span
+                >
+              </div>
+            </td>
 
-  <!-- <td class="text-left text-gray-800">
+            <!-- <td class="text-left text-gray-800">
     <span>{{ transaction.balance.toLocaleString() }}</span>
   </td> -->
 
-  <td class="text-left text-gray-800">
-    <span v-if="transaction.status === 'approved'">
-      {{ transaction.balance.toLocaleString() }}
-    </span>
-    <span v-if="transaction.status === 'rejected'">
-      {{ transaction.balance.toLocaleString() }}
-    </span>
-    <span v-if="transaction.status === 'edited'">
-      {{ transaction.balance.toLocaleString() }}
-    </span>
-    <span v-if="transaction.status==='pending'" class="italic text-gray-500">
-      --{{ transaction.balance.toLocaleString() }}--
-    </span>
-  </td>
-
-
-
-
-
+            <td class="text-left text-gray-800">
+              <span v-if="transaction.status === 'approved'">
+                {{ transaction.balance.toLocaleString() }}
+              </span>
+              <span v-if="transaction.status === 'rejected'">
+                {{ transaction.balance.toLocaleString() }}
+              </span>
+              <span v-if="transaction.status === 'edited'">
+                {{ transaction.balance.toLocaleString() }}
+              </span>
+              <span
+                v-if="transaction.status === 'pending'"
+                class="italic text-gray-500"
+              >
+                --{{ transaction.balance.toLocaleString() }}--
+              </span>
+            </td>
 
             <td class="text-left text-gray-800">
               <!-- <button @click="decreaseBalance">Decrease Balance</button> -->
               <!-- <span>{{ balanceStore.totalBalance.current }}</span> -->
               <span>{{ transaction.balance.toLocaleString() }}</span>
             </td>
-               <!-- <td class="text-left text-gray-800">
+            <!-- <td class="text-left text-gray-800">
                 <span v-if="transaction.status === 'approved'">
                   {{ transaction.balance.toLocaleString() }}
                 </span>
