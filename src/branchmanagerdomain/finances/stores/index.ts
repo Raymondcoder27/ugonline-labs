@@ -159,19 +159,19 @@ export const useBilling = defineStore("billing", () => {
     // totalBalance.value = 300000000; // Set a test value
   }
 
-  // async function fetchFloatLedgers(filter: any) {
-  //   // Simulate API call
-  //   // const response = await fetch(`/api/float-ledgers?limit=${filter.limit}&page=${filter.page}`);
-  //   // const data = await response.json();
-  //   // Use dummy data for now
-  //   floatLedgers.value = dummyFloatLedgers;
-  // }
-
-  async function fetchFloatLedgers() {
-    const { data } = await api.get("/branch3-manager-float-ledgers");
-    floatLedgers.value = data.data;
-    console.log("Float Ledgers:", floatLedgers.value);
+  async function fetchFloatLedgers(filter: any) {
+    // Simulate API call
+    // const response = await fetch(`/api/float-ledgers?limit=${filter.limit}&page=${filter.page}`);
+    // const data = await response.json();
+    // Use dummy data for now
+    floatLedgers.value = dummyFloatLedgers;
   }
+
+  // async function fetchFloatLedgers() {
+  //   const { data } = await api.get("/branch3-manager-float-ledgers");
+  //   floatLedgers.value = data.data;
+  //   console.log("Float Ledgers:", floatLedgers.value);
+  // }
 
   async function fetchBackofficeUsers(filter: any) {
     // Simulate API call
@@ -321,40 +321,40 @@ export const useBilling = defineStore("billing", () => {
   //   localStorage.setItem('allocateFloatFromRequestToLocalStorage', JSON.stringify(allocateFloatFromRequestToLocalStorage.value))
   // }
   // allocate float allocation to float ledger array
-  // function adjustFloatLedger(payload: AllocateFloat) {
-  //   floatLedgers.value.push({
-  //     id: floatLedgers.value.length + 1,
-  //     date: new Date().toISOString(),
-  //     // description: "Till " + payload.tillId,
-  //     description: payload.tillId,
-  //     amount: -payload.amount,
-  //     // balance: totalBalance.value + payload.amount,
-  //   })
-  // }
-
-  async function adjustFloatLedger(payload: FloatLedger) {
-    try {
-      // Find the float request by ID
-      // const floatRequest = floatRequests.value.find(request => request.id === requestId);
-
-      // if (!floatRequest) {
-      //   console.error("Float request not found for ID:", requestId);
-      //   return;
-      // }
-
-      // Send the API request with all required data
-      const { data } = await api.post(`/branch3-manager-float-ledgers`, {
-        // id: floatLedgers.value.length + 1,
-        date: new Date().toISOString(),
-        // description: "Till " + payload.tillId,
-        description: payload.description,
-        amount: -payload.amount,
-      });
-      console.log("Float ledger adjusted successfully:", data);
-    } catch (error) {
-      console.error("Error approving float request:", error);
-    }
+  function adjustFloatLedger(payload: AllocateFloat) {
+    floatLedgers.value.push({
+      id: floatLedgers.value.length + 1,
+      date: new Date().toISOString(),
+      // description: "Till " + payload.tillId,
+      description: payload.tillId,
+      amount: -payload.amount,
+      // balance: totalBalance.value + payload.amount,
+    })
   }
+
+  // async function adjustFloatLedger(payload: FloatLedger) {
+  //   try {
+  //     // Find the float request by ID
+  //     // const floatRequest = floatRequests.value.find(request => request.id === requestId);
+
+  //     // if (!floatRequest) {
+  //     //   console.error("Float request not found for ID:", requestId);
+  //     //   return;
+  //     // }
+
+  //     // Send the API request with all required data
+  //     const { data } = await api.post(`/branch3-manager-float-ledgers`, {
+  //       // id: floatLedgers.value.length + 1,
+  //       date: new Date().toISOString(),
+  //       // description: "Till " + payload.tillId,
+  //       description: payload.description,
+  //       amount: -payload.amount,
+  //     });
+  //     console.log("Float ledger adjusted successfully:", data);
+  //   } catch (error) {
+  //     console.error("Error approving float request:", error);
+  //   }
+  // }
 
   
 
