@@ -315,16 +315,42 @@ export const useBilling = defineStore("billing", () => {
   //   localStorage.setItem('allocateFloatFromRequestToLocalStorage', JSON.stringify(allocateFloatFromRequestToLocalStorage.value))
   // }
   // allocate float allocation to float ledger array
-  function adjustFloatLedger(payload: AllocateFloat) {
-    floatLedgers.value.push({
-      id: floatLedgers.value.length + 1,
-      date: new Date().toISOString(),
-      // description: "Till " + payload.tillId,
-      description: payload.tillId,
-      amount: -payload.amount,
-      // balance: totalBalance.value + payload.amount,
-    })
+  // function adjustFloatLedger(payload: AllocateFloat) {
+  //   floatLedgers.value.push({
+  //     id: floatLedgers.value.length + 1,
+  //     date: new Date().toISOString(),
+  //     // description: "Till " + payload.tillId,
+  //     description: payload.tillId,
+  //     amount: -payload.amount,
+  //     // balance: totalBalance.value + payload.amount,
+  //   })
+  // }
+
+  async function adjustFloatLedger(payload: AllocateFloat) {
+    try {
+      // Find the float request by ID
+      // const floatRequest = floatRequests.value.find(request => request.id === requestId);
+
+      // if (!floatRequest) {
+      //   console.error("Float request not found for ID:", requestId);
+      //   return;
+      // }
+
+      // Send the API request with all required data
+      const { data } = await api.post(`/branch3-manager-float-ledgers`, {
+        id: floatLedgers.value.length + 1,
+        date: new Date().toISOString(),
+        // description: "Till " + payload.tillId,
+        description: payload.tillId,
+        amount: -payload.amount,
+      });
+      console.log("Float ledger adjusted successfully:", data);
+    } catch (error) {
+      console.error("Error approving float request:", error);
+    }
   }
+
+  
 
   //   const allocateFloatFromRequestToLocalStorage = ref<FloatRequest[]>([]);
 
