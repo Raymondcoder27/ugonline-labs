@@ -434,7 +434,7 @@ onMounted(() => {
             <td>{{ id + 1 }}</td>
             <!-- <td class="text-left">{{  convertDateTime(request.date) }}</td> -->
             <!-- <td class="text-left">{{ request.requestDate }}</td> -->
-            <td class="text-left">{{ request.createdAt }}</td>
+            <td class="text-left">{{ convertDateTime(request.createdAt) }}</td>
             <!-- convertDateTime(request.createdAt) -->
             <td class="text-left">{{ request.till }}</td>
             <!-- <td class="text-left">{{ request.amount.toLocaleString() }}</td> -->
