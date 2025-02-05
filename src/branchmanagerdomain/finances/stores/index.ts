@@ -357,6 +357,7 @@ export const useBilling = defineStore("billing", () => {
         // id: floatLedgers.value.length + 1,
         date: new Date().toISOString(),
         // description: "Till " + payload.tillId,
+        status: "pending",
         description: payload.description,
         amount: adjustedAmount,
       });
