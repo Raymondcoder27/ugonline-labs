@@ -22,7 +22,11 @@ function editFloatRequest(floatRequest: FloatRequest) {
 }
 function close() {
   modalOpen.value = false;
-  viewModalOpen.value = false;
+  // viewModalOpen.value = false;
+  // editModalOpen.value = false;
+}
+
+function closeEditModal() {
   editModalOpen.value = false;
 }
 

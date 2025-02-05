@@ -100,13 +100,13 @@ function fetchFloatRequests() {
   floatRequests.value = billingStore.floatRequests.slice(startIndex, endIndex);
   loading.value = false;
 }
-// const paginatedFloatRequests = computed(() => {
-//   const start = (page.value - 1) * limit.value;
-//   const end = start + limit.value;
-//   // return billingStore.floatRequests?.slice(start, end); // Adjust according to your page & limit
-//   return billingStore.floatRequests?.slice(start, end); // Adjust according to your page & limit
+const paginatedFloatRequests = computed(() => {
+  const start = (page.value - 1) * limit.value;
+  const end = start + limit.value;
+  // return billingStore.floatRequests?.slice(start, end); // Adjust according to your page & limit
+  return billingStore.floatRequests?.slice(start, end); // Adjust according to your page & limit
 
-// });
+});
 
 const filter: IGoFilter = reactive({
   limit: 100,
@@ -413,21 +413,21 @@ onMounted(() => {
           </tr>
         </thead>
         <tbody>
-          <tr
+          <!-- <tr
             class="text-right"
             v-for="(request, id) in billingStore.floatRequests"
             :key="id"
-          >
+          > -->
           <!-- <tr
             class="text-right"
             v-for="(request, id) in paginatedFloatRequests"
             :key="id"
           > -->
-          <!-- <tr
+          <tr
             class="text-left"
             v-for="(request, id) in paginatedFloatRequests"
             :key="id"
-          > -->
+          >
             <td>{{ id + 1 }}</td>
             <!-- <td class="text-left">{{  convertDateTime(request.date) }}</td> -->
             <!-- <td class="text-left">{{ request.requestDate }}</td> -->
