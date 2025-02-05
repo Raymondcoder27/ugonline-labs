@@ -120,7 +120,7 @@ export const useBilling = defineStore("billing", () => {
   const floatRequestToAdmin = ref<FloatRequestToAdmin | null>(null);
 
   // async function requestFloatToAdmin(payload: RequestFloatToAdmin) {
-  //   const { data } = await api.post("/branch-manager3-float-requests", {
+  //   const { data } = await api.post("/branch4-manager-float-requests", {
   //     // requestDate: new Date().toISOString(),
   //     amount: payload.amount,
   //     status: "pending",
@@ -134,7 +134,7 @@ export const useBilling = defineStore("billing", () => {
   async function requestFloatToAdmin(payload: RequestFloatToAdmin) {
     try {
         // Step 1: Create Float Request
-        const { data } = await api.post("/branch-manager3-float-requests", {
+        const { data } = await api.post("/branch4-manager-float-requests", {
             amount: payload.amount,
             status: "pending",
             branch: payload.branch,
@@ -155,7 +155,7 @@ export const useBilling = defineStore("billing", () => {
             branch: payload.branch,
         };
 
-        const ledgerResponse = await api.post("/branch-manager-float-ledgers", ledgerEntry);
+        const ledgerResponse = await api.post("/branch4-manager-float-ledgers", ledgerEntry);
         floatLedgers.value.push(ledgerResponse.data.data); // Store ledger entry in state
         console.log("Float ledger entry created:", ledgerResponse.data);
 
@@ -258,7 +258,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   async function fetchFloatRequestsToAdmin() {
-    const { data } = await api.get("/branch-manager3-float-requests");
+    const { data } = await api.get("/branch4-manager-float-requests");
     floatRequestsToAdmin.value = data.data;
     console.log("Float Requests:", floatRequestsToAdmin.value);
   }
