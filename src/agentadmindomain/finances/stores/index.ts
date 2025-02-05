@@ -425,17 +425,22 @@ export const useBilling = defineStore("billing", () => {
         floatRequest.status = "approved";
         console.log("Float request approved successfully:", data);
 
-        // Step 3: Approve the Float Ledger Record
-        await api.put(`/branch4-manager-float-ledgers/${requestId}`, {
-            status: "approved",
-        });
+        // Step 3: Approve the Float Ledger Record using `ledgerId`
+        if (floatRequest.ledgerId) {
+            await api.put(`/branch4-manager-float-ledgers/${floatRequest.ledgerId}`, {
+                status: "approved",
+            });
 
-        console.log("Float ledger record approved.");
+            console.log("Float ledger record approved.");
+        } else {
+            console.error("Ledger ID not found in float request!");
+        }
 
     } catch (error) {
         console.error("Error approving float request:", error);
     }
 }
+
 
 
   // reject float request using passed in Id and set status to rejected

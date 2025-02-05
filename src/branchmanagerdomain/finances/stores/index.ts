@@ -133,21 +133,8 @@ export const useBilling = defineStore("billing", () => {
   // }
   async function requestFloatToAdmin(payload: RequestFloatToAdmin) {
     try {
-        // Step 1: Create Float Request
-        const { data } = await api.post("/branch4-manager-float-requests", {
-            amount: payload.amount,
-            status: "pending",
-            branch: payload.branch,
-            description: payload.description,
-            requestDate: new Date().toISOString(),
-        });
-
-        floatRequestsToAdmin.value?.push(data.data);
-        console.log("Float request created:", data.data);
-
-        // Step 2: Create Float Ledger Entry (linked to float request)
+        // Step 1: Create Float Ledger Entry first to get the ID
         const ledgerEntry = {
-            requestId: data.data.id,  // Linking ledger to float request
             date: new Date().toISOString(),
             description: payload.description,
             amount: payload.amount,
@@ -156,13 +143,29 @@ export const useBilling = defineStore("billing", () => {
         };
 
         const ledgerResponse = await api.post("/branch4-manager-float-ledgers", ledgerEntry);
+        const ledgerId = ledgerResponse.data.data.id; // Extracting ledger ID
+
         floatLedgers.value.push(ledgerResponse.data.data); // Store ledger entry in state
-        console.log("Float ledger entry created:", ledgerResponse.data);
+        console.log("Float ledger entry created:", ledgerResponse.data.data);
+
+        // Step 2: Create Float Request (linking it to the ledger ID)
+        const { data } = await api.post("/branch4-manager-float-requests", {
+            amount: payload.amount,
+            status: "pending",
+            branch: payload.branch,
+            description: payload.description,
+            requestDate: new Date().toISOString(),
+            ledgerId: ledgerId, // Linking the float request to the ledger
+        });
+
+        floatRequestsToAdmin.value?.push(data.data);
+        console.log("Float request created and linked to ledger:", data.data);
 
     } catch (error) {
         console.error("Error in requestFloatToAdmin:", error);
     }
 }
+
 
 
 
