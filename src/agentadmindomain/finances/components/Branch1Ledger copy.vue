@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import AppModal from "@/components/AppModal.vue";
 import { onMounted, ref, reactive, watch, computed, type Ref } from "vue";
-import { useBilling } from "@/branchmanagerdomain/finances/stores"; // Import the appropriate store
+// import { useBilling } from "@/branchmanagerdomain/finances/stores"; // Import the appropriate store
+// import { useBilling } from "@/branchmanagerdomain/finances/dummystore"; // Import the appropriate store
+import { useBilling } from "@/branchmanagerdomain/finances/stores";
 import { useDebounceFn } from "@vueuse/core";
 import type {
   Transaction,
@@ -269,62 +271,10 @@ watch(
 <template>
   <!-- <div class=""> -->
   <!-- Header -->
-  <div class="max-w-7xl mx-auto bg-white flex flex-col p-2 min-h-[60vh]">
-    <div class="flex space-x-2 my-1 pt-1 pb-3">
-      <div class="flex-grow">
-        <div
-          class="flex justify-between gap-2 bg-gray-10 border border-gray-200 rounded px-2 py-3"
-        >
-          <select
-            v-if="filter.filter !== undefined"
-            input-type="text"
-            v-model="filter.filter[2].operand"
-            class="filter-element e-input"
-            type="text"
-            placeholder="Drop down provider"
-          >
-            <option value="" disabled selected>Filter by Description</option>
-            <option value="recharge">Recharge</option>
-            <option value="floatAllocation">Float Allocation</option>
-            <!-- <option value="UMEME">UMEME</option> -->
-          </select>
-          <!-- <select class="filter-element e-select">
-            <option :value="null">- Select Status -</option>
-            <option value="pending">Pending</option>
-            <option value="active">Active</option>
-            <option value="blocked">Blocked</option>
-          </select> -->
-          <div class="flex">
-            <div class="block">
-              <label for="date-from" class="mr-2 text-sm text-gray-600"
-                >From:</label
-              >
-              <input
-                type="date"
-                id="date-from"
-                class="filter-element e-input"
-                v-model="filter.fromDate"
-              />
-            </div>
-            <div class="block">
-              <label for="date-to" class="mr-2 text-sm text-gray-600"
-                >To:</label
-              >
-              <input
-                type="date"
-                id="date-to"
-                class="filter-element e-input"
-                v-model="filter.toDate"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div class="max-w-7xl mx-auto bg-white flex flex-col px-2 min-h-[60vh]">
     <!-- Table -->
     <!-- Table -->
-    <div class="flex my-1">
+    <div class="flex">
       <table class="table w-full">
         <thead>
           <tr class="header-tr">
@@ -333,6 +283,7 @@ watch(
             <th class="t-header">Type</th>
             <th class="text-right t-header">Amount</th>
             <th class="text-right t-header">Balance</th>
+            <!-- <th class="text-right t-header">Balance2</th> -->
           </tr>
         </thead>
         <thead v-if="loading">
@@ -493,4 +444,3 @@ watch(
 @import "@/assets/styles/table.css";
 @import "@/assets/styles/widgets.css";
 </style>
-@/branchmanagerdomain/finances/stores@/branchmanager/balance/stores
