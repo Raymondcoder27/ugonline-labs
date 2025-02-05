@@ -29,8 +29,9 @@ const notify = useNotificationsStore();
 let form: FloatRequest = reactive({
   name: "",
   branch: "",
-  amount: "",
+  amount: 0,
   status: "",
+  description: "",
 });
 const emit = defineEmits(["cancel","requestEdited"]);
 
@@ -41,6 +42,7 @@ onMounted(() => {
   form.branch = data.branch;
   form.amount = data.amount;
   form.status = data.status;
+  form.description = data.description;
   //   form.displayName = data.displayName
   //   form.physicalAddress = data.physicalAddress
   //   form.inquiryEmail = data.inquiryEmail

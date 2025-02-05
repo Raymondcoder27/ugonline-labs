@@ -394,7 +394,7 @@ onMounted(() => {
         <tbody>
           <tr
             class="text-right"
-            v-for="(request, id) in store.floatRequests"
+            v-for="(request, id) in billingStore.floatRequests"
             :key="id"
           >
           <!-- <tr
