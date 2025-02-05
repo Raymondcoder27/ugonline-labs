@@ -770,13 +770,13 @@ onMounted(() => {
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
     <!-- Chances are high that you're starting with a form -->
-    <EditFloatRequestAmount @cancel="close" @floatAllocated="close" />
+    <EditFloatRequestAmount @cancel="closeEditModal" @floatAllocated="close" />
     <!-- That's also okay -->
   </AppModal>
 
   <AppModal v-model="floatRequestModalOpen" xl2>
     <!-- Your modal content goes here -->
-    <RequestFloat @requestSubmitted="closeEditModal" :close="close" />
+    <RequestFloat @requestSubmitted="close" :close="close" />
   </AppModal>
 </template>
 
