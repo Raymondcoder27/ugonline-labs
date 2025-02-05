@@ -440,7 +440,7 @@ export const useBilling = defineStore("billing", () => {
   
         const { data } = await api.put("/branch-manager2-float-requests/" + requestId, {
           amount: payload.amount,
-          till: payload.till,
+          branch: payload.branch,
           // status: "request edited",
           status: "edited",
           description: payload.description,
