@@ -332,7 +332,7 @@ export const useBilling = defineStore("billing", () => {
   //   })
   // }
 
-  async function adjustFloatLedger(payload: AllocateFloat) {
+  async function adjustFloatLedger(payload: FloatLedger) {
     try {
       // Find the float request by ID
       // const floatRequest = floatRequests.value.find(request => request.id === requestId);
@@ -344,10 +344,10 @@ export const useBilling = defineStore("billing", () => {
 
       // Send the API request with all required data
       const { data } = await api.post(`/branch3-manager-float-ledgers`, {
-        id: floatLedgers.value.length + 1,
+        // id: floatLedgers.value.length + 1,
         date: new Date().toISOString(),
         // description: "Till " + payload.tillId,
-        description: payload.tillId,
+        description: payload.description,
         amount: -payload.amount,
       });
       console.log("Float ledger adjusted successfully:", data);
