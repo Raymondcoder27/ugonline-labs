@@ -37,7 +37,7 @@ const emit = defineEmits(["cancel","requestEdited"]);
 onMounted(() => {
   let data = JSON.parse(<string>localStorage.getItem("floatRequestEdit"));
 
-  form.name = data.name;
+  // form.name = data.name;
   form.branch = data.branch;
   form.amount = data.amount;
   form.status = data.status;
@@ -54,7 +54,7 @@ function submit() {
 
   let id = data.id;
   let payload = {
-    name: form.name,
+    // name: form.name,
     branch: form.branch,
     amount: form.amount,
     status: form.status,
