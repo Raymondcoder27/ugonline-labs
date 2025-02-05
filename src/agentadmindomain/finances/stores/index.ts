@@ -75,6 +75,11 @@ export const useBilling = defineStore("billing", () => {
     // { id: 2, date: "2021-09-02", description: "Branch 1", amount: -20000000, balance: 300000000 },
   ];
 
+   const dummyBranchFloatLedgers: FloatLedger[] = [
+      { id: 1, date: "2021-09-01", description: "Recharge", amount: 115000000, balance: 115000000, createdAt: "" },
+      { id: 2, date: "2021-09-02", description: "Till 1", amount: -10000000, balance: 1050000000, createdAt: "" },
+    ];
+
   const dummyBackofficeUsers: BackofficeUser[] = [
     { id: 1, username: "admin1", fullName: "Jack Mwebe", role: "Administrator", branch: "Branch 1", status: "Active" },
     { id: 2, username: "manager1", fullName: "Katamba Johnson", role: "Manager", branch: "Branch 2", status: "Active" },
@@ -101,6 +106,7 @@ export const useBilling = defineStore("billing", () => {
   const totalAmount = ref(600); // Set a test value
   const totalBalance = ref(3000); // Set a test value
   const floatLedgers = ref<FloatLedger[]>(dummyFloatLedgers); // Use dummy data for now
+  const branchFloatLedgers = ref<FloatLedger[]>(dummyBranchFloatLedgers)
   const backofficeUsers = ref<BackofficeUser[]>(dummyBackofficeUsers);
   const branchManagers = ref<BranchManager[]>(dummyBranchManagers);
   const floatAllocations = ref<FloatAllocation[]>(dummyFloatAllocations);
@@ -131,6 +137,14 @@ export const useBilling = defineStore("billing", () => {
     // const data = await response.json();
     // Use dummy data for now
     floatLedgers.value = dummyFloatLedgers;
+  }
+
+  async function fetchBranchFloatLedgers(filter: any) {
+    // Simulate API call
+    // const response = await fetch(`/api/float-ledgers?limit=${filter.limit}&page=${filter.page}`);
+    // const data = await response.json();
+    // Use dummy data for now
+    floatLedgers.value = dummyBranchFloatLedgers;
   }
 
   async function fetchBackofficeUsers(filter: any) {
@@ -471,6 +485,7 @@ export const useBilling = defineStore("billing", () => {
     fetchFloatRequests,
     fetchTransactions,
     fetchFloatLedgers,
+    fetchBranchFloatLedgers,
     fetchBackofficeUsers,
     fetchBranchManagers,
     fetchFloatAllocations,

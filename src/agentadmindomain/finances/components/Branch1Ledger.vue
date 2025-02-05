@@ -27,7 +27,7 @@ const totalPages = computed(() => Math.ceil(totalRecords.value / limit.value));
 const pageInput = ref(1);
 const changePageSize = () => {
   page.value = 1;
-  fetchFloatLedgers();
+  fetchBranchFloatLedgers();
 };
 // const showPagination = computed(() => totalRecords.value >= limit.value);
 
@@ -39,11 +39,11 @@ const jumpToPage = () => {
   } else {
     page.value = pageInput.value;
   }
-  fetchFloatLedgers();
+  fetchBranchFloatLedgers();
 };
-function fetchFloatLedgers() {
+function fetchBranchFloatLedgers() {
   // branchStore
-  //   .fetchFloatLedgers(page.value, limit.value)
+  //   .fetchBranchFloatLedgers(page.value, limit.value)
   //   .then(() => (loading.value = false))
   //   .catch((error: ApiError) => {
   //     loading.value = false;
@@ -100,8 +100,8 @@ const filter = reactive({
 
 // Fetch billing data (transactions, float ledgers)
 onMounted(() => {
-  fetchFloatLedgers();
-  billingStore.fetchFloatLedgers(); // Fetch float ledgers
+  fetchBranchFloatLedgers();
+  billingStore.fetchBranchFloatLedgers(); // Fetch float ledgers
   // balanceStore.fetchTotalBalance(); // Fetch total balance
   // balanceStore.increaseTotalBalance(); // Increase balance by 100
 });
@@ -146,7 +146,7 @@ const computedLedgerWithBalance = computed(() => {
   });
 });
 
-// function fetchFloatLedgers() {
+// function fetchBranchFloatLedgers() {
 //   filter.limit = limit.value;
 //   filter.page = page.value;
 
@@ -159,17 +159,17 @@ const computedLedgerWithBalance = computed(() => {
 //     });
 //   }
 
-//   store.fetchFloatLedgers(filter); // Fetch transactions based on filter
+//   store.fetchBranchFloatLedgers(filter); // Fetch transactions based on filter
 // }
 
 function next() {
   page.value += 1;
-  fetchFloatLedgers();
+  fetchBranchFloatLedgers();
 }
 
 function previous() {
   page.value -= 1;
-  fetchFloatLedgers();
+  fetchBranchFloatLedgers();
 }
 
 function open() {
@@ -187,7 +187,7 @@ function convertDateTime(date: string) {
 // Debounced filter update function
 const updateFilter = useDebounceFn(
   () => {
-    fetchFloatLedgers();
+    fetchBranchFloatLedgers();
   },
   300,
   { maxWait: 5000 }
