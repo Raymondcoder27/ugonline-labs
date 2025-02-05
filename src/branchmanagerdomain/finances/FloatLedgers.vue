@@ -331,9 +331,9 @@ watch(
             <th class="t-header">#</th>
             <th class="t-header">Date</th>
             <th class="t-header">Type</th>
-            <th class="text-right t-header">Amount</th>
-            <th class="text-right first-letter:capitalize t-header">Status</th>
-            <th class="text-right t-header">Balance</th>
+            <th class="text-left">Amount</th>
+            <th class="text-right">Status</th>
+            <th class="text-right">Balance</th>
           </tr>
         </thead>
         <thead v-if="loading">
@@ -397,7 +397,7 @@ watch(
             >
               <span>{{ transaction.amount.toLocaleString() }}</span>
             </td>
-            <td class="text-left">
+            <td class="text-right">
               <!-- First Case: float request approved -->
               <div v-if="transaction.status === 'pending'">
                 <!-- <td> -->
@@ -458,7 +458,12 @@ watch(
     <span>{{ transaction.balance.toLocaleString() }}</span>
   </td> -->
 
-            <td class="text-left text-gray-800">
+           
+
+            <td class="text-right text-gray-800">
+              <span>{{ transaction.balance.toLocaleString() }}</span>
+            </td>
+            <!-- <td class="text-left text-gray-800">
               <span v-if="transaction.status === 'approved'">
                 {{ transaction.balance.toLocaleString() }}
               </span>
@@ -474,13 +479,7 @@ watch(
               >
                 --{{ transaction.balance.toLocaleString() }}--
               </span>
-            </td>
-
-            <td class="text-left text-gray-800">
-              <!-- <button @click="decreaseBalance">Decrease Balance</button> -->
-              <!-- <span>{{ balanceStore.totalBalance.current }}</span> -->
-              <span>{{ transaction.balance.toLocaleString() }}</span>
-            </td>
+            </td> -->
             <!-- <td class="text-left text-gray-800">
                 <span v-if="transaction.status === 'approved'">
                   {{ transaction.balance.toLocaleString() }}
