@@ -363,9 +363,14 @@ watch(
             </td>
             <!-- <td class="text-left">{{ idx + 1 }}</td> -->
 
-            <td class="text-left">
+            <!-- <td class="text-left">
               <span class="text-xs">{{
                 convertDateTime(transaction.createdAt)
+              }}</span>
+            </td> -->
+            <td class="text-left">
+              <span class="text-xs">{{
+                convertDateTime(transaction.date)
               }}</span>
             </td>
             <td class="text-left">
