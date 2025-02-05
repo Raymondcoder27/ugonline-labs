@@ -392,21 +392,21 @@ onMounted(() => {
           </tr>
         </thead>
         <tbody>
-          <!-- <tr
+          <tr
             class="text-right"
             v-for="(request, id) in store.floatRequests"
             :key="id"
-          > -->
+          >
           <!-- <tr
             class="text-right"
             v-for="(request, id) in paginatedFloatRequests"
             :key="id"
           > -->
-          <tr
+          <!-- <tr
             class="text-left"
             v-for="(request, id) in paginatedFloatRequests"
             :key="id"
-          >
+          > -->
             <td>{{ id + 1 }}</td>
             <!-- <td class="text-left">{{  convertDateTime(request.date) }}</td> -->
             <!-- <td class="text-left">{{ request.requestDate }}</td> -->
