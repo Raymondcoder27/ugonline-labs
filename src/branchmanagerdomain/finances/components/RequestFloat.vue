@@ -33,7 +33,7 @@ let form: FloatRequest = reactive({
 });
 const notify = useNotificationsStore();
 const loading: Ref<boolean> = ref(false);
-const emit = defineEmits(['cancel', 'requestSubmitted']);
+const emit = defineEmits(["cancel", "requestSubmitted"]);
 // const store = useAccounts();
 // function submit() {
 //   loading.value = true
@@ -56,7 +56,6 @@ function submit() {
     status: "pending",
     requestDate: form.requestDate,
   };
-
 
   loading.value = true;
   console.log("Submitting payload:", payload);
