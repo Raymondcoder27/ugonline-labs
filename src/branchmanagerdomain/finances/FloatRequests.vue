@@ -34,8 +34,11 @@ function editFloatRequest(floatRequest: FloatRequest) {
 //     });
 //   }
 // };
+// function close() {
+//   modalOpen.value = false;
+// }
 function close() {
-  modalOpen.value = false;
+  floatRequestModalOpen.value = false;
 }
 
 function closeViewModal() {
@@ -776,7 +779,7 @@ onMounted(() => {
 
   <AppModal v-model="floatRequestModalOpen" xl2>
     <!-- Your modal content goes here -->
-    <RequestFloat @requestSubmitted="close" :close="close" />
+    <RequestFloat @requestSubmitted="close" :close="close" @cancel="close" />
   </AppModal>
 </template>
 
