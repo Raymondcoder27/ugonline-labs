@@ -460,10 +460,10 @@ watch(
 
            
 
-            <td class="text-right text-gray-800">
+            <!-- <td class="text-right text-gray-800">
               <span>{{ transaction.balance.toLocaleString() }}</span>
-            </td>
-            <!-- <td class="text-left text-gray-800">
+            </td> -->
+            <td class="text-right text-gray-800">
               <span v-if="transaction.status === 'approved'">
                 {{ transaction.balance.toLocaleString() }}
               </span>
@@ -479,7 +479,7 @@ watch(
               >
                 --{{ transaction.balance.toLocaleString() }}--
               </span>
-            </td> -->
+            </td>
             <!-- <td class="text-left text-gray-800">
                 <span v-if="transaction.status === 'approved'">
                   {{ transaction.balance.toLocaleString() }}
