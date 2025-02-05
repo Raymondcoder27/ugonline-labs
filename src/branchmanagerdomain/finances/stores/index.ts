@@ -199,19 +199,19 @@ export const useBilling = defineStore("billing", () => {
     // totalBalance.value = 300000000; // Set a test value
   }
 
-  async function fetchFloatLedgers(filter: any) {
-    // Simulate API call
-    // const response = await fetch(`/api/float-ledgers?limit=${filter.limit}&page=${filter.page}`);
-    // const data = await response.json();
-    // Use dummy data for now
-    floatLedgers.value = dummyFloatLedgers;
-  }
-
-  // async function fetchFloatLedgers() {
-  //   const { data } = await api.get("/branch4-manager-float-ledgers");
-  //   floatLedgers.value = data.data;
-  //   console.log("Float Ledgers:", floatLedgers.value);
+  // async function fetchFloatLedgers(filter: any) {
+  //   // Simulate API call
+  //   // const response = await fetch(`/api/float-ledgers?limit=${filter.limit}&page=${filter.page}`);
+  //   // const data = await response.json();
+  //   // Use dummy data for now
+  //   floatLedgers.value = dummyFloatLedgers;
   // }
+
+  async function fetchFloatLedgers() {
+    const { data } = await api.get("/branch4-manager-float-ledgers");
+    floatLedgers.value = data.data;
+    console.log("Float Ledgers:", floatLedgers.value);
+  }
 
   async function fetchBackofficeUsers(filter: any) {
     // Simulate API call
