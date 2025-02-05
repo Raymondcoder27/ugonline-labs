@@ -120,7 +120,7 @@ export const useBilling = defineStore("billing", () => {
   const floatRequestToAdmin = ref<FloatRequestToAdmin | null>(null);
 
   // async function requestFloatToAdmin(payload: RequestFloatToAdmin) {
-  //   const { data } = await api.post("/branch4-manager-float-requests", {
+  //   const { data } = await api.post("/branch5-manager-float-requests", {
   //     // requestDate: new Date().toISOString(),
   //     amount: payload.amount,
   //     status: "pending",
@@ -142,14 +142,14 @@ export const useBilling = defineStore("billing", () => {
         branch: payload.branch,
       };
 
-      const ledgerResponse = await api.post("/branch4-manager-float-ledgers", ledgerEntry);
+      const ledgerResponse = await api.post("/branch5-manager-float-ledgers", ledgerEntry);
       const ledgerId = ledgerResponse.data.data.id; // Extracting ledger ID
 
       floatLedgers.value.push(ledgerResponse.data.data); // Store ledger entry in state
       console.log("Float ledger entry created:", ledgerResponse.data.data);
 
       // Step 2: Create Float Request (linking it to the ledger ID)
-      const { data } = await api.post("/branch4-manager-float-requests", {
+      const { data } = await api.post("/branch5-manager-float-requests", {
         amount: payload.amount,
         status: "pending",
         branch: payload.branch,
@@ -208,7 +208,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   async function fetchFloatLedgers() {
-    const { data } = await api.get("/branch4-manager-float-ledgers");
+    const { data } = await api.get("/branch5-manager-float-ledgers");
     floatLedgers.value = data.data;
     console.log("Float Ledgers:", floatLedgers.value);
   }
@@ -261,7 +261,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   async function fetchFloatRequestsToAdmin() {
-    const { data } = await api.get("/branch4-manager-float-requests");
+    const { data } = await api.get("/branch5-manager-float-requests");
     floatRequestsToAdmin.value = data.data;
     console.log("Float Requests:", floatRequestsToAdmin.value);
   }
@@ -410,7 +410,7 @@ export const useBilling = defineStore("billing", () => {
   //       // If description is "Recharge", ensure amount is positive, otherwise keep it negative
   // const adjustedAmount = payload.description === "Recharge" && payload.amount > 0 ? payload.amount : -payload.amount;
   //     // Send the API request with all required data
-  //     const { data } = await api.post(`/branch4-manager-float-ledgers`, {
+  //     const { data } = await api.post(`/branch5-manager-float-ledgers`, {
   //       // id: floatLedgers.value.length + 1,
   //       date: new Date().toISOString(),
   //       // till: payload.till,

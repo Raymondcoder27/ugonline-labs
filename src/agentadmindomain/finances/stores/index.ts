@@ -148,7 +148,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   async function fetchBranchFloatLedgers() {
-    const { data } = await api.get("/branch4-manager-float-ledgers");
+    const { data } = await api.get("/branch5-manager-float-ledgers");
     floatLedgers.value = data.data;
     console.log("Float Ledgers:", floatLedgers.value);
   }
@@ -179,7 +179,7 @@ export const useBilling = defineStore("billing", () => {
 
 
   async function fetchFloatRequests() {
-    const { data } = await api.get("/branch4-manager-float-requests");
+    const { data } = await api.get("/branch5-manager-float-requests");
     floatRequests.value = data.data;
     console.log("Float Requests:", floatRequests.value);
   }
@@ -379,7 +379,7 @@ export const useBilling = defineStore("billing", () => {
   //     }
 
   //     // Send the API request with all required data
-  //     const { data } = await api.put(`/branch4-manager-float-requests/${requestId}`, {
+  //     const { data } = await api.put(`/branch5-manager-float-requests/${requestId}`, {
   //       status: "approved",
   //       approvedBy: "Manager One",
   //       amount: floatRequest.amount, // Retrieve amount from the found request
@@ -414,7 +414,7 @@ export const useBilling = defineStore("billing", () => {
 //         }
 
 //         // Step 2: Approve the Float Request
-//         const { data } = await api.put(`/branch4-manager-float-requests/${requestId}`, {
+//         const { data } = await api.put(`/branch5-manager-float-requests/${requestId}`, {
 //             status: "approved",
 //             approvedBy: "Manager One",
 //             amount: floatRequest.amount,
@@ -427,7 +427,7 @@ export const useBilling = defineStore("billing", () => {
 
 //         // Step 3: Approve the Float Ledger Record using `ledgerId`
 //         if (floatRequest.ledgerId) {
-//             await api.put(`/branch4-manager-float-ledgers/${floatRequest.ledgerId}`, {
+//             await api.put(`/branch5-manager-float-ledgers/${floatRequest.ledgerId}`, {
 //                 status: "approved",
 //             });
 
@@ -451,7 +451,7 @@ async function approveFloatRequest(requestId: string) {
       }
 
       // Step 2: Approve the Float Request
-      const { data } = await api.put(`/branch4-manager-float-requests/${requestId}`, {
+      const { data } = await api.put(`/branch5-manager-float-requests/${requestId}`, {
           status: "approved",
           approvedBy: "Manager One",
           amount: floatRequest.amount,
@@ -469,7 +469,7 @@ async function approveFloatRequest(requestId: string) {
           const ledgerEntry = floatLedgers.value.find(ledger => ledger.id === floatRequest.ledgerId);
 
           if (ledgerEntry) {
-              await api.put(`/branch4-manager-float-ledgers/${floatRequest.ledgerId}`, {
+              await api.put(`/branch5-manager-float-ledgers/${floatRequest.ledgerId}`, {
                   ...ledgerEntry, // Retain all original fields
                   status: "approved", // Only update status
               });
@@ -509,7 +509,7 @@ async function approveFloatRequest(requestId: string) {
       }
 
       // Send the API request with all required data
-      const { data } = await api.put(`/branch4-manager-float-requests/${requestId}`, {
+      const { data } = await api.put(`/branch5-manager-float-requests/${requestId}`, {
         status: "rejected",
         approvedBy: "Manager One",
         amount: floatRequest.amount, // Retrieve amount from the found request
@@ -544,7 +544,7 @@ async function approveFloatRequest(requestId: string) {
         return;
       }
 
-      const { data } = await api.put("/branch4-manager-float-requests/" + requestId, {
+      const { data } = await api.put("/branch5-manager-float-requests/" + requestId, {
         amount: payload.amount,
         branch: payload.branch,
         // status: "request edited",
