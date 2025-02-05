@@ -320,17 +320,32 @@ export const useBilling = defineStore("billing", () => {
   // const saveFloatRequestToLocalStorage = () => {
   //   localStorage.setItem('allocateFloatFromRequestToLocalStorage', JSON.stringify(allocateFloatFromRequestToLocalStorage.value))
   // }
+  // // allocate float allocation to float ledger array
+  // function adjustFloatLedger(payload: FloatLedger) {
+  //   floatLedgers.value.push({
+  //     id: floatLedgers.value.length + 1,
+  //     date: new Date().toISOString(),
+  //     // description: "Till " + payload.tillId,
+  //     description: payload.description,
+  //     amount: -payload.amount,
+  //     // balance: totalBalance.value + payload.amount,
+  //   })
+  // }
+
   // allocate float allocation to float ledger array
-  function adjustFloatLedger(payload: FloatLedger) {
-    floatLedgers.value.push({
-      id: floatLedgers.value.length + 1,
-      date: new Date().toISOString(),
-      // description: "Till " + payload.tillId,
-      description: payload.description,
-      amount: -payload.amount,
-      // balance: totalBalance.value + payload.amount,
-    })
-  }
+function adjustFloatLedger(payload: FloatLedger) {
+  // If description is "Recharge", ensure amount is positive, otherwise keep it negative
+  const adjustedAmount = payload.description === "Recharge" && payload.amount > 0 ? payload.amount : -payload.amount;
+  
+  floatLedgers.value.push({
+    id: floatLedgers.value.length + 1,
+    date: new Date().toISOString(),
+    description: payload.description,
+    amount: adjustedAmount,
+    // balance: totalBalance.value + adjustedAmount,
+  });
+}
+
 
   // async function adjustFloatLedger(payload: FloatLedger) {
   //   try {
