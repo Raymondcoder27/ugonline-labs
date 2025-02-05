@@ -139,12 +139,18 @@ export const useBilling = defineStore("billing", () => {
     floatLedgers.value = dummyFloatLedgers;
   }
 
-  async function fetchBranchFloatLedgers(filter: any) {
-    // Simulate API call
-    // const response = await fetch(`/api/float-ledgers?limit=${filter.limit}&page=${filter.page}`);
-    // const data = await response.json();
-    // Use dummy data for now
-    branchFloatLedgers.value = dummyBranchFloatLedgers;
+  // async function fetchBranchFloatLedgers(filter: any) {
+  //   // Simulate API call
+  //   // const response = await fetch(`/api/float-ledgers?limit=${filter.limit}&page=${filter.page}`);
+  //   // const data = await response.json();
+  //   // Use dummy data for now
+  //   branchFloatLedgers.value = dummyBranchFloatLedgers;
+  // }
+
+  async function fetchBranchFloatLedgers() {
+    const { data } = await api.get("/branch4-manager-float-ledgers");
+    floatLedgers.value = data.data;
+    console.log("Float Ledgers:", floatLedgers.value);
   }
 
   async function fetchBackofficeUsers(filter: any) {
