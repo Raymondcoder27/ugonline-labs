@@ -345,7 +345,7 @@ export const useBilling = defineStore("billing", () => {
     // description: "Till " + payload.tillId,
     description: payload.description,
     amount: adjustedAmount,
-    status: "approved",
+    status: payload.status,
     // balance: totalBalance.value + payload.amount,
   })
 }
@@ -420,6 +420,7 @@ export const useBilling = defineStore("billing", () => {
       date: new Date().toISOString(),
       description: floatRequest.till,
       amount: -floatRequest.amount,
+      status: "approved",
       // balance: 300000000 - floatRequest.amount,
     });
   }
