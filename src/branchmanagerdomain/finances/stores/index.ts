@@ -168,7 +168,7 @@ export const useBilling = defineStore("billing", () => {
   }
 
   // async function fetchFloatLedgers() {
-  //   const { data } = await api.get("/branch3-manager-float-ledgers");
+  //   const { data } = await api.get("/branch4-manager-float-ledgers");
   //   floatLedgers.value = data.data;
   //   console.log("Float Ledgers:", floatLedgers.value);
   // }
@@ -358,7 +358,7 @@ function adjustFloatLedger(payload: FloatLedger) {
   //     // }
 
   //     // Send the API request with all required data
-  //     const { data } = await api.post(`/branch3-manager-float-ledgers`, {
+  //     const { data } = await api.post(`/branch4-manager-float-ledgers`, {
   //       // id: floatLedgers.value.length + 1,
   //       date: new Date().toISOString(),
   //       // description: "Till " + payload.tillId,

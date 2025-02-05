@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, type Ref } from "vue";
+import { ref, watch, type Ref } from "vue";
 // import BackofficeAccounts from "@/branchmanagerdomain/accounts/BackofficeAccounts.vue";
 // import UserAccounts from "@/branchmanagerdomain/accounts/UserAccounts.vue";
 
@@ -24,6 +24,18 @@ const activeTab: Ref<string> = ref("floatrequests");
 function select(tab: string) {
   activeTab.value = tab;
 }
+
+// Watch for changes in the total balance and refetch the new balance
+watch(
+  () => totalBalance.currentBalance,
+  (newBalance, oldBalance) => {
+    // Refetch balance whenever it changes
+    if (newBalance !== oldBalance) {
+      console.log("Balance changed, refetching...");
+      balanceStore.fetchTotalBalance(); // This will fetch the latest balance
+    }
+  }
+);
 </script>
 
 <template>
