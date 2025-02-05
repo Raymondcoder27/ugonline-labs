@@ -159,7 +159,7 @@ export const useBilling = defineStore("billing", () => {
 
 
   async function fetchFloatRequests() {
-    const { data } = await api.get("/branch-manager2-float-requests");
+    const { data } = await api.get("/branch-manager3-float-requests");
     floatRequests.value = data.data;
     console.log("Float Requests:", floatRequests.value);
   }
@@ -359,7 +359,7 @@ export const useBilling = defineStore("billing", () => {
       }
 
       // Send the API request with all required data
-      const { data } = await api.put(`/branch-manager2-float-requests/${requestId}`, {
+      const { data } = await api.put(`/branch-manager3-float-requests/${requestId}`, {
         status: "approved",
         approvedBy: "Manager One",
         amount: floatRequest.amount, // Retrieve amount from the found request
@@ -403,7 +403,7 @@ export const useBilling = defineStore("billing", () => {
       }
 
       // Send the API request with all required data
-      const { data } = await api.put(`/branch-manager2-float-requests/${requestId}`, {
+      const { data } = await api.put(`/branch-manager3-float-requests/${requestId}`, {
         status: "rejected",
         approvedBy: "Manager One",
         amount: floatRequest.amount, // Retrieve amount from the found request
@@ -438,7 +438,7 @@ export const useBilling = defineStore("billing", () => {
           return;
         }
   
-        const { data } = await api.put("/branch-manager2-float-requests/" + requestId, {
+        const { data } = await api.put("/branch-manager3-float-requests/" + requestId, {
           amount: payload.amount,
           branch: payload.branch,
           // status: "request edited",
