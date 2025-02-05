@@ -333,43 +333,37 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   // allocate float allocation to float ledger array
-function adjustFloatLedger(payload: FloatLedger) {
-  // If description is "Recharge", ensure amount is positive, otherwise keep it negative
-  const adjustedAmount = payload.description === "Recharge" && payload.amount > 0 ? payload.amount : -payload.amount;
+// function adjustFloatLedger(payload: FloatLedger) {
+//   // If description is "Recharge", ensure amount is positive, otherwise keep it negative
+//   const adjustedAmount = payload.description === "Recharge" && payload.amount > 0 ? payload.amount : -payload.amount;
   
-  floatLedgers.value.push({
-    id: floatLedgers.value.length + 1,
-    date: new Date().toISOString(),
-    description: payload.description,
-    amount: adjustedAmount,
-    // balance: totalBalance.value + adjustedAmount,
-  });
-}
+//   floatLedgers.value.push({
+//     id: floatLedgers.value.length + 1,
+//     date: new Date().toISOString(),
+//     description: payload.description,
+//     amount: adjustedAmount,
+//     // balance: totalBalance.value + adjustedAmount,
+//   });
+// }
 
 
-  // async function adjustFloatLedger(payload: FloatLedger) {
-  //   try {
-  //     // Find the float request by ID
-  //     // const floatRequest = floatRequests.value.find(request => request.id === requestId);
-
-  //     // if (!floatRequest) {
-  //     //   console.error("Float request not found for ID:", requestId);
-  //     //   return;
-  //     // }
-
-  //     // Send the API request with all required data
-  //     const { data } = await api.post(`/branch4-manager-float-ledgers`, {
-  //       // id: floatLedgers.value.length + 1,
-  //       date: new Date().toISOString(),
-  //       // description: "Till " + payload.tillId,
-  //       description: payload.description,
-  //       amount: -payload.amount,
-  //     });
-  //     console.log("Float ledger adjusted successfully:", data);
-  //   } catch (error) {
-  //     console.error("Error approving float request:", error);
-  //   }
-  // }
+  async function adjustFloatLedger(payload: FloatLedger) {
+    try {
+        // If description is "Recharge", ensure amount is positive, otherwise keep it negative
+  const adjustedAmount = payload.description === "Recharge" && payload.amount > 0 ? payload.amount : -payload.amount;
+      // Send the API request with all required data
+      const { data } = await api.post(`/branch4-manager-float-ledgers`, {
+        // id: floatLedgers.value.length + 1,
+        date: new Date().toISOString(),
+        // description: "Till " + payload.tillId,
+        description: payload.description,
+        amount: adjustedAmount,
+      });
+      console.log("Float ledger adjusted successfully:", data);
+    } catch (error) {
+      console.error("Error approving float request:", error);
+    }
+  }
 
   
 
