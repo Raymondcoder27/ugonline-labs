@@ -75,10 +75,10 @@ export const useBilling = defineStore("billing", () => {
     // { id: 2, date: "2021-09-02", description: "Branch 1", amount: -20000000, balance: 300000000 },
   ];
 
-   const dummyBranchFloatLedgers: FloatLedger[] = [
-      { id: 1, date: "2021-09-01", description: "Recharge", amount: 115000000, balance: 115000000, createdAt: "" },
-      { id: 2, date: "2021-09-02", description: "Till 1", amount: -10000000, balance: 1050000000, createdAt: "" },
-    ];
+  const dummyBranchFloatLedgers: FloatLedger[] = [
+    { id: 1, date: "2021-09-01", description: "Recharge", amount: 115000000, balance: 115000000, createdAt: "" },
+    { id: 2, date: "2021-09-02", description: "Till 1", amount: -10000000, balance: 1050000000, createdAt: "" },
+  ];
 
   const dummyBackofficeUsers: BackofficeUser[] = [
     { id: 1, username: "admin1", fullName: "Jack Mwebe", role: "Administrator", branch: "Branch 1", status: "Active" },
@@ -443,29 +443,29 @@ export const useBilling = defineStore("billing", () => {
   }
 
 
-    //edit float request amount and allocated the new amount inserted in the form
-    async function editFloatRequest(requestId: any, payload: any) {
-      try {
-        const floatRequest = floatRequests.value.find((request) => request.id === requestId);
-        if (!floatRequest) {
-          console.error("Float request not found for ID:", requestId);
-          return;
-        }
-  
-        const { data } = await api.put("/branch-manager3-float-requests/" + requestId, {
-          amount: payload.amount,
-          branch: payload.branch,
-          // status: "request edited",
-          status: "edited",
-          description: payload.description,
-          approvedBy: "Manager One",
-        });
-        floatRequests.value = data.data;
-        console.log("Float Requests:", floatRequests.value);
-      } catch (error) {
-        console.error("Error editing float request:", error);
+  //edit float request amount and allocated the new amount inserted in the form
+  async function editFloatRequest(requestId: any, payload: any) {
+    try {
+      const floatRequest = floatRequests.value.find((request) => request.id === requestId);
+      if (!floatRequest) {
+        console.error("Float request not found for ID:", requestId);
+        return;
       }
+
+      const { data } = await api.put("/branch-manager3-float-requests/" + requestId, {
+        amount: payload.amount,
+        branch: payload.branch,
+        // status: "request edited",
+        status: "edited",
+        description: payload.description,
+        approvedBy: "Manager One",
+      });
+      floatRequests.value = data.data;
+      console.log("Float Requests:", floatRequests.value);
+    } catch (error) {
+      console.error("Error editing float request:", error);
     }
+  }
 
   return {
     transactions,
