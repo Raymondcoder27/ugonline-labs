@@ -181,7 +181,6 @@ function select(tab: string) {
   <!-- <h2>Transactions</h2>
     </ul> -->
   <div class="shadow-lg bg-white rounded p-2">
-
     <div class="flex">
       <div class="w-2/12 py-2 text-xs">
         <div
