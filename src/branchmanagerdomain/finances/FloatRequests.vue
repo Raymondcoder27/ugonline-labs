@@ -36,7 +36,13 @@ function editFloatRequest(floatRequest: FloatRequest) {
 // };
 function close() {
   modalOpen.value = false;
+}
+
+function closeViewModal() {
   viewModalOpen.value = false;
+}
+
+function closeEditModal() {
   editModalOpen.value = false;
 }
 

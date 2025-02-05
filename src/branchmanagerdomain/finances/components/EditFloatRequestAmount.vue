@@ -15,7 +15,7 @@ const notify = useNotificationsStore();
 let form: FloatRequest = reactive({
   name: "",
   till: "",
-  amount: 0,
+  amount: "",
   status: "",
   requestDate: "",
   description: "",
@@ -68,7 +68,6 @@ function submit() {
       // window.location.reload();
       notify.success("Edited");
       loading.value = false;
-
     })
     .catch((error: ApiError) => {
       loading.value = false;
