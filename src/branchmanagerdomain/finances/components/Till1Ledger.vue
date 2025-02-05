@@ -180,8 +180,8 @@ const paginatedFloatRequestsWithBalance = computed(() => {
   return paginatedTransactions.map((transaction) => {
     if (transaction.status === "approved" || transaction.status === "edited") {
       runningBalance += transaction.amount; // Increase balance only if approved
-    // balanceStore.updateTotalBalance(runningBalance);
-    } 
+      // balanceStore.updateTotalBalance(runningBalance);
+    }
     // If rejected, do nothing (balance stays the same)
     // balanceStore.updateTotalBalance(runningBalance);
 
@@ -194,7 +194,6 @@ const paginatedFloatRequestsWithBalance = computed(() => {
     // balanceStore.updateTotalBalance(runningBalance);
   });
 });
-
 
 // watch(
 //   () => store.floatRequests, // Watch changes in transactions
@@ -211,8 +210,6 @@ const paginatedFloatRequestsWithBalance = computed(() => {
 //   },
 //   { deep: true }
 // );
-
-
 
 // async function fetchFloatRequests() {
 //   loading.value = true;
@@ -239,9 +236,6 @@ const paginatedFloatRequestsWithBalance = computed(() => {
 //   }
 // }
 
-
-
-
 // Fetch billing data (transactions, float ledgers)
 onMounted(() => {
   // fetchFloatLedgers();
@@ -256,8 +250,6 @@ onMounted(() => {
   <div class="">
     <!-- Header -->
     <div class="max-w-7xl mx-auto bg-white p-2 flex flex-col min-h-[85vh]">
-     
-
       <div class="flex my-1">
         <table class="table w-full">
           <thead>
@@ -370,10 +362,10 @@ onMounted(() => {
                     >Approved</span
                   >
                 </div>
-              <!-- </td> -->
+                <!-- </td> -->
 
-                 <!-- Fifth Case: Fallback, rejected -->
-                 <div v-if="transaction.status === 'rejected'">
+                <!-- Fifth Case: Fallback, rejected -->
+                <div v-if="transaction.status === 'rejected'">
                   <!-- <td> -->
                   <span
                     class="text-xs rounded-md px-1 py-0.5 font-semibold text-red-600 bg-red-100 border border-red-200 hover:text-red-700 hover:bg-red-200"
@@ -396,7 +388,10 @@ onMounted(() => {
                 <span v-if="transaction.status === 'edited'">
                   {{ transaction.balance.toLocaleString() }}
                 </span>
-                <span v-if="transaction.status==='pending'" class="italic text-gray-500">
+                <span
+                  v-if="transaction.status === 'pending'"
+                  class="italic text-gray-500"
+                >
                   --{{ transaction.balance.toLocaleString() }}--
                 </span>
               </td>
