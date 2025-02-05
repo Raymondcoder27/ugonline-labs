@@ -458,8 +458,6 @@ watch(
     <span>{{ transaction.balance.toLocaleString() }}</span>
   </td> -->
 
-           
-
             <!-- <td class="text-right text-gray-800">
               <span>{{ transaction.balance.toLocaleString() }}</span>
             </td> -->
