@@ -368,41 +368,75 @@ export const useBilling = defineStore("billing", () => {
   //   }
   // }
 
+  // async function approveFloatRequest(requestId: string) {
+  //   try {
+  //     // Find the float request by ID
+  //     const floatRequest = floatRequests.value.find(request => request.id === requestId);
+
+  //     if (!floatRequest) {
+  //       console.error("Float request not found for ID:", requestId);
+  //       return;
+  //     }
+
+  //     // Send the API request with all required data
+  //     const { data } = await api.put(`/branch-manager3-float-requests/${requestId}`, {
+  //       status: "approved",
+  //       approvedBy: "Manager One",
+  //       amount: floatRequest.amount, // Retrieve amount from the found request
+  //       // till: floatRequest.till,     // Retrieve till from the found request
+  //       branch: floatRequest.branch,     // Retrieve till from the found request
+  //       description: floatRequest.description,
+  //     });
+
+  //     //approve the record's status in the float ledger too
+  //     // api.put("/till-operator7-float-ledgers/" + requestId, {
+  //     //   status: "approved",
+  //     //   amount: floatRequest.amount,
+  //     //   till: floatRequest.till,
+  //     // });
+
+  //     // Update local state after successful API call
+  //     floatRequest.status = "approved";
+
+  //     console.log("Float request approved successfully:", data);
+  //   } catch (error) {
+  //     console.error("Error approving float request:", error);
+  //   }
+  // }
   async function approveFloatRequest(requestId: string) {
     try {
-      // Find the float request by ID
-      const floatRequest = floatRequests.value.find(request => request.id === requestId);
+        // Step 1: Find the float request
+        const floatRequest = floatRequests.value.find(request => request.id === requestId);
 
-      if (!floatRequest) {
-        console.error("Float request not found for ID:", requestId);
-        return;
-      }
+        if (!floatRequest) {
+            console.error("Float request not found for ID:", requestId);
+            return;
+        }
 
-      // Send the API request with all required data
-      const { data } = await api.put(`/branch-manager3-float-requests/${requestId}`, {
-        status: "approved",
-        approvedBy: "Manager One",
-        amount: floatRequest.amount, // Retrieve amount from the found request
-        // till: floatRequest.till,     // Retrieve till from the found request
-        branch: floatRequest.branch,     // Retrieve till from the found request
-        description: floatRequest.description,
-      });
+        // Step 2: Approve the Float Request
+        const { data } = await api.put(`/branch-manager3-float-requests/${requestId}`, {
+            status: "approved",
+            approvedBy: "Manager One",
+            amount: floatRequest.amount,
+            branch: floatRequest.branch,
+            description: floatRequest.description,
+        });
 
-      //approve the record's status in the float ledger too
-      // api.put("/till-operator7-float-ledgers/" + requestId, {
-      //   status: "approved",
-      //   amount: floatRequest.amount,
-      //   till: floatRequest.till,
-      // });
+        floatRequest.status = "approved";
+        console.log("Float request approved successfully:", data);
 
-      // Update local state after successful API call
-      floatRequest.status = "approved";
+        // Step 3: Approve the Float Ledger Record
+        await api.put(`/branch-manager-float-ledgers/${requestId}`, {
+            status: "approved",
+        });
 
-      console.log("Float request approved successfully:", data);
+        console.log("Float ledger record approved.");
+
     } catch (error) {
-      console.error("Error approving float request:", error);
+        console.error("Error approving float request:", error);
     }
-  }
+}
+
 
   // reject float request using passed in Id and set status to rejected
   // function rejectFloatRequest(requestId: any) {

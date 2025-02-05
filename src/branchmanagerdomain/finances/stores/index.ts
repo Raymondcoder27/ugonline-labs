@@ -119,31 +119,52 @@ export const useBilling = defineStore("billing", () => {
 
   const floatRequestToAdmin = ref<FloatRequestToAdmin | null>(null);
 
+  // async function requestFloatToAdmin(payload: RequestFloatToAdmin) {
+  //   const { data } = await api.post("/branch-manager3-float-requests", {
+  //     // requestDate: new Date().toISOString(),
+  //     amount: payload.amount,
+  //     status: "pending",
+  //     branch: payload.branch,
+  //     description: payload.description,
+  //     requestDate: new Date().toISOString(),
+  //   })
+  //   floatRequestsToAdmin.value?.push(data.data);
+  //   console.log("Request Float response:", floatRequestToAdmin);
+  // }
   async function requestFloatToAdmin(payload: RequestFloatToAdmin) {
-    const { data } = await api.post("/branch-manager3-float-requests", {
-      // requestDate: new Date().toISOString(),
-      amount: payload.amount,
-      status: "pending",
-      branch: payload.branch,
-      description: payload.description,
-      requestDate: new Date().toISOString(),
-    })
-    floatRequestsToAdmin.value?.push(data.data);
-    console.log("Request Float response:", floatRequestToAdmin);
+    try {
+        // Step 1: Create Float Request
+        const { data } = await api.post("/branch-manager3-float-requests", {
+            amount: payload.amount,
+            status: "pending",
+            branch: payload.branch,
+            description: payload.description,
+            requestDate: new Date().toISOString(),
+        });
+
+        floatRequestsToAdmin.value?.push(data.data);
+        console.log("Float request created:", data.data);
+
+        // Step 2: Create Float Ledger Entry (linked to float request)
+        const ledgerEntry = {
+            requestId: data.data.id,  // Linking ledger to float request
+            date: new Date().toISOString(),
+            description: payload.description,
+            amount: payload.amount,
+            status: "pending", // Initial status
+            branch: payload.branch,
+        };
+
+        const ledgerResponse = await api.post("/branch-manager-float-ledgers", ledgerEntry);
+        console.log("Float ledger entry created:", ledgerResponse.data, floatRequestToAdmin);
+
+    } catch (error) {
+        console.error("Error in requestFloatToAdmin:", error);
+    }
+}
 
 
-    // const adjustedAmount = payload.description === "Recharge" && payload.amount > 0 ? payload.amount : -payload.amount;
-
-    // floatLedgers.value.push({
-    //   id: floatLedgers.value.length + 1,
-    //   date: new Date().toISOString(),
-    //   // description: "Till " + payload.tillId,
-    //   description: payload.description,
-    //   amount: adjustedAmount,
-    //   status: payload.status,
-    //   // balance: totalBalance.value + payload.amount,
-    // })
-  }
+  
 
 
   // async function requestFloat(payload: RequestFloat) {
