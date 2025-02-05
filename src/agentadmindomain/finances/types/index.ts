@@ -41,13 +41,24 @@ export type Transaction = {
   };
 
 export interface FloatLedger {
-  id: number;
+  id: string;
   date: string;
   description: string;
   amount: number;
   balance: number;
   createdAt: string; 
 }
+
+// export interface FloatRequest {
+//   id: string;
+//   description:string;
+//   requestDate: string;
+//   amount: number;
+//   status: string;
+//   requesterName: string;
+//   approvedBy: string | null;
+//   createdAt: string; 
+// }
 
 export interface FloatRequest {
   id: string;
@@ -58,6 +69,7 @@ export interface FloatRequest {
   requesterName: string;
   approvedBy: string | null;
   createdAt: string; 
+  ledgerId: string;
 }
 
 //float assignment
