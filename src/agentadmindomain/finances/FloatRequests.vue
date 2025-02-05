@@ -401,12 +401,12 @@ onMounted(() => {
             v-for="(request, id) in billingStore.floatRequests"
             :key="id"
           >
-          <!-- <tr
+            <!-- <tr
             class="text-right"
             v-for="(request, id) in paginatedFloatRequests"
             :key="id"
           > -->
-          <!-- <tr
+            <!-- <tr
             class="text-left"
             v-for="(request, id) in paginatedFloatRequests"
             :key="id"
@@ -414,7 +414,7 @@ onMounted(() => {
             <td class="text-left">{{ id + 1 }}</td>
             <!-- <td class="text-left">{{  convertDateTime(request.date) }}</td> -->
             <!-- <td class="text-left">{{ request.requestDate }}</td> -->
-            <td class="text-left">{{convertDateTime(request.createdAt)}}</td>
+            <td class="text-left">{{ convertDateTime(request.createdAt) }}</td>
             <td class="text-left">{{ request.branch }}</td>
             <td class="text-left">{{ request.amount.toLocaleString() }}</td>
             <td class="text-left">
@@ -456,7 +456,7 @@ onMounted(() => {
                 </label>
                 <!-- </td> -->
               </div>
-              <div  v-else-if="request.status === 'edited'">
+              <div v-else-if="request.status === 'edited'">
                 <!-- <td> -->
                 <label>
                   <span
@@ -480,7 +480,6 @@ onMounted(() => {
                 </label>
                 <!-- </td> -->
               </div>
-
             </td>
             <td class="text-right">
               <!-- First Case: float request approved -->
@@ -737,7 +736,10 @@ onMounted(() => {
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
     <!-- Chances are high that you're starting with a form -->
-    <EditFloatRequestAmount @cancel="closeEditModal" @requestEdited="closeEditModal" />
+    <EditFloatRequestAmount
+      @cancel="closeEditModal"
+      @requestEdited="closeEditModal"
+    />
     <!-- That's also okay -->
   </AppModal>
 </template>
