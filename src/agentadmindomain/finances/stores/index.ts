@@ -144,7 +144,7 @@ export const useBilling = defineStore("billing", () => {
     // const response = await fetch(`/api/float-ledgers?limit=${filter.limit}&page=${filter.page}`);
     // const data = await response.json();
     // Use dummy data for now
-    floatLedgers.value = dummyBranchFloatLedgers;
+    branchFloatLedgers.value = dummyBranchFloatLedgers;
   }
 
   async function fetchBackofficeUsers(filter: any) {
