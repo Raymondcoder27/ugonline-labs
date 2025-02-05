@@ -144,6 +144,32 @@ onMounted(() => {
 //   return transactionsWithBalances;
 // });
 
+// const computedFloatRequestsWithBalance = computed(() => {
+//   const start = (page.value - 1) * limit.value;
+//   const end = start + limit.value;
+//   const paginatedFloatLedgers = billingStore.floatLedgers.slice(start, end);
+//   // return billingStore.transactions.slice(start, end);
+
+//   // if (store.floatLedgers.length === 0) {
+//   //   return [];
+//   // }
+
+//   // Start with the balance from the store
+//   let runningBalance = 0;
+
+//   // Process transactions chronologically
+//   return paginatedFloatLedgers.map((transaction) => {
+//     // Adjust the running balance based on transaction amount
+//     runningBalance += transaction.amount;
+
+//     return {
+//       ...transaction,
+//       balance: runningBalance, // Attach the calculated balance
+//     };
+//   });
+// });
+
+
 const computedFloatRequestsWithBalance = computed(() => {
   const start = (page.value - 1) * limit.value;
   const end = start + limit.value;
