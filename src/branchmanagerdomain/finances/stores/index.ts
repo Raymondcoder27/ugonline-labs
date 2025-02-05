@@ -160,19 +160,19 @@ export const useBilling = defineStore("billing", () => {
     // totalBalance.value = 300000000; // Set a test value
   }
 
-  // async function fetchFloatLedgers(filter: any) {
-  //   // Simulate API call
-  //   // const response = await fetch(`/api/float-ledgers?limit=${filter.limit}&page=${filter.page}`);
-  //   // const data = await response.json();
-  //   // Use dummy data for now
-  //   floatLedgers.value = dummyFloatLedgers;
-  // }
-
-  async function fetchFloatLedgers() {
-    const { data } = await api.get("/branch4-manager-float-ledgers");
-    floatLedgers.value = data.data;
-    console.log("Float Ledgers:", floatLedgers.value);
+  async function fetchFloatLedgers(filter: any) {
+    // Simulate API call
+    // const response = await fetch(`/api/float-ledgers?limit=${filter.limit}&page=${filter.page}`);
+    // const data = await response.json();
+    // Use dummy data for now
+    floatLedgers.value = dummyFloatLedgers;
   }
+
+  // async function fetchFloatLedgers() {
+  //   const { data } = await api.get("/branch4-manager-float-ledgers");
+  //   floatLedgers.value = data.data;
+  //   console.log("Float Ledgers:", floatLedgers.value);
+  // }
 
   async function fetchBackofficeUsers(filter: any) {
     // Simulate API call
@@ -322,30 +322,30 @@ export const useBilling = defineStore("billing", () => {
   //   localStorage.setItem('allocateFloatFromRequestToLocalStorage', JSON.stringify(allocateFloatFromRequestToLocalStorage.value))
   // }
   // // allocate float allocation to float ledger array
-  // function adjustFloatLedger(payload: FloatLedger) {
-  //   floatLedgers.value.push({
-  //     id: floatLedgers.value.length + 1,
-  //     date: new Date().toISOString(),
-  //     // description: "Till " + payload.tillId,
-  //     description: payload.description,
-  //     amount: -payload.amount,
-  //     // balance: totalBalance.value + payload.amount,
-  //   })
-  // }
-
-  // allocate float allocation to float ledger array
   function adjustFloatLedger(payload: FloatLedger) {
-    // If description is "Recharge", ensure amount is positive, otherwise keep it negative
-    const adjustedAmount = payload.description === "Recharge" && payload.amount > 0 ? payload.amount : -payload.amount;
-
     floatLedgers.value.push({
       id: floatLedgers.value.length + 1,
       date: new Date().toISOString(),
+      // description: "Till " + payload.tillId,
       description: payload.description,
-      amount: adjustedAmount,
-      // balance: totalBalance.value + adjustedAmount,
-    });
+      amount: -payload.amount,
+      // balance: totalBalance.value + payload.amount,
+    })
   }
+
+  // allocate float allocation to float ledger array
+  // function adjustFloatLedger(payload: FloatLedger) {
+  //   // If description is "Recharge", ensure amount is positive, otherwise keep it negative
+  //   const adjustedAmount = payload.description === "Recharge" && payload.amount > 0 ? payload.amount : -payload.amount;
+
+  //   floatLedgers.value.push({
+  //     id: floatLedgers.value.length + 1,
+  //     date: new Date().toISOString(),
+  //     description: payload.description,
+  //     amount: adjustedAmount,
+  //     // balance: totalBalance.value + adjustedAmount,
+  //   });
+  // }
 
 
   // async function adjustFloatLedger(payload: FloatLedger) {
