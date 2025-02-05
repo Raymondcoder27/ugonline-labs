@@ -403,6 +403,8 @@ onMounted(() => {
             <!-- <td class="text-left">{{  convertDateTime(request.date) }}</td> -->
             <!-- <td class="text-left">{{ request.requestDate }}</td> -->
             <td class="text-left">{{ request.createdAt }}</td>
+            
+{{convertDateTime(request.createdAt)}}
             <!-- convertDateTime(request.createdAt) -->
             <td class="text-left">{{ request.description }}</td>
             <!-- <td class="text-left">{{ request.amount.toLocaleString() }}</td> -->
