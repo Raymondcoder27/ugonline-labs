@@ -144,36 +144,10 @@ onMounted(() => {
 //   return transactionsWithBalances;
 // });
 
-// const computedFloatRequestsWithBalance = computed(() => {
-//   const start = (page.value - 1) * limit.value;
-//   const end = start + limit.value;
-//   const paginatedFloatLedgers = billingStore.floatLedgers.slice(start, end);
-//   // return billingStore.transactions.slice(start, end);
-
-//   // if (store.floatLedgers.length === 0) {
-//   //   return [];
-//   // }
-
-//   // Start with the balance from the store
-//   let runningBalance = 0;
-
-//   // Process transactions chronologically
-//   return paginatedFloatLedgers.map((transaction) => {
-//     // Adjust the running balance based on transaction amount
-//     runningBalance += transaction.amount;
-
-//     return {
-//       ...transaction,
-//       balance: runningBalance, // Attach the calculated balance
-//     };
-//   });
-// });
-
-
-const computedFloatRequestsWithBalance = computed(() => {
+const computedLedgerWithBalance = computed(() => {
   const start = (page.value - 1) * limit.value;
   const end = start + limit.value;
-  const paginatedFloatRequests = billingStore.floatRequests.slice(start, end);
+  const paginatedFloatLedgers = billingStore.floatLedgers.slice(start, end);
   // return billingStore.transactions.slice(start, end);
 
   // if (store.floatLedgers.length === 0) {
@@ -184,13 +158,9 @@ const computedFloatRequestsWithBalance = computed(() => {
   let runningBalance = 0;
 
   // Process transactions chronologically
-  return paginatedFloatRequests.map((transaction) => {
-    if (transaction.status === "approved" || transaction.status === "edited") {
-      runningBalance += transaction.amount; // Increase balance only if approved
-    // balanceStore.updateTotalBalance(runningBalance);
-    } 
+  return paginatedFloatLedgers.map((transaction) => {
     // Adjust the running balance based on transaction amount
-    // runningBalance += transaction.amount;
+    runningBalance += transaction.amount;
 
     return {
       ...transaction,
@@ -287,7 +257,7 @@ watch(
 );
 
 watch(
-  computedFloatRequestsWithBalance,
+  computedLedgerWithBalance,
   (floatLedgers) => {
     console.log("Computed floatLedgers:", floatLedgers);
   },
@@ -381,13 +351,8 @@ watch(
               class="body-tr"
             > -->
 
-          <!-- <tr
-            v-for="transaction, id in computedFloatRequestsWithBalance"
-            :key="transaction.id"
-            class="body-tr"
-          > -->
           <tr
-            v-for="transaction, id in computedFloatRequestsWithBalance"
+            v-for="transaction, id in computedLedgerWithBalance"
             :key="transaction.id"
             class="body-tr"
           >
@@ -431,10 +396,12 @@ watch(
             >
               <span>{{ transaction.amount.toLocaleString() }}</span>
             </td>
-            <!-- <td class="text-left text-gray-800">
-              <span>{{ transaction.balance.toLocaleString() }}</span>
-            </td> -->
             <td class="text-left text-gray-800">
+              <!-- <button @click="decreaseBalance">Decrease Balance</button> -->
+              <!-- <span>{{ balanceStore.totalBalance.current }}</span> -->
+              <span>{{ transaction.balance.toLocaleString() }}</span>
+            </td>
+               <!-- <td class="text-left text-gray-800">
                 <span v-if="transaction.status === 'approved'">
                   {{ transaction.balance.toLocaleString() }}
                 </span>
@@ -447,7 +414,7 @@ watch(
                 <span v-if="transaction.status==='pending'" class="italic text-gray-500">
                   --{{ transaction.balance.toLocaleString() }}--
                 </span>
-              </td>
+              </td> -->
           </tr>
         </tbody>
         <!-- <tfoot>
