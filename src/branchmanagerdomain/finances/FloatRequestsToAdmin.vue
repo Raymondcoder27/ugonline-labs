@@ -20,10 +20,18 @@ function editFloatRequest(floatRequest: FloatRequest) {
   localStorage.setItem("floatRequestEdit", JSON.stringify(floatRequest));
   editModalOpen.value = true;
 }
-function close() {
-  modalOpen.value = false;
-  viewModalOpen.value = false;
+// function close() {
+//   modalOpen.value = false;
+//   viewModalOpen.value = false;
+//   editModalOpen.value = false;
+// }
+
+function closeEditModal() {
   editModalOpen.value = false;
+}
+
+function close() {
+  floatRequestModalOpen.value = false;
 }
 
 // function close() {
@@ -749,7 +757,7 @@ onMounted(() => {
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
     <!-- Chances are high that you're starting with a form -->
-    <EditFloatRequestAmount @cancel="close" @floatAllocated="close" />
+    <EditFloatRequestAmount @cancel="closeEditModal" @floatAllocated="closeEditModal" />
     <!-- That's also okay -->
   </AppModal>
 
