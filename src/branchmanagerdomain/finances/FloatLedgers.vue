@@ -144,10 +144,10 @@ onMounted(() => {
 //   return transactionsWithBalances;
 // });
 
-const computedLedgerWithBalance = computed(() => {
+const computedFloatRequestsWithBalance = computed(() => {
   const start = (page.value - 1) * limit.value;
   const end = start + limit.value;
-  const paginatedFloatLedgers = billingStore.floatLedgers.slice(start, end);
+  const paginatedFloatRequests = billingStore.floatRequests.slice(start, end);
   // return billingStore.transactions.slice(start, end);
 
   // if (store.floatLedgers.length === 0) {
@@ -158,7 +158,7 @@ const computedLedgerWithBalance = computed(() => {
   let runningBalance = 0;
 
   // Process transactions chronologically
-  return paginatedFloatLedgers.map((transaction) => {
+  return paginatedFloatRequests.map((transaction) => {
     // Adjust the running balance based on transaction amount
     runningBalance += transaction.amount;
 
@@ -257,7 +257,7 @@ watch(
 );
 
 watch(
-  computedLedgerWithBalance,
+  computedFloatRequestsWithBalance,
   (floatLedgers) => {
     console.log("Computed floatLedgers:", floatLedgers);
   },
@@ -351,8 +351,13 @@ watch(
               class="body-tr"
             > -->
 
+          <!-- <tr
+            v-for="transaction, id in computedFloatRequestsWithBalance"
+            :key="transaction.id"
+            class="body-tr"
+          > -->
           <tr
-            v-for="transaction, id in computedLedgerWithBalance"
+            v-for="transaction, id in computedFloatRequestsWithBalance"
             :key="transaction.id"
             class="body-tr"
           >
@@ -396,11 +401,23 @@ watch(
             >
               <span>{{ transaction.amount.toLocaleString() }}</span>
             </td>
-            <td class="text-left text-gray-800">
-              <!-- <button @click="decreaseBalance">Decrease Balance</button> -->
-              <!-- <span>{{ balanceStore.totalBalance.current }}</span> -->
+            <!-- <td class="text-left text-gray-800">
               <span>{{ transaction.balance.toLocaleString() }}</span>
-            </td>
+            </td> -->
+            <td class="text-left text-gray-800">
+                <span v-if="transaction.status === 'approved'">
+                  {{ transaction.balance.toLocaleString() }}
+                </span>
+                <span v-if="transaction.status === 'rejected'">
+                  {{ transaction.balance.toLocaleString() }}
+                </span>
+                <span v-if="transaction.status === 'edited'">
+                  {{ transaction.balance.toLocaleString() }}
+                </span>
+                <span v-if="transaction.status==='pending'" class="italic text-gray-500">
+                  --{{ transaction.balance.toLocaleString() }}--
+                </span>
+              </td>
           </tr>
         </tbody>
         <!-- <tfoot>
