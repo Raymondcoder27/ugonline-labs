@@ -28,7 +28,7 @@ const notify = useNotificationsStore();
 
 let form: FloatRequest = reactive({
   name: "",
-  branch: "",
+  branch: "Branch 1",
   amount: 0,
   status: "",
   description: "",
