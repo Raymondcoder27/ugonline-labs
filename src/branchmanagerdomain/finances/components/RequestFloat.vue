@@ -24,7 +24,7 @@ let form: FloatRequest = reactive({
   // role: "admin",
   // username: "",
   phone: "",
-  amount: 0,
+  amount: "",
   branch: "",
   // description: "",
   requestDate: new Date(),
