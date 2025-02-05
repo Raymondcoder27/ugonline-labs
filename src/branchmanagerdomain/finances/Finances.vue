@@ -26,16 +26,16 @@ function select(tab: string) {
 }
 
 // Watch for changes in the total balance and refetch the new balance
-watch(
-  () => totalBalance.currentBalance,
-  (newBalance, oldBalance) => {
-    // Refetch balance whenever it changes
-    if (newBalance !== oldBalance) {
-      console.log("Balance changed, refetching...");
-      balanceStore.fetchTotalBalance(); // This will fetch the latest balance
-    }
-  }
-);
+// watch(
+//   () => totalBalance.currentBalance,
+//   (newBalance, oldBalance) => {
+//     // Refetch balance whenever it changes
+//     if (newBalance !== oldBalance) {
+//       console.log("Balance changed, refetching...");
+//       balanceStore.fetchTotalBalance(); // This will fetch the latest balance
+//     }
+//   }
+// );
 </script>
 
 <template>
