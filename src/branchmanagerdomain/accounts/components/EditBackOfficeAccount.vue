@@ -69,7 +69,7 @@ onMounted(() => {
 })
 
 function submit(){
-  loading.value = true
+  // loading.value = true
   let data = JSON.parse(<string>localStorage.getItem("backofficeAccount"))
 
   let id = data.id

@@ -51,7 +51,7 @@ onMounted(() => {
 });
 
 function submit() {
-  loading.value = true;
+  // loading.value = true;
   let data = JSON.parse(<string>localStorage.getItem("floatRequestEdit"));
 
   let id = data.id;
