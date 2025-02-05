@@ -57,9 +57,10 @@ function submit() {
   let id = data.id;
   let payload = {
     // name: form.name,
-    branch: form.branch,
+    branch: "Branch 1",
     amount: form.amount,
     status: form.status,
+    description: form.description,
     // display_name:form.displayName,
     // inquiry_email:form.inquiryEmail,
     // provider_type:form.providerType,
