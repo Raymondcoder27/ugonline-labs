@@ -168,7 +168,7 @@ export const useBilling = defineStore("billing", () => {
   // }
 
   async function fetchFloatLedgers() {
-    const { data } = await api.get("/branch3-manager-float-requests");
+    const { data } = await api.get("/branch3-manager-float-ledgers");
     floatLedgers.value = data.data;
     console.log("Float Ledgers:", floatLedgers.value);
   }
