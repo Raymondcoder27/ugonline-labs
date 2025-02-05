@@ -390,7 +390,7 @@ export const useBilling = defineStore("billing", () => {
   //     });
 
   //     //approve the record's status in the float ledger too
-  //     // api.put("/till-operator7-float-ledgers/" + requestId, {
+  //     // api.put("/till-operator8-float-ledgers/" + requestId, {
   //     //   status: "approved",
   //     //   amount: floatRequest.amount,
   //     //   till: floatRequest.till,
@@ -520,7 +520,7 @@ async function approveFloatRequest(requestId: string) {
       });
 
       //approve the record's status in the float ledger too
-      // api.put("/till-operator7-float-ledgers/" + requestId, {
+      // api.put("/till-operator8-float-ledgers/" + requestId, {
       //   status: "approved",
       //   amount: floatRequest.amount,
       //   till: floatRequest.till,
