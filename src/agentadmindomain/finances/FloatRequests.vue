@@ -417,7 +417,9 @@ onMounted(() => {
             <td class="text-left">{{ convertDateTime(request.createdAt) }}</td>
             <td class="text-left">{{ request.branch }}</td>
             <!-- <td class="text-left">{{ request.amount.toLocaleString() }}</td> -->
-            <td class="text-left">{{ request.amount ? request.amount.toLocaleString() : 'N/A' }}</td>
+            <td class="text-left">
+              {{ request.amount ? request.amount.toLocaleString() : "N/A" }}
+            </td>
             <td class="text-left">
               <!-- First Case: float request approved -->
               <div v-if="request.status === 'approved'">
