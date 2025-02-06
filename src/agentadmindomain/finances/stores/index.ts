@@ -358,7 +358,7 @@ export const useBilling = defineStore("billing", () => {
             description: floatRequest.description,
             amount: -floatRequest.amount, // Negative to indicate reduction
             status: "approved",
-            till: floatRequest.till,
+            branch: floatRequest.branch,
             approvedBy: "Admin One",
         });
 
