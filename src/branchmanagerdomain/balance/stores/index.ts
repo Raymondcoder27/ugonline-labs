@@ -54,9 +54,24 @@ export const useBalance = defineStore("balance", () => {
     console.log("Float request approved:", floatRequest);
   }
 
+  async function fetchTotalBalance() {
+    console.log("Fetching balance...");
+    const fetchedBalance = {
+      prevBalance: totalBalance.prevBalance,
+      currentBalance: totalBalance.currentBalance,
+    };
+  
+    console.log("Fetched balance:", fetchedBalance); // Debugging
+    totalBalance.prevBalance = fetchedBalance.prevBalance;
+    totalBalance.currentBalance = fetchedBalance.currentBalance;
+    console.log("Updated balance in store:", totalBalance); // Debugging
+  }
+  
+
   return {
     totalBalance,
     computedBalance,
     approveFloatRequest,
+    fetchTotalBalance,
   };
 });
