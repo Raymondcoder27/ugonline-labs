@@ -13,6 +13,12 @@ export const useBalance = defineStore("balance", () => {
     currentBalance: 0,
   });
 
+  const finalFloat = reactive<TotalFinalFloat>({
+    prevFinalFloat: 0, // Ensure default value is set
+    currentFinalFloat: 0, // Ensure default value is set
+  });
+
+
   const billingStore = useBilling();
 
   // Computed property to calculate balance dynamically based on approved transactions
@@ -60,18 +66,19 @@ export const useBalance = defineStore("balance", () => {
       prevBalance: totalBalance.prevBalance,
       currentBalance: totalBalance.currentBalance,
     };
-  
+
     console.log("Fetched balance:", fetchedBalance); // Debugging
     totalBalance.prevBalance = fetchedBalance.prevBalance;
     totalBalance.currentBalance = fetchedBalance.currentBalance;
     console.log("Updated balance in store:", totalBalance); // Debugging
   }
-  
+
 
   return {
     totalBalance,
     computedBalance,
     approveFloatRequest,
     fetchTotalBalance,
+    finalFloat,
   };
 });

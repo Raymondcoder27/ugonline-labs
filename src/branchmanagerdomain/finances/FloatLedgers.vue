@@ -336,7 +336,7 @@ watch(
             <th class="text-right">Balance</th>
           </tr>
         </thead>
-        <thead v-if="loading">
+        <thead v-if="loading">  
           <tr>
             <th colspan="12" style="padding: 0">
               <div

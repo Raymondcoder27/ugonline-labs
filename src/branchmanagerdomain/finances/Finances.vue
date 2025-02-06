@@ -15,7 +15,9 @@ const balanceStore = useBalance();
 
 balanceStore.fetchTotalBalance();
 
-const totalBalance = balanceStore.totalBalance;
+// const totalBalance = balanceStore.totalBalance;
+const computedBalance = balanceStore.computedBalance;
+
 
 const finalFloat = balanceStore.finalFloat;
 
@@ -26,16 +28,15 @@ function select(tab: string) {
 }
 
 // Watch for changes in the total balance and refetch the new balance
-// watch(
-//   () => totalBalance.currentBalance,
-//   (newBalance, oldBalance) => {
-//     // Refetch balance whenever it changes
-//     if (newBalance !== oldBalance) {
-//       console.log("Balance changed, refetching...");
-//       balanceStore.fetchTotalBalance(); // This will fetch the latest balance
-//     }
-//   }
-// );
+watch(
+  () => finalFloat.currentFinalFloat,
+  (newValue, oldValue) => {
+    if (newValue !== oldValue) {
+      console.log("finalFloat updated:", newValue);
+    }
+  }
+);
+
 </script>
 
 <template>
@@ -73,8 +74,12 @@ function select(tab: string) {
               {{ finalFloat.currentFinalFloat.toLocaleString() }}/=
                 65,000,000/=
             </span> -->
-            <span class="text-gray-500"
+            <!-- <span class="text-gray-500"
               >{{ totalBalance.currentBalance.toLocaleString() }}/=</span
+            ></span
+          > -->
+          <span class="text-gray-500"
+              >{{ computedBalance.toLocaleString() }}/=</span
             ></span
           >
           </span>
