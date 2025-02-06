@@ -10,11 +10,13 @@ const accountStore = useAccounts();
 const totalTills = tillStore.tills?.length || 0;
 const totalTillOperators = accountStore.tillOperators?.length || 0;
 
-
 tillStore.fetchTills();
 
 import type { Ref } from "vue";
-import type { GraphData, Statistic } from "@/branchmanagerdomain/analytics/types/chart";
+import type {
+  GraphData,
+  Statistic,
+} from "@/branchmanagerdomain/analytics/types/chart";
 import { ref } from "vue";
 
 const providerOnboarding: Ref<Array<GraphData>> = ref([
@@ -64,7 +66,7 @@ function labelExtractor(data: Statistic[]) {
               <p class="text-xs">Total Tills</p>
             </div>
             <div class="w-2/12 count">
-              <p class="text-xl font-bold py-2"> {{ totalTillOperators }}</p>
+              <p class="text-xl font-bold py-2">{{ totalTillOperators }}</p>
               <p class="text-xs">Total Till Operators</p>
             </div>
             <!-- <div class="w-2/12 count">
