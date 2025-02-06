@@ -73,6 +73,7 @@ function submit() {
     .then(() => {
       loading.value = true;
       // window.location.reload();
+      store.fetchFloatRequests()
       notify.success("Edited");
       emit("requestEdited")
       loading.value = false;
