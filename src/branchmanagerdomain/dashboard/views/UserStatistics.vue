@@ -5,7 +5,7 @@ import PieChart from "@/branchmanagerdomain/analytics/components/PieChart.vue";
 
 import { useAccounts } from "@/branchmanagerdomain/accounts/stores";
 const accountStore = useAccounts();
-const totalBranchManagers = accountStore.managerAccounts?.length || 0;
+const totalTillOperators = accountStore.tillOperators?.length || 0;
 const totalBackOfficeAccounts = accountStore.backofficeAccounts?.length || 0;
 
 import type { Ref } from "vue";
@@ -138,7 +138,7 @@ function labelExtractor(data: Statistic[]) {
             </div> -->
             <div class="w-2/12 count">
               <p class="text-xl font-bold py-2">
-                {{ Number(13).toLocaleString() }}
+                {{ totalTillOperators }}
               </p>
               <p class="text-xs">Till Operators</p>
             </div>
