@@ -64,6 +64,7 @@ function submit() {
     .editFloatRequest(id, payload)
     .then(() => {
       loading.value = true;
+      store.fetchFloatRequests();
       emit("floatAllocated");
       // window.location.reload();
       notify.success("Edited");
