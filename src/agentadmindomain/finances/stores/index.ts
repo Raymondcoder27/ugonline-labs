@@ -404,61 +404,61 @@ export const useBilling = defineStore("billing", () => {
   //     console.error("Error approving float request:", error);
   //   }
   // }
-//   async function approveFloatRequest(requestId: string) {
-//     try {
-//         // Step 1: Find the float request
-//         const floatRequest = floatRequests.value.find(request => request.id === requestId);
+  //   async function approveFloatRequest(requestId: string) {
+  //     try {
+  //         // Step 1: Find the float request
+  //         const floatRequest = floatRequests.value.find(request => request.id === requestId);
 
-//         if (!floatRequest) {
-//             console.error("Float request not found for ID:", requestId);
-//             return;
-//         }
+  //         if (!floatRequest) {
+  //             console.error("Float request not found for ID:", requestId);
+  //             return;
+  //         }
 
-//         // Step 2: Approve the Float Request
-//         const { data } = await api.put(`/branch5-manager-float-requests/${requestId}`, {
-//             status: "approved",
-//             approvedBy: "Manager One",
-//             amount: floatRequest.amount,
-//             branch: floatRequest.branch,
-//             description: floatRequest.description,
-//         });
+  //         // Step 2: Approve the Float Request
+  //         const { data } = await api.put(`/branch5-manager-float-requests/${requestId}`, {
+  //             status: "approved",
+  //             approvedBy: "Manager One",
+  //             amount: floatRequest.amount,
+  //             branch: floatRequest.branch,
+  //             description: floatRequest.description,
+  //         });
 
-//         floatRequest.status = "approved";
-//         console.log("Float request approved successfully:", data);
+  //         floatRequest.status = "approved";
+  //         console.log("Float request approved successfully:", data);
 
-//         // Step 3: Approve the Float Ledger Record using `ledgerId`
-//         if (floatRequest.ledgerId) {
-//             await api.put(`/branch5-manager-float-ledgers/${floatRequest.ledgerId}`, {
-//                 status: "approved",
-//             });
+  //         // Step 3: Approve the Float Ledger Record using `ledgerId`
+  //         if (floatRequest.ledgerId) {
+  //             await api.put(`/branch5-manager-float-ledgers/${floatRequest.ledgerId}`, {
+  //                 status: "approved",
+  //             });
 
-//             console.log("Float ledger record approved.");
-//         } else {
-//             console.error("Ledger ID not found in float request!");
-//         }
+  //             console.log("Float ledger record approved.");
+  //         } else {
+  //             console.error("Ledger ID not found in float request!");
+  //         }
 
-//     } catch (error) {
-//         console.error("Error approving float request:", error);
-//     }
-// }
-async function approveFloatRequest(requestId: string) {
-  try {
+  //     } catch (error) {
+  //         console.error("Error approving float request:", error);
+  //     }
+  // }
+  async function approveFloatRequest(requestId: string) {
+    try {
       // Step 1: Find the float request
       const floatRequest = floatRequests.value.find(request => request.id === requestId);
 
       if (!floatRequest) {
-          console.error("Float request not found for ID:", requestId);
-          return;
+        console.error("Float request not found for ID:", requestId);
+        return;
       }
 
       // Step 2: Approve the Float Request
       const { data } = await api.put(`/branch5-manager-float-requests/${requestId}`, {
-          status: "approved",
-          approvedBy: "Manager One",
-          amount: floatRequest.amount,
-          branch: floatRequest.branch,
-          description: floatRequest.description,
-          ledgerId: floatRequest.ledgerId, // Retain the ledger link
+        status: "approved",
+        approvedBy: "Manager One",
+        amount: floatRequest.amount,
+        branch: floatRequest.branch,
+        description: floatRequest.description,
+        ledgerId: floatRequest.ledgerId, // Retain the ledger link
       });
 
       floatRequest.status = "approved";
@@ -466,27 +466,27 @@ async function approveFloatRequest(requestId: string) {
 
       // Step 3: Approve the Float Ledger Record using `ledgerId`
       if (floatRequest.ledgerId) {
-          // Retrieve the existing ledger entry to keep all fields
-          const ledgerEntry = floatLedgers.value.find(ledger => ledger.id === floatRequest.ledgerId);
+        // Retrieve the existing ledger entry to keep all fields
+        const ledgerEntry = floatLedgers.value.find(ledger => ledger.id === floatRequest.ledgerId);
 
-          if (ledgerEntry) {
-              await api.put(`/branch5-manager-float-ledgers/${floatRequest.ledgerId}`, {
-                  ...ledgerEntry, // Retain all original fields
-                  status: "approved", // Only update status
-              });
+        if (ledgerEntry) {
+          await api.put(`/branch5-manager-float-ledgers/${floatRequest.ledgerId}`, {
+            ...ledgerEntry, // Retain all original fields
+            status: "approved", // Only update status
+          });
 
-              console.log("Float ledger record approved:", ledgerEntry);
-          } else {
-              console.error("Ledger entry not found for ID:", floatRequest.ledgerId);
-          }
+          console.log("Float ledger record approved:", ledgerEntry);
+        } else {
+          console.error("Ledger entry not found for ID:", floatRequest.ledgerId);
+        }
       } else {
-          console.error("Ledger ID not found in float request!");
+        console.error("Ledger ID not found in float request!");
       }
 
-  } catch (error) {
+    } catch (error) {
       console.error("Error approving float request:", error);
+    }
   }
-}
 
 
 
@@ -534,18 +534,18 @@ async function approveFloatRequest(requestId: string) {
         const ledgerEntry = floatLedgers.value.find(ledger => ledger.id === floatRequest.ledgerId);
 
         if (ledgerEntry) {
-            await api.put(`/branch5-manager-float-ledgers/${floatRequest.ledgerId}`, {
-                ...ledgerEntry, // Retain all original fields
-                status: "rejected", // Only update status
-            });
+          await api.put(`/branch5-manager-float-ledgers/${floatRequest.ledgerId}`, {
+            ...ledgerEntry, // Retain all original fields
+            status: "rejected", // Only update status
+          });
 
-            console.log("Float ledger record rejected:", ledgerEntry);
+          console.log("Float ledger record rejected:", ledgerEntry);
         } else {
-            console.error("Ledger entry not found for ID:", floatRequest.ledgerId);
+          console.error("Ledger entry not found for ID:", floatRequest.ledgerId);
         }
-    } else {
+      } else {
         console.error("Ledger ID not found in float request!");
-    }
+      }
 
       console.log("Float request rejected:", data);
     } catch (error) {
@@ -570,7 +570,7 @@ async function approveFloatRequest(requestId: string) {
         status: "edited",
         description: payload.description,
         approvedBy: "Manager One",
-        ledgerId: floatRequest.ledgerId, 
+        ledgerId: floatRequest.ledgerId,
       });
       floatRequests.value = data.data;
       console.log("Float Requests:", floatRequests.value);
@@ -579,18 +579,18 @@ async function approveFloatRequest(requestId: string) {
         const ledgerEntry = floatLedgers.value.find(ledger => ledger.id === floatRequest.ledgerId);
 
         if (ledgerEntry) {
-            await api.put(`/branch5-manager-float-ledgers/${floatRequest.ledgerId}`, {
-                ...ledgerEntry, // Retain all original fields
-                status: "edited", // Only update status
-            });
+          await api.put(`/branch5-manager-float-ledgers/${floatRequest.ledgerId}`, {
+            ...ledgerEntry, // Retain all original fields
+            status: "edited", // Only update status
+          });
 
-            console.log("Float ledger record edited:", ledgerEntry);
+          console.log("Float ledger record edited:", ledgerEntry);
         } else {
-            console.error("Ledger entry not found for ID:", floatRequest.ledgerId);
+          console.error("Ledger entry not found for ID:", floatRequest.ledgerId);
         }
-    } else {
+      } else {
         console.error("Ledger ID not found in float request!");
-    }
+      }
     } catch (error) {
       console.error("Error editing float request:", error);
     }
