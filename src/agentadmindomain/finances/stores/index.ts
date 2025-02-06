@@ -517,6 +517,7 @@ async function approveFloatRequest(requestId: string) {
         // till: floatRequest.till,     // Retrieve till from the found request
         branch: floatRequest.branch,     // Retrieve till from the found request
         description: floatRequest.description,
+        ledgerId: floatRequest.ledgerId
       });
 
       //approve the record's status in the float ledger too
@@ -528,6 +529,23 @@ async function approveFloatRequest(requestId: string) {
 
       // Update local state after successful API call
       floatRequest.status = "rejected";
+      if (floatRequest.ledgerId) {
+        // Retrieve the existing ledger entry to keep all fields
+        const ledgerEntry = floatLedgers.value.find(ledger => ledger.id === floatRequest.ledgerId);
+
+        if (ledgerEntry) {
+            await api.put(`/branch5-manager-float-ledgers/${floatRequest.ledgerId}`, {
+                ...ledgerEntry, // Retain all original fields
+                status: "rejected", // Only update status
+            });
+
+            console.log("Float ledger record rejected:", ledgerEntry);
+        } else {
+            console.error("Ledger entry not found for ID:", floatRequest.ledgerId);
+        }
+    } else {
+        console.error("Ledger ID not found in float request!");
+    }
 
       console.log("Float request rejected:", data);
     } catch (error) {
