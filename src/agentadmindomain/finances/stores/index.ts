@@ -141,11 +141,29 @@ export const useBilling = defineStore("billing", () => {
   //   floatLedgers.value = dummyFloatLedgers;
   // }
 
+  // async function fetchFloatLedgers() {
+  //   const { data } = await api.get("/agent-admin-float-ledgers");
+  //   floatLedgers.value = data.data;
+  //   console.log("Float Ledgers:", floatLedgers.value);
+  // }
   async function fetchFloatLedgers() {
-    const { data } = await api.get("/agent-admin-float-ledgers");
-    floatLedgers.value = data.data;
-    console.log("Float Ledgers:", floatLedgers.value);
+    try {
+      const { data } = await api.get("/agent-admin-float-ledgers");
+  
+      if (data.data && data.data.length > 0) {
+        floatLedgers.value = [...dummyFloatLedgers, ...data.data]; // Keep dummy data first
+      } else {
+        console.warn("API returned empty float ledgers, keeping only dummy data.");
+        floatLedgers.value = dummyFloatLedgers; // Fallback to dummy data
+      }
+  
+      console.log("Float Ledgers:", floatLedgers.value);
+    } catch (error) {
+      console.error("Error fetching float ledgers:", error);
+      floatLedgers.value = dummyFloatLedgers; // Use dummy data if API call fails
+    }
   }
+  
 
   // async function fetchBranchFloatLedgers(filter: any) {
   //   // Simulate API call
