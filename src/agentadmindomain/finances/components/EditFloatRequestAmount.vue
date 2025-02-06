@@ -33,7 +33,7 @@ let form: FloatRequest = reactive({
   status: "",
   description: "",
 });
-const emit = defineEmits(["cancel","requestEdited"]);
+const emit = defineEmits(["cancel", "requestEdited"]);
 
 onMounted(() => {
   let data = JSON.parse(<string>localStorage.getItem("floatRequestEdit"));
@@ -75,7 +75,7 @@ function submit() {
       // window.location.reload();
       store.fetchFloatRequests();
       notify.success("Edited");
-      emit("requestEdited")
+      emit("requestEdited");
       loading.value = false;
     })
     .catch((error: ApiError) => {
