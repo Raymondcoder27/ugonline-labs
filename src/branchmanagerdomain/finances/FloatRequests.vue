@@ -106,12 +106,24 @@ function fetchFloatRequests() {
   floatRequests.value = billingStore.floatRequests.slice(startIndex, endIndex);
   loading.value = false;
 }
+// const paginatedFloatRequests = computed(() => {
+//   const start = (page.value - 1) * limit.value;
+//   const end = start + limit.value;
+//   // return billingStore.floatRequests?.slice(start, end); // Adjust according to your page & limit
+//   return billingStore.floatRequests?.slice(start, end); // Adjust according to your page & limit
+// });
 const paginatedFloatRequests = computed(() => {
   const start = (page.value - 1) * limit.value;
   const end = start + limit.value;
-  // return billingStore.floatRequests?.slice(start, end); // Adjust according to your page & limit
-  return billingStore.floatRequests?.slice(start, end); // Adjust according to your page & limit
+
+  if (!Array.isArray(billingStore.floatRequests)) {
+    console.error("billingStore.floatRequests is not an array:", billingStore.floatRequests);
+    return [];
+  }
+
+  return billingStore.floatRequests.slice(start, end);
 });
+
 
 const filter: IGoFilter = reactive({
   limit: 100,
