@@ -111,7 +111,6 @@ const paginatedFloatRequests = computed(() => {
   const end = start + limit.value;
   // return billingStore.floatRequests?.slice(start, end); // Adjust according to your page & limit
   return billingStore.floatRequests?.slice(start, end); // Adjust according to your page & limit
-
 });
 
 const filter: IGoFilter = reactive({
@@ -329,7 +328,6 @@ onMounted(async () => {
   await billingStore.fetchFloatRequests();
   console.log("Fetched Float Requests:", billingStore.floatRequests);
 });
-
 </script>
 
 <template>
@@ -474,7 +472,7 @@ onMounted(async () => {
                 </label>
                 <!-- </td> -->
               </div>
-              <div  v-if="request.status === 'pending'">
+              <div v-if="request.status === 'pending'">
                 <!-- <td> -->
                 <label>
                   <span
@@ -486,7 +484,7 @@ onMounted(async () => {
                 </label>
                 <!-- </td> -->
               </div>
-              <div  v-if="request.status === 'edited'">
+              <div v-if="request.status === 'edited'">
                 <!-- <td> -->
                 <label>
                   <span
@@ -498,7 +496,7 @@ onMounted(async () => {
                 </label>
                 <!-- </td> -->
               </div>
-              <div  v-if="request.status === 'failed'">
+              <div v-if="request.status === 'failed'">
                 <!-- <td> -->
                 <label>
                   <span
@@ -548,8 +546,8 @@ onMounted(async () => {
                 <!-- </td> -->
               </div>
 
-               <!-- Third Case: Manager directly assigned to till -->
-               <div v-else-if="request.status === 'edited'">
+              <!-- Third Case: Manager directly assigned to till -->
+              <div v-else-if="request.status === 'edited'">
                 <!-- <td> -->
                 <label>
                   <span
@@ -782,7 +780,10 @@ onMounted(async () => {
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
     <!-- Chances are high that you're starting with a form -->
-    <EditFloatRequestAmount @cancel="closeEditModal" @floatAllocated="closeEditModal" />
+    <EditFloatRequestAmount
+      @cancel="closeEditModal"
+      @floatAllocated="closeEditModal"
+    />
     <!-- That's also okay -->
   </AppModal>
 
