@@ -246,12 +246,12 @@ watch(
 <template>
   <!-- <div class=""> -->
   <!-- Header -->
-  <div class="max-w-7xl mx-auto bg-white flex flex-col p-2 min-h-[60vh]">
+  <div class="max-w-7xl mx-auto bg-white flex flex-col px-2 min-h-[60vh]">
     
 
     <!-- Table -->
     <!-- Table -->
-    <div class="flex my-1">
+    <div class="flex">
       <table class="table w-full">
         <thead>
           <tr class="header-tr">
