@@ -13,9 +13,13 @@ export interface TotalBalance {
 
 export const useBalance = defineStore("balance", () => {
   // Reactive state for total balance
+  // const totalBalance = reactive<TotalBalance>({
+  //   prevBalance: 105000000, // Initial previous balance
+  //   currentBalance: 105000000, // Initial current balance
+  // });
   const totalBalance = reactive<TotalBalance>({
-    prevBalance: 105000000, // Initial previous balance
-    currentBalance: 105000000, // Initial current balance
+    prevBalance: 0, // Initial previous balance
+    currentBalance: 0, // Initial current balance
   });
 
   const billingStore = useBilling();
@@ -37,10 +41,14 @@ export const useBalance = defineStore("balance", () => {
   //   totalBalance.current = fetchedBalance.current;
   // }
 
-   const finalFloat = reactive<TotalFinalFloat>({
-      prevFinalFloat: 175000000,
-      currentFinalFloat: 175000000,
-    });
+  //  const finalFloat = reactive<TotalFinalFloat>({
+  //     prevFinalFloat: 175000000,
+  //     currentFinalFloat: 175000000,
+  //   });
+  const finalFloat = reactive<TotalFinalFloat>({
+    prevFinalFloat: 0,
+    currentFinalFloat: 0,
+  });
 
 
   // Increase the total balance and update "prev"
