@@ -247,8 +247,6 @@ watch(
   <!-- <div class=""> -->
   <!-- Header -->
   <div class="max-w-7xl mx-auto bg-white flex flex-col px-2 min-h-[60vh]">
-    
-
     <!-- Table -->
     <!-- Table -->
     <div class="flex">
@@ -279,11 +277,10 @@ watch(
             > -->
 
           <tr
-            v-for="transaction, id in computedLedgerWithBalance"
+            v-for="(transaction, id) in computedLedgerWithBalance"
             :key="transaction.id"
             class="body-tr"
           >
-
             <!-- <td class="text-left">
               <label class="cursor-pointer hover:text-primary-700 mx-2">
                 <span class="hover:underline">{{ transaction.id }}</span>
