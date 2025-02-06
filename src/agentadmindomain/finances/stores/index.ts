@@ -105,8 +105,8 @@ export const useBilling = defineStore("billing", () => {
   const transactions = ref<Transaction[]>(dummyTransactions); // Use dummy data for now
   const totalAmount = ref(600); // Set a test value
   const totalBalance = ref(3000); // Set a test value
-  // const floatLedgers = ref<FloatLedger[]>(dummyFloatLedgers); // Use dummy data for now
-  const floatLedgers = ref<FloatLedger[]>([]);
+  const floatLedgers = ref<FloatLedger[]>(dummyFloatLedgers); // Use dummy data for now
+  // const floatLedgers = ref<FloatLedger[]>([]);
   // const branchFloatLedgers = ref<FloatLedger[]>(dummyBranchFloatLedgers)
   const branchFloatLedgers = ref<FloatLedger[]>([])
   const backofficeUsers = ref<BackofficeUser[]>(dummyBackofficeUsers);
