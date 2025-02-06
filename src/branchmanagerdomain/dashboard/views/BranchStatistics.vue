@@ -3,9 +3,9 @@ import BarChart from "@/branchmanagerdomain/analytics/components/BarChart.vue";
 import LineChart from "@/branchmanagerdomain/analytics/components/LineChart.vue";
 import PieChart from "@/branchmanagerdomain/analytics/components/PieChart.vue";
 import { useTillStore } from "@/branchmanagerdomain/tills/stores";
-import { useAccountStore } from "@/branchmanagerdomain/accounts/stores";
+import { useAccounts } from "@/branchmanagerdomain/accounts/stores";
 const tillStore = useTillStore();
-const accountStore = useAccountStore();
+const accountStore = useAccounts();
 
 const totalTills = tillStore.tills?.length || 0;
 const totalTillOperators = accountStore.tillOperators?.length || 0;
