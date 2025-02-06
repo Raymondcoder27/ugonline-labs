@@ -51,7 +51,10 @@ function closeEditModal() {
 
 const balanceStore = useBalance();
 
+// const billingStore = useBilling();
 const billingStore = useBilling();
+billingStore.floatRequests = billingStore.floatRequests || [];
+
 const page = ref(1);
 const loading: Ref<boolean> = ref(false);
 const limit = ref(10);
@@ -317,10 +320,16 @@ const rejectFloatRequest = (requestId: any) => {
   }
 };
 
-onMounted(() => {
-  billingStore.fetchFloatRequests();
-  console.log(billingStore.floatRequests);
+// onMounted(() => {
+//   billingStore.fetchFloatRequests();
+//   console.log(billingStore.floatRequests);
+// });
+
+onMounted(async () => {
+  await billingStore.fetchFloatRequests();
+  console.log("Fetched Float Requests:", billingStore.floatRequests);
 });
+
 </script>
 
 <template>
