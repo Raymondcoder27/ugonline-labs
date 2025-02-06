@@ -105,7 +105,8 @@ export const useBilling = defineStore("billing", () => {
   const transactions = ref<Transaction[]>(dummyTransactions); // Use dummy data for now
   const totalAmount = ref(600); // Set a test value
   const totalBalance = ref(3000); // Set a test value
-  const floatLedgers = ref<FloatLedger[]>(dummyFloatLedgers); // Use dummy data for now
+  // const floatLedgers = ref<FloatLedger[]>(dummyFloatLedgers); // Use dummy data for now
+    const floatLedgers = ref<FloatLedger[]>([]); 
   // const branchFloatLedgers = ref<FloatLedger[]>(dummyBranchFloatLedgers)
   const branchFloatLedgers = ref<FloatLedger[]>([])
   const backofficeUsers = ref<BackofficeUser[]>(dummyBackofficeUsers);
@@ -132,12 +133,18 @@ export const useBilling = defineStore("billing", () => {
     // totalBalance.value = 300000000; // Set a test value
   }
 
-  async function fetchFloatLedgers(filter: any) {
-    // Simulate API call
-    // const response = await fetch(`/api/float-ledgers?limit=${filter.limit}&page=${filter.page}`);
-    // const data = await response.json();
-    // Use dummy data for now
-    floatLedgers.value = dummyFloatLedgers;
+  // async function fetchFloatLedgers(filter: any) {
+  //   // Simulate API call
+  //   // const response = await fetch(`/api/float-ledgers?limit=${filter.limit}&page=${filter.page}`);
+  //   // const data = await response.json();
+  //   // Use dummy data for now
+  //   floatLedgers.value = dummyFloatLedgers;
+  // }
+
+  async function fetchFloatLedgers() {
+    const { data } = await api.get("/agent-admin-float-ledgers");
+    floatLedgers.value = data.data;
+    console.log("Float Ledgers:", floatLedgers.value);
   }
 
   // async function fetchBranchFloatLedgers(filter: any) {
@@ -305,33 +312,64 @@ export const useBilling = defineStore("billing", () => {
   //   console.log(`float request with id ${requestId} approved`);
   // };
 
-  async function reduceFloatLedger(requestId: any) {
-    //  This is local storage 
-    // end of local storage
+  // async function reduceFloatLedger(requestId: any) {
+  //   //  This is local storage 
+  //   // end of local storage
 
-    console.log("Approving float request with ID:", requestId);
-    // Simulate API call
-    // const response = await fetch(`/api/float-requests/${requestId}/approve`, {
-    //   method: "POST",
-    // });
-    // const data = await response.json();
+  //   console.log("Approving float request with ID:", requestId);
+  //   // Simulate API call
+  //   // const response = await fetch(`/api/float-requests/${requestId}/approve`, {
+  //   //   method: "POST",
+  //   // });
+  //   // const data = await response.json();
 
-    // use request in floatledgers array id to figure out amount 
-    const floatRequest = floatRequests.value.find(
-      (request) => request.id === requestId
-    );
-    if (!floatRequest) {
-      console.error("Float request not found");
-      return;
+  //   // use request in floatledgers array id to figure out amount 
+  //   const floatRequest = floatRequests.value.find(
+  //     (request) => request.id === requestId
+  //   );
+  //   if (!floatRequest) {
+  //     console.error("Float request not found");
+  //     return;
+  //   }
+  //   floatLedgers.value.push({
+  //     id: floatLedgers.value.length + 1,
+  //     date: new Date().toISOString(),
+  //     description: floatRequest.branch,
+  //     amount: -floatRequest.amount,
+  //     // balance: 300000000 - floatRequest.amount,
+  //   });
+  // }
+  async function reduceFloatLedger(requestId: string) {
+    try {
+        console.log("Reducing float ledger for request ID:", requestId);
+
+        // Step 1: Find the corresponding float request
+        const floatRequest = floatRequests.value.find(request => request.id === requestId);
+
+        if (!floatRequest) {
+            console.error("Float request not found for ID:", requestId);
+            return;
+        }
+
+        // Step 2: Create a new Float Ledger Entry with reduced amount
+        const { data } = await api.post(`/agent-admin-float-ledgers`, {
+            requestId: floatRequest.id,
+            date: new Date().toISOString(),
+            description: floatRequest.description,
+            amount: -floatRequest.amount, // Negative to indicate reduction
+            status: "approved",
+            till: floatRequest.till,
+            approvedBy: "Admin One",
+        });
+
+        // Step 3: Update local state with new ledger entry
+        floatLedgers.value.push(data.data);
+        console.log("Float ledger reduced successfully:", data.data);
+        
+    } catch (error) {
+        console.error("Error reducing float ledger:", error);
     }
-    floatLedgers.value.push({
-      id: floatLedgers.value.length + 1,
-      date: new Date().toISOString(),
-      description: floatRequest.branch,
-      amount: -floatRequest.amount,
-      // balance: 300000000 - floatRequest.amount,
-    });
-  }
+}
 
 
   // const rejectFloatRequest = (requestId: any) => {
