@@ -552,9 +552,27 @@ async function approveFloatRequest(requestId: string) {
         status: "edited",
         description: payload.description,
         approvedBy: "Manager One",
+        ledgerId: floatRequest.ledgerId, 
       });
       floatRequests.value = data.data;
       console.log("Float Requests:", floatRequests.value);
+      if (floatRequest.ledgerId) {
+        // Retrieve the existing ledger entry to keep all fields
+        const ledgerEntry = floatLedgers.value.find(ledger => ledger.id === floatRequest.ledgerId);
+
+        if (ledgerEntry) {
+            await api.put(`/branch5-manager-float-ledgers/${floatRequest.ledgerId}`, {
+                ...ledgerEntry, // Retain all original fields
+                status: "edited", // Only update status
+            });
+
+            console.log("Float ledger record edited:", ledgerEntry);
+        } else {
+            console.error("Ledger entry not found for ID:", floatRequest.ledgerId);
+        }
+    } else {
+        console.error("Ledger ID not found in float request!");
+    }
     } catch (error) {
       console.error("Error editing float request:", error);
     }
