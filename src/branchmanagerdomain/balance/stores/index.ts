@@ -25,7 +25,8 @@ export const useBalance = defineStore("balance", () => {
   const computedBalance = computed(() => {
     let runningBalance = 0;
 
-    billingStore.floatRequests.forEach((transaction) => {
+    // billingStore.floatRequests.forEach((transaction) => {
+      billingStore.floatLedgers.forEach((transaction) => {
       if (transaction.status === "approved" || transaction.status === "edited") {
         runningBalance += transaction.amount;
       }

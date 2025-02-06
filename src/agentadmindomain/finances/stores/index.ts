@@ -530,6 +530,7 @@ export const useBilling = defineStore("billing", () => {
           await api.put(`/branch6-manager-float-ledgers/${floatRequest.ledgerId}`, {
             ...ledgerEntry, // Retain all original fields
             status: "edited", // Only update status
+            amount: payload.amount,
           });
 
           console.log("Float ledger record edited:", ledgerEntry);
