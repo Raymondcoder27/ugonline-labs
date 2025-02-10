@@ -74,7 +74,6 @@ export const useBalance = defineStore("balance", () => {
     console.log("Updated balance in store:", totalBalance); // Debugging
   }
 
-
   return {
     totalBalance,
     computedBalance,

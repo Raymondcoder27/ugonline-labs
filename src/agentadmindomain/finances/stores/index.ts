@@ -567,7 +567,7 @@ export const useBilling = defineStore("billing", () => {
     fetchBackofficeUsers,
     fetchBranchManagers,
     fetchFloatAllocations,
-    allocateFloat,
-    allocateFloatFromRequest,
+    // allocateFloat,
+    // allocateFloatFromRequest,
   };
 });

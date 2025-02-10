@@ -116,10 +116,6 @@ export const useTillStore = defineStore("useTill", () => {
   //   subscribedServices.value = subscribedServices.value?.filter((s) => s.id !== serviceId);
   // }
 
-  
-  
-  
-  
 
   // async function fetchTills(filter: any) {
   //   // isLoading.value = true;
