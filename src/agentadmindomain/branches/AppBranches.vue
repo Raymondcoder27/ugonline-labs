@@ -142,7 +142,16 @@ function assignManager(branch: Branch) {
 
 function close() {
   modalOpen.value = false;
+}
+
+function closeViewModal() {
   editModalOpen.value = false;
+}
+function closeManagerAssignmentModal() {
+  assignManagerModalOpen.value = false;
+}
+
+function closeEditModal() {
   assignManagerModalOpen.value = false;
 }
 
@@ -546,7 +555,7 @@ onMounted(() => {
 
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
-    <EditBranch @cancel="close" />
+    <EditBranch @cancel="closeEditModal" />
     <!-- That's also okay -->
   </AppModal>
   <!-- /Modal -->
@@ -557,8 +566,8 @@ onMounted(() => {
     <!-- Chances are high that you're starting with a form -->
     <AssignBranchManager
       :branchId="selectedBranch"
-      @managerAssigned="close"
-      @cancel="close"
+      @managerAssigned="closeManagerAssignmentModal"
+      @cancel="closeManagerAssignmentModal"
     />
     <!-- That's also okay -->
   </AppModal>

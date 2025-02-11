@@ -1,24 +1,25 @@
 <script setup lang="ts">
 import { ref, reactive, defineEmits, onMounted, type Ref } from "vue";
-import { useBranchStore } from "@/branchmanagerdomain/tills/stores";
+import { useTillStore } from "@/branchmanagerdomain/tills/stores";
 import { useNotificationsStore } from "@/stores/notifications";
-// import type { Branch } from "@/branchmanagerdomain/branches/types";
+// import type { Till} from "@/branchmanagerdomain/tills/types";
 
-const branchStore = useBranchStore();
+const tillStore = useTillStore();
 const notify = useNotificationsStore();
 
 const loading: Ref<boolean> = ref(false);
-const selectedBranchId: Ref<string> = ref(""); // ID of the branch to be edited
+const selectedTillId: Ref<string> = ref(""); // ID of the Tillto be edited
 
-const branch = reactive({
+const form = reactive({
   id: "",
   name: "",
   location: "",
   manager: "",
-  status: "",
+  status: "Active",
+  tillOperator: "",
   createdAt: "",
 });
-// const branch: Ref<Branch | undefined> = reactive({
+// const till: Ref<Till| undefined> = reactive({
 //   id: "",
 //   name: "",
 //   location: "",
@@ -26,51 +27,66 @@ const branch = reactive({
 //   status: "",
 //   createdAt: "",
 // });
-const emit = defineEmits(["cancel"]);
-// Fetch the branch data from the store
-onMounted(async () => {
-  loading.value = true;
+const emit = defineEmits(["cancel", "tillEdited"]);
+// Fetch the Tilldata from the store
+// onMounted(async () => {
+//   loading.value = true;
 
-  // Fetch the list of branches
-  await branchStore.fetchBranches({});
+//   // Fetch the list of tills
+//   // await tillStore.fetchTills({});
+//   await tillStore.fetchTills();
 
-  // Assuming that a selected branch ID is passed to the component (e.g., from a parent component or route)
-  const branchId = selectedBranchId.value; // Set this to the appropriate value
+//   // Assuming that a selected TillID is passed to the component (e.g., from a parent component or route)
+//   const tillId = selectedTillId.value; // Set this to the appropriate value
 
-  // Get the branch to edit
-  const selectedBranch = branchStore.branches.value?.find(
-    (b) => b.id === Number(branchId)
-  );
-  // const selectedBranch = branchStore.branches?.find(b => b.id === Number(branchId));
-  if (selectedBranch) {
-    branch.value = { ...selectedBranch }; // Clone the branch to avoid mutating the store directly
-  }
+//   // Get the Tillto edit
+//   const selectedTill = tillStore.tills.value?.find(
+//     (b) => b.id === Number(tillId)
+//   );
+//   // const selectedTill = tillStore.tills?.find(b => b.id === Number(tillId));
+//   if (selectedTill) {
+//     till.value = { ...selectedTill }; // Clone the Tillto avoid mutating the store directly
+//   }
 
-  loading.value = false;
-});
+//   loading.value = false;
+// });
 
-// Handle form submission to save the updated branch
+// Handle form submission to save the updated Till
 function submit() {
   const payload = {
-    id: branch.value.id,
-    name: branch.value.name,
-    location: branch.value.location,
-    manager: branch.value.manager,
-    status: branch.value.status,
+    id: till.value.id,
+    name: till.value.name,
+    location: till.value.location,
+    tillOperator: till.value.tillOperator,
+    status: till.value.status,
   };
 
-  // Simulate saving the edited branch (assuming it updates the store)
-  branchStore.addBranch(payload); // If you were adding a new branch or you can update it via another method
+  // Simulate saving the edited Till(assuming it updates the store)
+  tillStore.addTill(payload); // If you were adding a new Tillor you can update it via another method
   loading.value = false;
-
+  emit("tillEdited");
   // Show success notification
-  notify.success("Branch edited successfully");
+  notify.success("Till edited successfully");
 }
 
 // Handle the cancel action
 function cancel() {
   emit("cancel");
 }
+onMounted(() => {
+  //   let data = JSON.parse(<string>localStorage.getItem("provider"))
+  // let data = JSON.parse(<string>localStorage.getItem("branchManagerAccount"));
+  let data = JSON.parse(<string>localStorage.getItem("till"));
+
+  // form.branch = data.branch;
+  form.name = data.name;
+  form.tillOperator = data.operator;
+  // form.firstName = data.firstName;
+  // form.lastName = data.lastName;
+  // form.email = data.email;
+  // form.phone = data.phone;
+  // form.username = data.username;
+});
 </script>
 
 <template>
@@ -79,56 +95,56 @@ function cancel() {
   </div>
 
   <div v-else class="bg-white py-5">
-    <p class="text-xl font-bold">Edit Branch</p>
+    <p class="text-xl font-bold">Edit Till Details</p>
     <form @submit.prevent="submit" class="pt-5">
-      <!-- Branch Name -->
+      <!-- TillName -->
       <div class="flex flex-col my-2">
         <label for="name" class="text-neutral-600 text-xs font-bold mb-1"
-          >Branch Name</label
+          >Till Name</label
         >
         <input
           type="text"
           id="name"
-          v-model="branch.name"
+          v-model="form.name"
           class="form-element e-input w-full"
           required
         />
       </div>
 
-      <!-- Branch Location -->
-      <div class="flex flex-col my-2">
+      <!-- TillLocation -->
+      <!-- <div class="flex flex-col my-2">
         <label for="location" class="text-neutral-600 text-xs font-bold mb-1"
           >Location</label
         >
         <input
           type="text"
           id="location"
-          v-model="branch.location"
+          v-model="form.location"
           class="form-element e-input w-full"
           required
         />
-      </div>
+      </div> -->
 
-      <!-- Branch Manager -->
+      <!-- TillManager -->
       <div class="flex flex-col my-2">
         <label for="manager" class="text-neutral-600 text-xs font-bold mb-1"
-          >Manager</label
+          >Operator</label
         >
         <input
           type="text"
           id="manager"
-          v-model="branch.manager"
+          v-model="form.tillOperator"
           class="form-element e-input w-full"
         />
       </div>
 
-      <!-- Branch Status -->
+      <!-- TillStatus -->
       <div class="flex flex-col my-2">
         <label for="status" class="text-neutral-600 text-xs font-bold mb-1"
           >Status</label
         >
         <select
-          v-model="branch.status"
+          v-model="form.status"
           id="status"
           class="form-element e-input w-full"
           required
@@ -203,4 +219,4 @@ button {
 .cell-full {
   @apply w-full px-1 my-2;
 }
-</style>@/branchmanagerdomain/tills/stores@/branchmanager/tills/stores
+</style>

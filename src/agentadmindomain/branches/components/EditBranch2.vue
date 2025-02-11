@@ -103,7 +103,7 @@ onMounted(() => {
   </div>
 
   <div v-else class="bg-white py-5">
-    <p class="text-xl font-bold">Edit Branch</p>
+    <p class="text-xl font-bold">Edit Branch Details</p>
     <form @submit.prevent="submit" class="pt-5">
       <!-- Branch Name -->
       <div class="flex flex-col my-2">
