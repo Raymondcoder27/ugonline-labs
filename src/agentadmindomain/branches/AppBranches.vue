@@ -8,7 +8,7 @@ import moment from "moment/moment";
 import router from "@/router";
 import { useProviderStore } from "@/agentadmindomain/entities/stores";
 import AssignBranchManager from "@/agentadmindomain/branches/components/AssignBranchManager.vue";
-import EditBranch from "@/agentadmindomain/branches/components/EditBranch.vue";
+import EditBranch from "@/agentadmindomain/branches/components/EditBranch2.vue";
 // import CategorySelector from "@/agentadmindomain/settings/components/CategorySelector.vue";
 import { useNotificationsStore } from "@/stores/notifications";
 import type { ApiError } from "@/types";
@@ -92,8 +92,14 @@ function open(branch: Branch) {
 
 // edit branch
 function edit(branch: Branch) {
+  branchStore.branches?.forEach((branch) => {
+    const manager = getManagerByBranch(branch.name);
+    if (manager) {
+      branch.manager = manager.email;
+    }
+  });
   editModalOpen.value = true;
-  // localStorage.setItem("branch", JSON.stringify(branch));
+  localStorage.setItem("branch", JSON.stringify(branch));
   console.log("Branch to edit: ", branch);
 }
 
