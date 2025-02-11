@@ -8,7 +8,7 @@ import moment from "moment/moment";
 import router from "@/router";
 import { useProviderStore } from "@/branchmanagerdomain/entities/stores";
 import AssignTillOperator from "@/branchmanagerdomain/tills/components/AssignTillOperator.vue";
-import EditBranch from "@/branchmanagerdomain/tills/components/EditBranch.vue";
+import EditTill from "@/branchmanagerdomain/tills/components/EditTill2.vue";
 // import CategorySelector from "@/branchmanagerdomain/settings/components/CategorySelector.vue";
 import { useNotificationsStore } from "@/stores/notifications";
 import type { ApiError } from "@/types";
@@ -109,13 +109,13 @@ function convertDateTime(date: string) {
 }
 
 // function deleteBranch(branch: Till) {
-//   tillStore.deleteBranch(branch.id);
+//   tillStore.deleteBranch(till.id);
 //   notify.success("Branch Deleted");
 //   fetchTills();
 // }
 
 // function deleteBranch(branch: Till) {
-//     tillStore.deleteBranch(branch.id);
+//     tillStore.deleteBranch(till.id);
 //     fetchTills();  // Refetch the tills after deleting
 //     notify.success("Branch Deleted");
 //   }
@@ -181,13 +181,13 @@ const assignOperatorsToTills = () => {
   });
 };
 
-// const branchManagerFloatBalance = ref(0);
+// const tillOperatorFloatBalance = ref(0);
 
 // onMounted(()=>{
-//     const savedFloatManagerBalance = JSON.parse(localStorage.getItem('branchManagerFloatBalance'));
+//     const savedFloatManagerBalance = JSON.parse(localStorage.getItem('tillOperatorFloatBalance'));
 
 //     if (savedFloatManagerBalance) {
-//       branchManagerFloatBalance.value = savedFloatManagerBalance;
+//       tillOperatorFloatBalance.value = savedFloatManagerBalance;
 //     }
 //   })
 
@@ -289,12 +289,8 @@ onMounted(() => {
           </tr>
         </thead>
         <tbody>
-          <tr
-            class="body-tr"
-            v-for="(till, idx) in tillStore.tills"
-            :key="idx"
-          >
-          <!-- <tr
+          <tr class="body-tr" v-for="(till, idx) in tillStore.tills" :key="idx">
+            <!-- <tr
             class="body-tr"
             v-for="(till, idx) in paginatedTills"
             :key="idx"
@@ -371,7 +367,7 @@ onMounted(() => {
             <!-- <td class="text-center">
               <i
                 :class="
-                  branch.isActive
+                  till.isActive
                     ? 'text-green-600 fa-solid fa-check'
                     : 'text-red-600 fa-solid fa-times'
                 "
@@ -387,12 +383,10 @@ onMounted(() => {
                 @click="deleteBranch(till.id)"
               ></i>
             <td class="text-center">
-  <span>{{ branch.status }}</span>
+  <span>{{ till.status }}</span>
 </td> -->
             <td class="text-left">
-              <span class="text-xs">{{
-                convertDateTime(till.createdAt)
-              }}</span>
+              <span class="text-xs">{{ convertDateTime(till.createdAt) }}</span>
             </td>
             <td class="text-right">
               <!-- <i
@@ -421,7 +415,7 @@ onMounted(() => {
               </span>
               <!-- <i
                 class="fa-solid fa-trash p-1 mx-1 text-red-600 bg-red-100 border border-red-200 hover:text-red-700"
-                @click="deleteBranch(branch.id)"
+                @click="deleteBranch(till.id)"
               ></i> -->
             </td>
           </tr>
@@ -495,8 +489,8 @@ onMounted(() => {
     </div>
   </div>
 
-   <!-- Approve Modal -->
-   <AppModal v-model="showTillCloseModal" xl>
+  <!-- Approve Modal -->
+  <AppModal v-model="showTillCloseModal" xl>
     <div class="flex">
       <div class="w-full">
         <div class="flex">
@@ -545,7 +539,7 @@ onMounted(() => {
 
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
-    <EditBranch @cancel="close" />
+    <EditTill @cancel="close" />
     <!-- That's also okay -->
   </AppModal>
   <!-- /Modal -->
