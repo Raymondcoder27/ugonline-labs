@@ -137,7 +137,13 @@ function deleteTill(tillId: string) {
 
 function close() {
   modalOpen.value = false;
+}
+
+function closeEditModal(){
   editModalOpen.value = false;
+}
+
+function closeOperatorAssignmentModal(){
   assignOperatorModalOpen.value = false;
 }
 
@@ -539,7 +545,7 @@ onMounted(() => {
 
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
-    <EditTill @cancel="close" />
+    <EditTill @cancel="closeEditModal" />
     <!-- That's also okay -->
   </AppModal>
   <!-- /Modal -->
@@ -550,8 +556,8 @@ onMounted(() => {
     <!-- Chances are high that you're starting with a form -->
     <AssignTillOperator
       :tillId="selectedTill"
-      @operatorAssigned="close"
-      @cancel="close"
+      @operatorAssigned="closeOperatorAssignmentModal"
+      @cancel="closeOperatorAssignmentModal"
     />
     <!-- That's also okay -->
   </AppModal>
