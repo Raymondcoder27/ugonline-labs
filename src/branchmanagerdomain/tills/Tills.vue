@@ -92,10 +92,22 @@ function open(till: Till) {
 }
 
 // edit branch
+// function edit(till: Till) {
+//   editModalOpen.value = true;
+//   // localStorage.setItem("branch", JSON.stringify(till));
+//   console.log("Branch to edit: ", till);
+// }
+// edit branch
 function edit(till: Till) {
+  tillStore.tills?.forEach((till) => {
+    const operator = getOperatorByTill(till.name);
+    if (operator) {
+      till.operator = operator.email;
+    }
+  });
   editModalOpen.value = true;
-  // localStorage.setItem("branch", JSON.stringify(till));
-  console.log("Branch to edit: ", till);
+  localStorage.setItem("till", JSON.stringify(till));
+  console.log("Till to edit: ", till);
 }
 
 //configure branch
@@ -139,11 +151,11 @@ function close() {
   modalOpen.value = false;
 }
 
-function closeEditModal(){
+function closeEditModal() {
   editModalOpen.value = false;
 }
 
-function closeOperatorAssignmentModal(){
+function closeOperatorAssignmentModal() {
   assignOperatorModalOpen.value = false;
 }
 
@@ -401,22 +413,21 @@ onMounted(() => {
               ></i> -->
               <span
                 class="p-1 mx-1 rounded-md text-white bg-blue-600 hover:bg-blue-200 hover:text-blue-700"
+                @click="edit(till)"
               >
-                <i class="fa-solid fa-pen" @click="edit(till)"></i>
+                <i class="fa-solid fa-pen"></i>
                 Edit
               </span>
 
               <span
                 class="rounded-md p-1 mx-1 text-white bg-red-700 hover:bg-red-200 hover:text-red-700"
+                @click="showTillCloseModal = true"
               >
                 <!-- <i
                   class="fa-solid fa-store-slash"
                   @click="deleteBranch(branch)"
                 ></i> -->
-                <i
-                  class="fa-solid fa-store-slash"
-                  @click="showTillCloseModal = true"
-                ></i>
+                <i class="fa-solid fa-store-slash"></i>
                 Close
               </span>
               <!-- <i
