@@ -224,12 +224,12 @@ onMounted(() => {
   <div class="w-full shadow-lg bg-white rounded p-2 flex flex-col min-h-[85vh]">
     <div class="flex">
       <div class="w-full py-1 text-primary-700">
-        <!-- <i
-          class="bg-primary-100 border border-primary-200 p-2 rounded-full fa-solid fa-code-branch"
-        ></i> -->
         <i
-          class="bg-primary-100 border border-primary-200 p-2 rounded-full fa-solid fa-building"
+          class="bg-primary-100 border border-primary-200 p-2 rounded-full fa-solid fa-code-branch"
         ></i>
+        <!-- <i
+          class="bg-primary-100 border border-primary-200 p-2 rounded-full fa-solid fa-building"
+        ></i> -->
         <label class="text-lg mx-1">Tills</label>
       </div>
     </div>
@@ -518,7 +518,7 @@ onMounted(() => {
           </span>
         </div>
         <p class="py-5 text-center">
-          Are you sure you want to close this branch?
+          Are you sure you want to close this till?
         </p>
         <div class="flex w-1/2 gap-2 justify-center mx-auto">
           <!-- <button
@@ -527,13 +527,13 @@ onMounted(() => {
             > -->
           <button
             class="bg-gray-600 hover:bg-gray-500 w-1/2 rounded text-white"
-            @click="showBranchCloseModal = false"
+            @click="showTillCloseModal = false"
           >
             <i class="fa-solid fa-times-circle mx-1"></i> Cancel
           </button>
           <!-- <button
             class="bg-green-700 text-white p-1 w-1/2 rounded hover:bg-green-800"
-            @click="showBranchCloseModal = true"
+            @click="showTillCloseModal = true"
           > -->
           <button
             class="bg-green-700 text-white p-1 w-1/2 rounded hover:bg-green-800"
