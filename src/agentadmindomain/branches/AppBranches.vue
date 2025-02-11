@@ -401,22 +401,21 @@ onMounted(() => {
               ></i> -->
               <span
                 class="p-1 mx-1 rounded-md text-white bg-blue-600 hover:bg-blue-200 hover:text-blue-600"
+                @click="edit(branch)"
               >
-                <i class="fa-solid fa-pen" @click="edit(branch)"></i>
+                <i class="fa-solid fa-pen"></i>
                 Edit
               </span>
 
               <span
                 class="rounded-md p-1 mx-1 text-white bg-red-700 hover:bg-red-200 hover:text-red-700"
+                @click="showBranchCloseModal = true"
               >
                 <!-- <i
                   class="fa-solid fa-store-slash"
                   @click="deleteBranch(branch)"
                 ></i> -->
-                <i
-                  class="fa-solid fa-store-slash"
-                  @click="showBranchCloseModal = true"
-                ></i>
+                <i class="fa-solid fa-store-slash"></i>
                 Close
               </span>
             </td>
