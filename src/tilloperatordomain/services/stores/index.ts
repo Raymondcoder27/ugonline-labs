@@ -2,7 +2,7 @@
 import { ref, type Ref } from "vue";
 import { defineStore } from "pinia";
 import api from "@/config/api";
-import type { Service, ServiceResponseInterface, ServiceSpecification } from "@/tilloperatordomain/services/types";
+import type { Service, ServiceResponseInterface, ServiceSpecification, ServiceRequest } from "@/tilloperatordomain/services/types";
 import niraThumbnail from "@/assets/images/nira.png";
 import epostaThumbnail from "@/assets/images/eposta.png";
 import naroThumbnail from "@/assets/images/naro.png";
@@ -42,8 +42,8 @@ export const useServicesStore = defineStore("services", () => {
     {
       id: 2,
       thumbnail: ursbThumbnail,
-      service: "Company Dissolution",
-      description: "Dissolve a private or public company",
+      service: "File Annual Returns",
+      description: "Filling annual returns for a company without share capital",
       acronym: "URSB",
       providerName: "URSB",
       // accessibilityTier: "Public",
@@ -225,6 +225,27 @@ export const useServicesStore = defineStore("services", () => {
       })
   }
 
+  // companyName: "",
+  // date: "",
+  // address: "",
+  // amount: 0,
+  // presentedBy: "",
+  // directors: [],
+
+  async function submitServiceRequest(payload: ServiceRequest) {
+    const { data } = await api.post("/till-operator-submissions", {
+      companyName: payload.companyName,
+      // date: new Date().toISOString(),
+      date: payload.date,
+      address: payload.address,
+      status: "pending",
+      amount: payload.amount,
+      presentedBy: payload.presentedBy,
+    });
+    submssions.value?.push(data.data);
+    console.log("Submit Service Request response:", data);
+  }
+
   const createServiceSpec = async (payload: any) => {
     return api.post<ServiceResponseInterface>("/registry/v1/specs/create", payload)
       .then((response: any) => {
@@ -297,6 +318,7 @@ export const useServicesStore = defineStore("services", () => {
     createSpecificationResponse,
     serviceSpecification,
     serviceSpecifications,
+    submitServiceRequest,
     createService,
     createServiceSpec,
     updateServiceSpec,

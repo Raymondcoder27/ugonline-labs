@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, reactive, onMounted, computed, type Ref } from "vue";
 import { useDebounceFn } from "@vueuse/core";
-import ServiceForm from "@/tilloperatordomain/services/components/ServiceForm.vue";
+import ServiceForm from "@/tilloperatordomain/services/components/ServiceForm2.vue";
 import AppModal from "@/components/AppModal.vue";
 import { useServicesStore } from "@/tilloperatordomain/services/stores";
 import { IGoFilter } from "@/types";
