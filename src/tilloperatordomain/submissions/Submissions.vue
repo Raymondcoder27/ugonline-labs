@@ -124,6 +124,75 @@ const filter = reactive({
   toDate: "", // Add toDate
 });
 
+function statusStyling(status?: string) {
+  if (status == "PENDING") {
+    return "flex px-2 py-1 rounded bg-gray-500 text-white";
+  }
+
+  if (status == "SUBMITTED" || status == "RECEIVED") {
+    return "flex px-2 py-1 rounded bg-green-400 text-white";
+  }
+
+  if (status == "AWAITING_PAYMENT") {
+    return "flex px-2 py-1 rounded bg-warning-700 text-warning-800";
+  }
+
+  if (status == "SENT") {
+    return "flex px-2 py-1 rounded bg-warning-600 text-white";
+  }
+
+  if (status == "APPROVED" || status == "COMPLETED") {
+    return "flex px-2 py-1 rounded bg-green-600 text-white";
+  }
+
+  if (status == "QUERIED") {
+    return "flex px-2 py-1 rounded bg-blue-600 text-whit";
+  }
+
+  if (status == "PAYMENT_FAILED") {
+    return "flex px-2 py-1 rounded bg-red-500 text-white";
+  }
+
+  if (status == "FAILED") {
+    return "flex px-2 py-1 rounded bg-red-500 text-white";
+  }
+}
+
+function statusIcon(status?: string) {
+  if (status == "PENDING") {
+    return "fa-solid fa-clock-rotate-left mx-1";
+  }
+
+  if (status == "SUBMITTED" || status == "RECEIVED") {
+    return "fa-solid fa-envelope-circle-check mx-1";
+  }
+
+  if (status == "AWAITING_PAYMENT") {
+    return "fa-solid fa-clock-rotate-left mx-1";
+  }
+
+  if (status == "SENT") {
+    return "fa-solid fa-clock-rotate-left mx-1";
+  }
+
+  if (status == "APPROVED" || status == "COMPLETED") {
+    return "fa-solid fa-check-circle mx-1";
+  }
+
+  if (status == "QUERIED") {
+    return "fa-solid fa-question-circle mx-1";
+  }
+
+  if (status == "PAYMENT_FAILED") {
+    return "fa-solid fa-money-bill-transfer mx-1";
+  }
+
+  if (status == "FAILED") {
+    return "fa-solid fa-times-circle mx-1";
+  }
+}
+
+
 // Fetch billing data (transactions, float ledgers)
 onMounted(() => {
   fetchSubmissions();
@@ -693,15 +762,15 @@ function view(transaction: Transaction) {
               <td class="p-1">{{ selectedTransaction?.dateRequested }}</td>
             </tr> -->
             <tr class="border border-gray-50">
-              <td class="p-1 font-bold">Branch</td>
-              <td class="p-1">{{ selectedTransaction?.branch }}</td>
+              <td class="p-1 font-bold">Provider</td>
+              <td class="p-1">{{ selectedTransaction?.provider }}</td>
             </tr>
             <tr class="border border-gray-50">
               <td class="p-1 font-bold">Status</td>
               <td class="p-1">
                 <div class="flex">
                   <div class="w-6/12">
-                    <div :class="statusStyling(selectedTransaction?.status)">
+                   <div :class="statusStyling(selectedTransaction?.status)">
                       <div class="w-4/12 text-center">
                         <i
                           :class="statusIcon(selectedTransaction?.status)"

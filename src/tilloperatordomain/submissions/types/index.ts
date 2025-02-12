@@ -14,13 +14,18 @@ import { AccountVerificationTypes } from "../constants";
 //             </tr>
 //           </thead>
 
+
 export interface Submission {
   id: string;
   service: string;
   provider: string;
   fee: number;
   date: string;
+  applicant: string;
+  trackingNumber: string;
+  status: string;
 }
+
 
 export type Transaction = {
     id: string;
