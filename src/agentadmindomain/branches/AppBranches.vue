@@ -429,7 +429,7 @@ onMounted(() => {
               <span
                 class="rounded-md p-1 mx-1 text-white bg-red-700 hover:bg-red-200 hover:text-red-700"
                 @click="deleteBranch(branch)"
-              ></span>
+              >
                 <!-- <i
                   class="fa-solid fa-store-slash"
                   @click="deleteBranch(branch)"
