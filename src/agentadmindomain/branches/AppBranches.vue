@@ -152,7 +152,7 @@ function closeManagerAssignmentModal() {
 }
 
 function closeEditModal() {
-  assignManagerModalOpen.value = false;
+  editModalOpen.value = false;
 }
 
 function next() {
