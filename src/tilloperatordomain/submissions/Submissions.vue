@@ -4,7 +4,7 @@ import { useSubmissions } from "@/tilloperatordomain/submissions/stores"; // Imp
 import { useDebounceFn } from "@vueuse/core";
 import TransactionDetails from "@/tilloperatordomain/submissions/components/TransactionDetails.vue";
 import { useNotificationsStore } from "@/stores/notifications";
-
+import {Transaction} from "@/tilloperatordomain/submissions/types"
 import ServiceForm from "@/tilloperatordomain/services/components/ServiceForm.vue";
 import AppModal from "@/components/AppModal.vue";
 const serviceFormModalOpen: Ref<boolean> = ref(false);
@@ -762,8 +762,16 @@ function view(transaction: Transaction) {
               <td class="p-1">{{ selectedTransaction?.dateRequested }}</td>
             </tr> -->
             <tr class="border border-gray-50">
+              <td class="p-1 font-bold">Service</td>
+              <td class="p-1">{{ selectedTransaction?.service }}</td>
+            </tr>
+            <tr class="border border-gray-50">
               <td class="p-1 font-bold">Provider</td>
               <td class="p-1">{{ selectedTransaction?.provider }}</td>
+            </tr>
+            <tr class="border border-gray-50">
+              <td class="p-1 font-bold">Fee</td>
+              <td class="p-1">{{ selectedTransaction?.fee }}</td>
             </tr>
             <tr class="border border-gray-50">
               <td class="p-1 font-bold">Status</td>
