@@ -422,14 +422,14 @@ onMounted(() => {
                 Edit
               </span>
 
-              <span
+              <!-- <span
                 class="rounded-md p-1 mx-1 text-white bg-red-700 hover:bg-red-200 hover:text-red-700"
                 @click="showBranchCloseModal = true"
-              >
-                <!-- <i
+              > -->
+                <i
                   class="fa-solid fa-store-slash"
                   @click="deleteBranch(branch)"
-                ></i> -->
+                ></i>
                 <i class="fa-solid fa-store-slash"></i>
                 Close
               </span>
