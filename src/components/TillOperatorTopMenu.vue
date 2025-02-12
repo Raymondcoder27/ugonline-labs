@@ -22,16 +22,16 @@ const route = useRoute();
 const router = useRouter();
 const accountStore = useAccountStore();
 const topMenu: TopMenuLink[] = [
-  {
-    name: "agent-app-services",
-    label: "Services",
-    iconClass: "fa-solid fa-home",
-  },
   // {
-  //   name: "api-services",
+  //   name: "agent-app-services",
   //   label: "Services",
-  //   iconClass: "fa-solid fa-list",
+  //   iconClass: "fa-solid fa-home",
   // },
+  {
+    name: "api-services",
+    label: "Services",
+    iconClass: "fa-solid fa-list",
+  },
   // {
   //   name: "app-services-details",
   //   label: "SERVICES DETAILS",
