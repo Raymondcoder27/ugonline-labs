@@ -411,9 +411,8 @@ onMounted(() => {
             <!-- <td class="text-left">{{ request.createdAt }}</td> -->
 
             <td class="text-left">
-            {{
-              convertDateTime(request.createdAt)
-            }}</td>
+              {{ convertDateTime(request.createdAt) }}
+            </td>
             <!-- convertDateTime(request.createdAt) -->
             <td class="text-left">{{ request.description }}</td>
             <!-- <td class="text-left">{{ request.amount.toLocaleString() }}</td> -->
@@ -503,6 +502,7 @@ onMounted(() => {
                 <!-- <label> -->
                 <span
                   class="text-xs cursor-pointer rounded-md px-1 py-0.5 font-semibold text-white bg-blue-600 hover:text-blue-700 hover:bg-blue-200"
+                  @click="view(request)"
                 >
                   <!-- <i class="fa-solid fa-check"></i>
                   Approved</span
@@ -757,7 +757,10 @@ onMounted(() => {
   <AppModal v-model="editModalOpen" xl2>
     <!-- Put here whatever makes you smile -->
     <!-- Chances are high that you're starting with a form -->
-    <EditFloatRequestAmount @cancel="closeEditModal" @floatAllocated="closeEditModal" />
+    <EditFloatRequestAmount
+      @cancel="closeEditModal"
+      @floatAllocated="closeEditModal"
+    />
     <!-- That's also okay -->
   </AppModal>
 
