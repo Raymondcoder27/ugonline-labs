@@ -273,7 +273,11 @@ onMounted(() => {
   <!-- </div> -->
 
   <AppModal v-model="serviceFormModalOpen" xl2>
-    <ServiceForm @serviceSubmitted="close" @cancel="close" @requestSubmitted="close" />
+    <ServiceForm
+      @serviceSubmitted="close"
+      @cancel="close"
+      @requestSubmitted="close"
+    />
   </AppModal>
 </template>
 
