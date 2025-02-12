@@ -95,19 +95,19 @@ const mergedRoutes: RouteRecordRaw[] = [
     children: [
       { name: "branch-manager-app-dashboard", path: "/branch-manager/dashboard", component: BranchManagerDashboardTab },
       { name: "branch-manager-app-services", path: "/branch-manager/app-services", component: BranchManagerAppServices },
-      { name: "branch-manager-app-entities", path: "/branch-manager/entities", component:BranchManagerAppEntities },
-      { name: "branch-manager-app-agents", path: "/branch-manager/agents", component:BranchManagerAppAgents },
-      { name: "branch-manager-app-branches", path: "/branch-manager/branches", component:BranchManagerTills },
-      { name: "branch-manager-app-configurations", path: "/branch-manager/configurations", component:BranchManagerSettings },
+      { name: "branch-manager-app-entities", path: "/branch-manager/entities", component: BranchManagerAppEntities },
+      { name: "branch-manager-app-agents", path: "/branch-manager/agents", component: BranchManagerAppAgents },
+      { name: "branch-manager-app-branches", path: "/branch-manager/branches", component: BranchManagerTills },
+      { name: "branch-manager-app-configurations", path: "/branch-manager/configurations", component: BranchManagerSettings },
       // { name: "branchmanager-app-ledger", path: "/branchmanagerdomain/ledger", component:BranchManagerLedger },
-      { name: "branch-manager-app-services-details", path: "/branch-manager/services-details", component:BranchManagerServicesDetails },
-      { name: "branch-manager-app-finances", path: "/branch-manager/finances", component:BranchManagerAppFinances },
-      { name: "branch-manager-app-gateway", path: "/branch-manager/gateway", component:BranchManagerAppGateway },
-      { name: "branch-manager-app-tills", path: "/branch-manager/tills", component:BranchManagerTills },
-//       branch-manager-app-reports
-// branch-manager-app-accounts
-       { name: "branch-manager-app-reports", path: "/branch-manager/data-analytics", component: BranchManagerDataAnalytics },
-       { name: "branch-manager-app-accounts", path: "/branch-manager/accounts", component: BranchManagerAccounts },
+      { name: "branch-manager-app-services-details", path: "/branch-manager/services-details", component: BranchManagerServicesDetails },
+      { name: "branch-manager-app-finances", path: "/branch-manager/finances", component: BranchManagerAppFinances },
+      { name: "branch-manager-app-gateway", path: "/branch-manager/gateway", component: BranchManagerAppGateway },
+      { name: "branch-manager-app-tills", path: "/branch-manager/tills", component: BranchManagerTills },
+      //       branch-manager-app-reports
+      // branch-manager-app-accounts
+      { name: "branch-manager-app-reports", path: "/branch-manager/data-analytics", component: BranchManagerDataAnalytics },
+      { name: "branch-manager-app-accounts", path: "/branch-manager/accounts", component: BranchManagerAccounts },
       // { name: "branchmanager-app-submissions", path: "/branchmanagerdomain/submissions", component:BranchManagerSubmissions },
       // { name: "branchmanager-api-app-submissions", path: "/branchmanagerdomain/api-submissions", component: ApiSubmissions },
       // { name: "api-services", path: "/branchmanagerdomain/api-services", component: ApiServices },
@@ -119,8 +119,8 @@ const mergedRoutes: RouteRecordRaw[] = [
     name: "app-home2",
     component: AgentLayout,
     meta: { requiresAuth: false },
-    // redirect: "/agent/services",
-    redirect: "/till-operator/api-services",
+    redirect: "/agent/services",
+    // redirect: "/till-operator/api-services",
     children: [
       { name: "agent-app-services", path: "/till-operator/services", component: AgentAppServices },
       { name: "agent-app-entities", path: "/till-operator/entities", component: AgentAppEntities },
