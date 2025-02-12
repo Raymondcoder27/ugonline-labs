@@ -9,7 +9,7 @@ import naroThumbnail from "@/assets/images/naro.png";
 import ursbThumbnail from "@/assets/images/ursb.png";
 import ministryThumbnail from "@/assets/images/ministry.png";
 import type { Submission } from "@/tilloperatordomain/submissions/types";
-import { useSubmissions } from "@/tilloperatordomain/submissions/stores";
+// import { useSubmissions } from "@/tilloperatordomain/submissions/stores";
 
 
 
@@ -22,7 +22,7 @@ export const useServicesStore = defineStore("services", () => {
   const updateServiceResponse: Ref<ServiceResponseInterface | undefined> = ref()
   const statusUpdateResponse: Ref<ServiceResponseInterface | undefined> = ref()
   const createSpecificationResponse: Ref<ServiceResponseInterface | undefined> = ref()
-  const submissionStore = useSubmissions()
+  // const submissionStore = useSubmissions()
   // const submissions = submissionStore.submissions
   const submissions = ref<Submission[]>([]);
 

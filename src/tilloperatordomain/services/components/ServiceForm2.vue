@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref, type Ref, watch } from "vue";
+import { onMounted, reactive, ref, type Ref, watch, defineEmits } from "vue";
 import { useServicesStore } from "@/tilloperatordomain/services/stores";
 import { useProviderStore } from "@/tilloperatordomain/entities/stores";
 import { useSettingsStore } from "@/tilloperatordomain/settings/stores";
@@ -30,7 +30,7 @@ let form: ServiceForm = reactive({
   directors: [],
 });
 
-const emit = defineEmits(["cancel"]);
+const emit = defineEmits(["cancel", "requestSubmitted"]);
 
 onMounted(() => {
   loading.value = true;
@@ -44,11 +44,11 @@ onMounted(() => {
 
 function submit() {
   let payload = {
-    company_name: form.companyName,
+    companyName: form.companyName,
     date: form.date,
     address: form.address,
     amount: form.amount,
-    presented_by: form.presentedBy,
+    presentedBy: form.presentedBy,
     directors: form.directors,
   };
 
@@ -57,6 +57,7 @@ function submit() {
     .then(() => {
       loading.value = false;
       notify.success("Created");
+      emit("requestSubmitted")
       // window.location.reload();
     })
     .catch((error: ApiError) => {
